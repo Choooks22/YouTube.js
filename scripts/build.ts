@@ -50,7 +50,7 @@ await build({
   },
   package: {
     name: '@chooks22/youtubei.js',
-    version: '3.0.0',
+    version: '3.0.1',
     license: 'MIT',
     browser: './browser.js',
     dependencies: {
