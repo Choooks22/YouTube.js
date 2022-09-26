@@ -1,5 +1,5 @@
-import { YTNode } from '../../helpers';
-import NavigationEndpoint from '../NavigationEndpoint';
+import { YTNode } from '../../helpers.ts';
+import NavigationEndpoint from '../NavigationEndpoint.ts';
 
 class AnalyticsShortsCarouselCard extends YTNode {
   static type = 'AnalyticsShortsCarouselCard';
@@ -17,7 +17,7 @@ class AnalyticsShortsCarouselCard extends YTNode {
     this.shorts = data.shortsCarouselData.shorts.map((short: any) => ({
       description: short.shortsDescription,
       thumbnail_url: short.thumbnailUrl,
-      endpoint: new NavigationEndpoint(short.videoEndpoint)
+      endpoint: new NavigationEndpoint(short.videoEndpoint),
     }));
   }
 }

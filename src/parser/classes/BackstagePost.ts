@@ -1,9 +1,9 @@
-import Parser from '../index';
-import Author from './misc/Author';
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
+import Parser from '../index.ts';
+import Author from './misc/Author.ts';
+import Text from './misc/Text.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class BackstagePost extends YTNode {
   static type = 'BackstagePost';
@@ -27,10 +27,14 @@ class BackstagePost extends YTNode {
 
     this.id = data.postId;
 
-    this.author = new Author({
-      ...data.authorText,
-      navigationEndpoint: data.authorEndpoint
-    }, null, data.authorThumbnail);
+    this.author = new Author(
+      {
+        ...data.authorText,
+        navigationEndpoint: data.authorEndpoint,
+      },
+      null,
+      data.authorThumbnail,
+    );
 
     this.content = new Text(data.contentText);
     this.published = new Text(data.publishedTimeText);

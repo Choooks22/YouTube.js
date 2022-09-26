@@ -4,14 +4,15 @@ YouTube account manager.
 
 ## API
 
-* Account 
-  * [.channel](#channel)
-  * [.getInfo()](#getinfo)
-  * [.getTimeWatched()](#gettimewatched)
-  * [.getSettings()](#getsettings)
-  * [.getAnalytics](#getanalytics)
+- Account
+  - [.channel](#channel)
+  - [.getInfo()](#getinfo)
+  - [.getTimeWatched()](#gettimewatched)
+  - [.getSettings()](#getsettings)
+  - [.getAnalytics](#getanalytics)
 
 <a name="channel"></a>
+
 ### channel
 
 Channel settings.
@@ -29,12 +30,14 @@ Channel settings.
   - Edits channel description.
 
 - `<channel>#getBasicAnalytics()`
-  - Alias for [`Account#getAnalytics()`](#getanalytics) — returns basic channel analytics.
+  - Alias for [`Account#getAnalytics()`](#getanalytics) — returns basic channel
+    analytics.
 
 </p>
 </details>
 
 <a name="getinfo"></a>
+
 ### getInfo()
 
 Retrieves account information.
@@ -52,6 +55,7 @@ Retrieves account information.
 </details>
 
 <a name="gettimewatched"></a>
+
 ### getTimeWatched()
 
 Retrieves time watched statistics.
@@ -69,6 +73,7 @@ Retrieves time watched statistics.
 </details>
 
 <a name="getsettings"></a>
+
 ### getSettings()
 
 Retrieves YouTube settings.
@@ -80,10 +85,12 @@ Retrieves YouTube settings.
 <p>
 
 - `<settings>#selectSidebarItem(name)`
-  - Selects an item from the sidebar menu. Use `settings#sidebar_items` to see available items.
+  - Selects an item from the sidebar menu. Use `settings#sidebar_items` to see
+    available items.
 
 - `<settings>#getSettingOption(name)`
-  - Finds a setting by name and returns it. Use `settings#setting_options` to see available options.
+  - Finds a setting by name and returns it. Use `settings#setting_options` to
+    see available options.
 
 - `<settings>#setting_options`
   - Returns settings available in the page.
@@ -95,6 +102,7 @@ Retrieves YouTube settings.
 </details>
 
 <a name="getanalytics"></a>
+
 ### getAnalytics()
 
 Retrieves basic channel analytics.

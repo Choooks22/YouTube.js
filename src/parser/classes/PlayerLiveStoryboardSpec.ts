@@ -1,4 +1,4 @@
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class PlayerLiveStoryboardSpec extends YTNode {
   static type = 'PlayerLiveStoryboardSpec';

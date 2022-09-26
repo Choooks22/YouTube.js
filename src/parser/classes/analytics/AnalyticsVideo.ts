@@ -1,5 +1,5 @@
-import Thumbnail from '../misc/Thumbnail';
-import { YTNode } from '../../helpers';
+import Thumbnail from '../misc/Thumbnail.ts';
+import { YTNode } from '../../helpers.ts';
 
 class AnalyticsVideo extends YTNode {
   static type = 'AnalyticsVideo';
@@ -22,7 +22,7 @@ class AnalyticsVideo extends YTNode {
       published: data.videoDescription.split('·')[1].trim(),
       thumbnails: Thumbnail.fromResponse(data.thumbnailDetails),
       duration: data.formattedLength,
-      is_short: data.isShort
+      is_short: data.isShort,
     };
   }
 }

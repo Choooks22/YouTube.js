@@ -1,4 +1,4 @@
-import Playlist from './Playlist';
+import Playlist from './Playlist.ts';
 
 class CompactPlaylist extends Playlist {
   static type = 'CompactPlaylist';

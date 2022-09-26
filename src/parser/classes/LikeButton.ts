@@ -1,5 +1,5 @@
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode } from '../helpers.ts';
 
 class LikeButton extends YTNode {
   static type = 'LikeButton';
@@ -16,14 +16,16 @@ class LikeButton extends YTNode {
     super();
 
     this.target = {
-      video_id: data.target.videoId
+      video_id: data.target.videoId,
     };
 
     this.like_status = data.likeStatus;
     this.likes_allowed = data.likesAllowed;
 
     if (data.serviceEndpoints) {
-      this.endpoints = data.serviceEndpoints?.map((endpoint: any) => new NavigationEndpoint(endpoint));
+      this.endpoints = data.serviceEndpoints?.map((endpoint: any) =>
+        new NavigationEndpoint(endpoint)
+      );
     }
   }
 }

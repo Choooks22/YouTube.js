@@ -1,4 +1,4 @@
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class PlayerStoryboardSpec extends YTNode {
   static type = 'PlayerStoryboardSpec';
@@ -21,11 +21,23 @@ class PlayerStoryboardSpec extends YTNode {
     const url = new URL(parts.shift());
 
     this.boards = parts.map((part: any, i: any) => {
-      const [ thumbnail_width, thumbnail_height, thumbnail_count, columns, rows, interval, name, sigh ] = part.split('#');
+      const [
+        thumbnail_width,
+        thumbnail_height,
+        thumbnail_count,
+        columns,
+        rows,
+        interval,
+        name,
+        sigh,
+      ] = part.split('#');
 
       url.searchParams.set('sigh', sigh);
 
-      const storyboard_count = Math.ceil(parseInt(thumbnail_count, 10) / (parseInt(columns, 10) * parseInt(rows, 10)));
+      const storyboard_count = Math.ceil(
+        parseInt(thumbnail_count, 10) /
+          (parseInt(columns, 10) * parseInt(rows, 10)),
+      );
 
       return {
         template_url: url.toString().replace('$L', i).replace('$N', name),
@@ -35,7 +47,7 @@ class PlayerStoryboardSpec extends YTNode {
         interval: parseInt(interval, 10),
         columns: parseInt(columns, 10),
         rows: parseInt(rows, 10),
-        storyboard_count
+        storyboard_count,
       };
     });
   }

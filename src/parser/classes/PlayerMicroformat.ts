@@ -1,6 +1,6 @@
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import { YTNode } from '../helpers.ts';
 
 class PlayerMicroformat extends YTNode {
   static type = 'PlayerMicroformat';
@@ -46,7 +46,7 @@ class PlayerMicroformat extends YTNode {
       flash_url: data.embed.flashUrl,
       flash_secure_url: data.embed.flashSecureUrl,
       width: data.embed.width,
-      height: data.embed.height
+      height: data.embed.height,
     };
 
     this.length_seconds = parseInt(data.lengthSeconds);
@@ -54,7 +54,7 @@ class PlayerMicroformat extends YTNode {
     this.channel = {
       id: data.externalChannelId,
       name: data.ownerChannelName,
-      url: data.ownerProfileUrl
+      url: data.ownerProfileUrl,
     };
 
     this.is_family_safe = !!data.isFamilySafe;

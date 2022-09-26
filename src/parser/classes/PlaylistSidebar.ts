@@ -1,5 +1,5 @@
-import Parser from '../index';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import { YTNode } from '../helpers.ts';
 
 class PlaylistSidebar extends YTNode {
   static type = 'PlaylistSidebar';

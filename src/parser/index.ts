@@ -1,21 +1,28 @@
-import Format from './classes/misc/Format';
-import VideoDetails from './classes/misc/VideoDetails';
-import GetParserByName from './map';
-import Endscreen from './classes/Endscreen';
-import CardCollection from './classes/CardCollection';
-import NavigationEndpoint from './classes/NavigationEndpoint';
+import Format from './classes/misc/Format.ts';
+import VideoDetails from './classes/misc/VideoDetails.ts';
+import GetParserByName from './map.ts';
+import Endscreen from './classes/Endscreen.ts';
+import CardCollection from './classes/CardCollection.ts';
+import NavigationEndpoint from './classes/NavigationEndpoint.ts';
 
-import PlayerStoryboardSpec from './classes/PlayerStoryboardSpec';
-import PlayerCaptionsTracklist from './classes/PlayerCaptionsTracklist';
-import PlayerLiveStoryboardSpec from './classes/PlayerLiveStoryboardSpec';
-import PlayerAnnotationsExpanded from './classes/PlayerAnnotationsExpanded';
+import PlayerStoryboardSpec from './classes/PlayerStoryboardSpec.ts';
+import PlayerCaptionsTracklist from './classes/PlayerCaptionsTracklist.ts';
+import PlayerLiveStoryboardSpec from './classes/PlayerLiveStoryboardSpec.ts';
+import PlayerAnnotationsExpanded from './classes/PlayerAnnotationsExpanded.ts';
 
-import { InnertubeError, ParsingError } from '../utils/Utils';
-import { YTNode, YTNodeConstructor, SuperParsedResult, ObservedArray, observe, Memo } from './helpers';
+import { InnertubeError, ParsingError } from '../utils/Utils.ts';
+import {
+  Memo,
+  observe,
+  ObservedArray,
+  SuperParsedResult,
+  YTNode,
+  YTNodeConstructor,
+} from './helpers.ts';
 
-import package_json from '../../package.json';
-import MusicMultiSelectMenuItem from './classes/menus/MusicMultiSelectMenuItem';
-import AudioOnlyPlayability from './classes/AudioOnlyPlayability';
+import package_json from '../../package.json' assert { type: 'json' };
+import MusicMultiSelectMenuItem from './classes/menus/MusicMultiSelectMenuItem.ts';
+import AudioOnlyPlayability from './classes/AudioOnlyPlayability.ts';
 
 export class AppendContinuationItemsAction extends YTNode {
   static readonly type = 'appendContinuationItemsAction';
@@ -50,7 +57,8 @@ export class SectionListContinuation extends YTNode {
   constructor(data: any) {
     super();
     this.contents = Parser.parse(data.contents, true);
-    this.continuation = data.continuations?.[0].nextContinuationData.continuation || null;
+    this.continuation =
+      data.continuations?.[0].nextContinuationData.continuation || null;
   }
 }
 
@@ -63,7 +71,8 @@ export class MusicPlaylistShelfContinuation extends YTNode {
   constructor(data: any) {
     super();
     this.contents = Parser.parse(data.contents, true);
-    this.continuation = data.continuations?.[0].nextContinuationData.continuation || null;
+    this.continuation =
+      data.continuations?.[0].nextContinuationData.continuation || null;
   }
 }
 
@@ -91,7 +100,8 @@ export class GridContinuation extends YTNode {
   constructor(data: any) {
     super();
     this.items = Parser.parse(data.items, true);
-    this.continuation = data.continuations?.[0].nextContinuationData.continuation || null;
+    this.continuation =
+      data.continuations?.[0].nextContinuationData.continuation || null;
   }
 
   get contents() {
@@ -108,7 +118,8 @@ export class PlaylistPanelContinuation extends YTNode {
   constructor(data: any) {
     super();
     this.contents = Parser.parse(data.contents, true);
-    this.continuation = data.continuations?.[0]?.nextContinuationData?.continuation ||
+    this.continuation =
+      data.continuations?.[0]?.nextContinuationData?.continuation ||
       data.continuations?.[0]?.nextRadioContinuationData?.continuation || null;
   }
 }
@@ -141,10 +152,13 @@ export class LiveChatContinuation extends YTNode {
 
   constructor(data: any) {
     super();
-    this.actions = Parser.parse(data.actions?.map((action: any) => {
-      delete action.clickTrackingParams;
-      return action;
-    }), true) || observe<YTNode>([]);
+    this.actions = Parser.parse(
+      data.actions?.map((action: any) => {
+        delete action.clickTrackingParams;
+        return action;
+      }),
+      true,
+    ) || observe<YTNode>([]);
 
     this.action_panel = Parser.parseItem(data.actionPanel);
     this.item_list = Parser.parseItem(data.itemList);
@@ -157,13 +171,13 @@ export class LiveChatContinuation extends YTNode {
       shortcuts: emoji.shortcuts,
       search_terms: emoji.searchTerms,
       image: emoji.image,
-      is_custom_emoji: emoji.isCustomEmoji
+      is_custom_emoji: emoji.isCustomEmoji,
     })) || null;
 
     this.continuation = new TimedContinuation(
       data.continuations?.[0].timedContinuationData ||
-      data.continuations?.[0].invalidationContinuationData ||
-      data.continuations?.[0].liveChatReplayContinuationData
+        data.continuations?.[0].invalidationContinuationData ||
+        data.continuations?.[0].liveChatReplayContinuationData,
     );
 
     this.viewer_name = data.viewerName;
@@ -182,19 +196,22 @@ export default class Parser {
   }
 
   static #addToMemo(classname: string, result: YTNode) {
-    if (!Parser.#memo)
+    if (!Parser.#memo) {
       return;
+    }
 
     const list = Parser.#memo.get(classname);
-    if (!list)
-      return Parser.#memo.set(classname, [ result ]);
+    if (!list) {
+      return Parser.#memo.set(classname, [result]);
+    }
 
     list.push(result);
   }
 
   static #getMemo() {
-    if (!Parser.#memo)
+    if (!Parser.#memo) {
       throw new Error('Parser#getMemo() called before Parser#createMemo()');
+    }
     return Parser.#memo;
   }
 
@@ -211,17 +228,23 @@ export default class Parser {
     this.#clearMemo();
 
     this.#createMemo();
-    const on_response_received_actions = data.onResponseReceivedActions ? Parser.parseRR(data.onResponseReceivedActions) : null;
+    const on_response_received_actions = data.onResponseReceivedActions
+      ? Parser.parseRR(data.onResponseReceivedActions)
+      : null;
     const on_response_received_actions_memo = this.#getMemo();
     this.#clearMemo();
 
     this.#createMemo();
-    const on_response_received_endpoints = data.onResponseReceivedEndpoints ? Parser.parseRR(data.onResponseReceivedEndpoints) : null;
+    const on_response_received_endpoints = data.onResponseReceivedEndpoints
+      ? Parser.parseRR(data.onResponseReceivedEndpoints)
+      : null;
     const on_response_received_endpoints_memo = this.#getMemo();
     this.#clearMemo();
 
     this.#createMemo();
-    const on_response_received_commands = data.onResponseReceivedCommands ? Parser.parseRR(data.onResponseReceivedCommands) : null;
+    const on_response_received_commands = data.onResponseReceivedCommands
+      ? Parser.parseRR(data.onResponseReceivedCommands)
+      : null;
     const on_response_received_commands_memo = this.#getMemo();
     this.#clearMemo();
 
@@ -230,7 +253,10 @@ export default class Parser {
     const actions_memo = this.#getMemo();
     this.#clearMemo();
 
-    this.applyMutations(contents_memo, data.frameworkUpdates?.entityBatchUpdate?.mutations);
+    this.applyMutations(
+      contents_memo,
+      data.frameworkUpdates?.entityBatchUpdate?.mutations,
+    );
 
     return {
       actions,
@@ -244,70 +270,120 @@ export default class Parser {
       on_response_received_commands,
       on_response_received_commands_memo,
       continuation: data.continuation ? Parser.parseC(data.continuation) : null,
-      continuation_contents: data.continuationContents ? Parser.parseLC(data.continuationContents) : null,
+      continuation_contents: data.continuationContents
+        ? Parser.parseLC(data.continuationContents)
+        : null,
       metadata: Parser.parse(data.metadata),
       header: Parser.parse(data.header),
       microformat: data.microformat ? Parser.parseItem(data.microformat) : null,
       sidebar: Parser.parseItem(data.sidebar),
       overlay: Parser.parseItem(data.overlay),
       refinements: data.refinements || null,
-      estimated_results: data.estimatedResults ? parseInt(data.estimatedResults) : null,
+      estimated_results: data.estimatedResults
+        ? parseInt(data.estimatedResults)
+        : null,
       player_overlays: Parser.parse(data.playerOverlays),
-      playback_tracking: data.playbackTracking ? {
-        videostats_watchtime_url: data.playbackTracking.videostatsWatchtimeUrl.baseUrl,
-        videostats_playback_url: data.playbackTracking.videostatsPlaybackUrl.baseUrl
-      } : null,
-      playability_status: data.playabilityStatus ? {
-        status: data.playabilityStatus.status as string,
-        error_screen: Parser.parseItem(data.playabilityStatus.errorScreen),
-        audio_only_playablility: Parser.parseItem<AudioOnlyPlayability>(data.playabilityStatus.audioOnlyPlayability, AudioOnlyPlayability),
-        embeddable: !!data.playabilityStatus.playableInEmbed || false,
-        reason: data.playabilityStatus?.reason || ''
-      } : undefined,
-      streaming_data: data.streamingData ? {
-        expires: new Date(Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1000),
-        formats: Parser.parseFormats(data.streamingData.formats),
-        adaptive_formats: Parser.parseFormats(data.streamingData.adaptiveFormats),
-        dash_manifest_url: data.streamingData?.dashManifestUrl || null,
-        dls_manifest_url: data.streamingData?.dashManifestUrl || null
-      } : undefined,
-      current_video_endpoint: data.currentVideoEndpoint ? new NavigationEndpoint(data.currentVideoEndpoint) : null,
-      captions: Parser.parseItem<PlayerCaptionsTracklist>(data.captions, PlayerCaptionsTracklist),
-      video_details: data.videoDetails ? new VideoDetails(data.videoDetails) : undefined,
-      annotations: Parser.parseArray<PlayerAnnotationsExpanded>(data.annotations, PlayerAnnotationsExpanded),
-      storyboards: Parser.parseItem<PlayerStoryboardSpec | PlayerLiveStoryboardSpec>(data.storyboards, [ PlayerStoryboardSpec, PlayerLiveStoryboardSpec ]),
+      playback_tracking: data.playbackTracking
+        ? {
+          videostats_watchtime_url:
+            data.playbackTracking.videostatsWatchtimeUrl.baseUrl,
+          videostats_playback_url:
+            data.playbackTracking.videostatsPlaybackUrl.baseUrl,
+        }
+        : null,
+      playability_status: data.playabilityStatus
+        ? {
+          status: data.playabilityStatus.status as string,
+          error_screen: Parser.parseItem(data.playabilityStatus.errorScreen),
+          audio_only_playablility: Parser.parseItem<AudioOnlyPlayability>(
+            data.playabilityStatus.audioOnlyPlayability,
+            AudioOnlyPlayability,
+          ),
+          embeddable: !!data.playabilityStatus.playableInEmbed || false,
+          reason: data.playabilityStatus?.reason || '',
+        }
+        : undefined,
+      streaming_data: data.streamingData
+        ? {
+          expires: new Date(
+            Date.now() + parseInt(data.streamingData.expiresInSeconds) * 1000,
+          ),
+          formats: Parser.parseFormats(data.streamingData.formats),
+          adaptive_formats: Parser.parseFormats(
+            data.streamingData.adaptiveFormats,
+          ),
+          dash_manifest_url: data.streamingData?.dashManifestUrl || null,
+          dls_manifest_url: data.streamingData?.dashManifestUrl || null,
+        }
+        : undefined,
+      current_video_endpoint: data.currentVideoEndpoint
+        ? new NavigationEndpoint(data.currentVideoEndpoint)
+        : null,
+      captions: Parser.parseItem<PlayerCaptionsTracklist>(
+        data.captions,
+        PlayerCaptionsTracklist,
+      ),
+      video_details: data.videoDetails
+        ? new VideoDetails(data.videoDetails)
+        : undefined,
+      annotations: Parser.parseArray<PlayerAnnotationsExpanded>(
+        data.annotations,
+        PlayerAnnotationsExpanded,
+      ),
+      storyboards: Parser.parseItem<
+        PlayerStoryboardSpec | PlayerLiveStoryboardSpec
+      >(data.storyboards, [PlayerStoryboardSpec, PlayerLiveStoryboardSpec]),
       endscreen: Parser.parseItem<Endscreen>(data.endscreen, Endscreen),
-      cards: Parser.parseItem<CardCollection>(data.cards, CardCollection)
+      cards: Parser.parseItem<CardCollection>(data.cards, CardCollection),
     };
   }
 
   static parseC(data: any) {
-    if (data.timedContinuationData)
+    if (data.timedContinuationData) {
       return new TimedContinuation(data.timedContinuationData);
+    }
   }
 
   static parseLC(data: any) {
-    if (data.sectionListContinuation)
+    if (data.sectionListContinuation) {
       return new SectionListContinuation(data.sectionListContinuation);
-    if (data.liveChatContinuation)
+    }
+    if (data.liveChatContinuation) {
       return new LiveChatContinuation(data.liveChatContinuation);
-    if (data.musicPlaylistShelfContinuation)
-      return new MusicPlaylistShelfContinuation(data.musicPlaylistShelfContinuation);
-    if (data.musicShelfContinuation)
+    }
+    if (data.musicPlaylistShelfContinuation) {
+      return new MusicPlaylistShelfContinuation(
+        data.musicPlaylistShelfContinuation,
+      );
+    }
+    if (data.musicShelfContinuation) {
       return new MusicShelfContinuation(data.musicShelfContinuation);
-    if (data.gridContinuation)
+    }
+    if (data.gridContinuation) {
       return new GridContinuation(data.gridContinuation);
-    if (data.playlistPanelContinuation)
+    }
+    if (data.playlistPanelContinuation) {
       return new PlaylistPanelContinuation(data.playlistPanelContinuation);
+    }
   }
 
   static parseRR(actions: any[]) {
-    return observe(actions.map((action: any) => {
-      if (action.reloadContinuationItemsCommand)
-        return new ReloadContinuationItemsCommand(action.reloadContinuationItemsCommand);
-      if (action.appendContinuationItemsAction)
-        return new AppendContinuationItemsAction(action.appendContinuationItemsAction);
-    }).filter((item) => item) as (ReloadContinuationItemsCommand | AppendContinuationItemsAction)[]);
+    return observe(
+      actions.map((action: any) => {
+        if (action.reloadContinuationItemsCommand) {
+          return new ReloadContinuationItemsCommand(
+            action.reloadContinuationItemsCommand,
+          );
+        }
+        if (action.appendContinuationItemsAction) {
+          return new AppendContinuationItemsAction(
+            action.appendContinuationItemsAction,
+          );
+        }
+      }).filter((item) =>
+        item
+      ) as (ReloadContinuationItemsCommand | AppendContinuationItemsAction)[],
+    );
   }
 
   static parseActions(data: any) {
@@ -324,7 +400,10 @@ export default class Parser {
     return formats?.map((format) => new Format(format)) || [];
   }
 
-  static parseItem<T extends YTNode = YTNode>(data: any, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
+  static parseItem<T extends YTNode = YTNode>(
+    data: any,
+    validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[],
+  ) {
     if (!data) return null;
 
     const keys = Object.keys(data);
@@ -336,10 +415,18 @@ export default class Parser {
 
         if (validTypes) {
           if (Array.isArray(validTypes)) {
-            if (!validTypes.some((type) => type.type === TargetClass.type))
-              throw new ParsingError(`Type mismatch, got ${classname} but expected one of ${validTypes.map((type) => type.type).join(', ')}`);
-          } else if (TargetClass.type !== validTypes.type)
-            throw new ParsingError(`Type mismatch, got ${classname} but expected ${validTypes.type}`);
+            if (!validTypes.some((type) => type.type === TargetClass.type)) {
+              throw new ParsingError(
+                `Type mismatch, got ${classname} but expected one of ${
+                  validTypes.map((type) => type.type).join(', ')
+                }`,
+              );
+            }
+          } else if (TargetClass.type !== validTypes.type) {
+            throw new ParsingError(
+              `Type mismatch, got ${classname} but expected ${validTypes.type}`,
+            );
+          }
         }
 
         const result = new TargetClass(data[keys[0]]);
@@ -355,7 +442,10 @@ export default class Parser {
     return null;
   }
 
-  static parseArray<T extends YTNode = YTNode>(data: any[], validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
+  static parseArray<T extends YTNode = YTNode>(
+    data: any[],
+    validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[],
+  ) {
     if (Array.isArray(data)) {
       const results: T[] = [];
 
@@ -373,9 +463,21 @@ export default class Parser {
     throw new ParsingError('Expected array but got a single item');
   }
 
-  static parse<T extends YTNode = YTNode>(data: any, requireArray: true, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) : ObservedArray<T> | null;
-  static parse<T extends YTNode = YTNode>(data: any, requireArray?: false | undefined, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) : SuperParsedResult<T>;
-  static parse<T extends YTNode = YTNode>(data: any, requireArray?: boolean, validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
+  static parse<T extends YTNode = YTNode>(
+    data: any,
+    requireArray: true,
+    validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[],
+  ): ObservedArray<T> | null;
+  static parse<T extends YTNode = YTNode>(
+    data: any,
+    requireArray?: false | undefined,
+    validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[],
+  ): SuperParsedResult<T>;
+  static parse<T extends YTNode = YTNode>(
+    data: any,
+    requireArray?: boolean,
+    validTypes?: YTNodeConstructor<T> | YTNodeConstructor<T>[],
+  ) {
     if (!data) return null;
 
     if (Array.isArray(data)) {
@@ -405,19 +507,22 @@ export default class Parser {
       console.warn(
         new InnertubeError(
           'Mutation data required for processing MusicMultiSelectMenuItems, but none found.\n' +
-          `This is a bug, please report it at ${package_json.bugs.url}`
-        )
+            `This is a bug, please report it at ${package_json.bugs.url}`,
+        ),
       );
     } else {
       const missingOrInvalidMutations = [];
       for (const menuItem of musicMultiSelectMenuItems) {
-        const mutation = mutations.find((mutation) => mutation.payload?.musicFormBooleanChoice?.id === menuItem.form_item_entity_key);
+        const mutation = mutations.find((mutation) =>
+          mutation.payload?.musicFormBooleanChoice?.id ===
+            menuItem.form_item_entity_key
+        );
         const choice = mutation?.payload.musicFormBooleanChoice;
         if (choice?.selected !== undefined && choice?.opaqueToken) {
           menuItem.selected = choice.selected;
           if (menuItem.endpoint?.browse) {
             menuItem.endpoint.browse.form_data = {
-              selectedValues: [ choice.opaqueToken ]
+              selectedValues: [choice.opaqueToken],
             };
           }
         } else {
@@ -428,28 +533,39 @@ export default class Parser {
         console.warn(
           new InnertubeError(
             `Mutation data missing or invalid for ${missingOrInvalidMutations.length} out of ${musicMultiSelectMenuItems.length} MusicMultiSelectMenuItems. ` +
-            `The titles of the failed items are: ${missingOrInvalidMutations.join(', ')}.\n` +
-            `This is a bug, please report it at ${package_json.bugs.url}`
-          )
+              `The titles of the failed items are: ${
+                missingOrInvalidMutations.join(', ')
+              }.\n` +
+              `This is a bug, please report it at ${package_json.bugs.url}`,
+          ),
         );
       }
     }
   }
 
-  static formatError({ classname, classdata, err }: { classname: string, classdata: any, err: any }) {
+  static formatError(
+    { classname, classdata, err }: {
+      classname: string;
+      classdata: any;
+      err: any;
+    },
+  ) {
     if (err.code == 'MODULE_NOT_FOUND') {
       return console.warn(
         new InnertubeError(
           `${classname} not found!\n` +
-          `This is a bug, please report it at ${package_json.bugs.url}`, classdata)
+            `This is a bug, please report it at ${package_json.bugs.url}`,
+          classdata,
+        ),
       );
     }
 
     console.warn(
       new InnertubeError(
         `Something went wrong at ${classname}!\n` +
-        `This is a bug, please report it at ${package_json.bugs.url}`, { stack: err.stack }
-      )
+          `This is a bug, please report it at ${package_json.bugs.url}`,
+        { stack: err.stack },
+      ),
     );
   }
 
@@ -467,7 +583,7 @@ export default class Parser {
     'PromotedSparklesWeb',
     'RunAttestationCommand',
     'CompactPromotedVideo',
-    'StatementBanner'
+    'StatementBanner',
   ]);
 
   static shouldIgnore(classname: string) {

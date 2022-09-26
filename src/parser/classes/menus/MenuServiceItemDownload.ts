@@ -1,5 +1,5 @@
-import NavigationEndpoint from '../NavigationEndpoint';
-import { YTNode } from '../../helpers';
+import NavigationEndpoint from '../NavigationEndpoint.ts';
+import { YTNode } from '../../helpers.ts';
 
 class MenuServiceItemDownload extends YTNode {
   static type = 'MenuServiceItemDownload';
@@ -10,7 +10,9 @@ class MenuServiceItemDownload extends YTNode {
   constructor(data: any) {
     super();
     this.has_separator = data.hasSeparator;
-    this.endpoint = new NavigationEndpoint(data.navigationEndpoint || data.serviceEndpoint);
+    this.endpoint = new NavigationEndpoint(
+      data.navigationEndpoint || data.serviceEndpoint,
+    );
   }
 }
 

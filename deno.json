@@ -1,4 +1,11 @@
 {
+  "importMap": "./import_map.json",
+  "compilerOptions": {
+    "lib": [
+      "DOM",
+      "deno.unstable"
+    ]
+  },
   "tasks": {
     "build": "deno run -A --unstable compile.ts"
   },

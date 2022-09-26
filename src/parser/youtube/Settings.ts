@@ -1,16 +1,16 @@
-import Parser from '..';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
-import { InnertubeError } from '../../utils/Utils';
+import Parser from '../index.ts';
+import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
+import { InnertubeError } from '../../utils/Utils.ts';
 
-import Tab from '../classes/Tab';
-import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults';
-import SectionList from '../classes/SectionList';
-import ItemSection from '../classes/ItemSection';
+import Tab from '../classes/Tab.ts';
+import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.ts';
+import SectionList from '../classes/SectionList.ts';
+import ItemSection from '../classes/ItemSection.ts';
 
-import PageIntroduction from '../classes/PageIntroduction';
-import SettingsOptions from '../classes/SettingsOptions';
-import SettingsSwitch from '../classes/SettingsSwitch';
-import SettingsSidebar from '../classes/SettingsSidebar';
+import PageIntroduction from '../classes/PageIntroduction.ts';
+import SettingsOptions from '../classes/SettingsOptions.ts';
+import SettingsSwitch from '../classes/SettingsSwitch.ts';
+import SettingsSidebar from '../classes/SettingsSidebar.ts';
 
 class Settings {
   #page;
@@ -26,18 +26,24 @@ class Settings {
 
     this.sidebar = this.#page.sidebar?.as(SettingsSidebar);
 
-    const tab = this.#page.contents.item().as(TwoColumnBrowseResults).tabs.array().as(Tab).get({ selected: true });
+    const tab = this.#page.contents.item().as(TwoColumnBrowseResults).tabs
+      .array().as(Tab).get({ selected: true });
 
-    if (!tab)
+    if (!tab) {
       throw new InnertubeError('Target tab not found');
+    }
 
-    const contents = tab.content?.as(SectionList).contents.array().as(ItemSection);
+    const contents = tab.content?.as(SectionList).contents.array().as(
+      ItemSection,
+    );
 
-    this.introduction = contents?.shift()?.contents?.get({ type: 'PageIntroduction' })?.as(PageIntroduction);
+    this.introduction = contents?.shift()?.contents?.get({
+      type: 'PageIntroduction',
+    })?.as(PageIntroduction);
 
     this.sections = contents?.map((el: ItemSection) => ({
       title: el.header?.title.toString() || null,
-      contents: el.contents
+      contents: el.contents,
     }));
   }
 
@@ -45,15 +51,21 @@ class Settings {
    * Selects an item from the sidebar menu. Use {@link sidebar_items} to see available items.
    */
   async selectSidebarItem(name: string) {
-    if (!this.sidebar)
+    if (!this.sidebar) {
       throw new InnertubeError('Sidebar not available');
+    }
 
     const item = this.sidebar.items.get({ title: name });
 
-    if (!item)
-      throw new InnertubeError(`Item "${name}" not found`, { available_items: this.sidebar_items });
+    if (!item) {
+      throw new InnertubeError(`Item "${name}" not found`, {
+        available_items: this.sidebar_items,
+      });
+    }
 
-    const response = await item.endpoint.callTest(this.#actions, { parse: false });
+    const response = await item.endpoint.callTest(this.#actions, {
+      parse: false,
+    });
 
     return new Settings(this.#actions, response);
   }
@@ -62,8 +74,9 @@ class Settings {
    * Finds a setting by name and returns it. Use {@link setting_options} to see available options.
    */
   getSettingOption(name: string) {
-    if (!this.sections)
+    if (!this.sections) {
       throw new InnertubeError('Sections not available');
+    }
 
     for (const section of this.sections) {
       if (!section.contents) continue;
@@ -74,30 +87,35 @@ class Settings {
             if (
               option.is(SettingsSwitch) &&
               option.title?.toString() === name
-            )
+            ) {
               return option;
+            }
           }
         }
       }
     }
 
-    throw new InnertubeError(`Option "${name}" not found`, { available_options: this.setting_options });
+    throw new InnertubeError(`Option "${name}" not found`, {
+      available_options: this.setting_options,
+    });
   }
 
   /**
    * Returns settings available in the page.
    */
   get setting_options(): string[] {
-    if (!this.sections)
+    if (!this.sections) {
       throw new InnertubeError('Sections not available');
+    }
 
     let options: any[] = [];
 
     for (const section of this.sections) {
       if (!section.contents) continue;
       for (const el of section.contents) {
-        if (el.as(SettingsOptions).options)
+        if (el.as(SettingsOptions).options) {
           options = options.concat(el.as(SettingsOptions).options);
+        }
       }
     }
 
@@ -108,8 +126,9 @@ class Settings {
    * Returns options available in the sidebar.
    */
   get sidebar_items(): string[] {
-    if (!this.sidebar)
+    if (!this.sidebar) {
       throw new InnertubeError('Sidebar not available');
+    }
 
     return this.sidebar.items.map((item) => item.title.toString());
   }

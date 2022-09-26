@@ -1,7 +1,7 @@
-import Parser from '../../../index';
-import Text from '../../misc/Text';
-import Thumbnail from '../../misc/Thumbnail';
-import { YTNode } from '../../../helpers';
+import Parser from '../../../index.ts';
+import Text from '../../misc/Text.ts';
+import Thumbnail from '../../misc/Thumbnail.ts';
+import { YTNode } from '../../../helpers.ts';
 
 class LiveChatBannerPoll extends YTNode {
   static type = 'LiveChatBannerPoll';
@@ -24,7 +24,7 @@ class LiveChatBannerPoll extends YTNode {
 
     this.choices = data.pollChoices.map((choice: any) => ({
       option_id: choice.pollOptionId,
-      text: new Text(choice.text).toString()
+      text: new Text(choice.text).toString(),
     }));
 
     this.collapsed_state_entity_key = data.collapsedStateEntityKey;

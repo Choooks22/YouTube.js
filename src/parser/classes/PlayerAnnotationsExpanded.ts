@@ -1,7 +1,7 @@
-import Parser from '../index';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode, SuperParsedResult } from '../helpers';
+import Parser from '../index.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { SuperParsedResult, YTNode } from '../helpers.ts';
 
 class PlayerAnnotationsExpanded extends YTNode {
   static type = 'PlayerAnnotationsExpanded';
@@ -27,7 +27,7 @@ class PlayerAnnotationsExpanded extends YTNode {
       watermark: Thumbnail.fromResponse(data.featuredChannel.watermark),
       channel_name: data.featuredChannel.channelName,
       endpoint: new NavigationEndpoint(data.featuredChannel.navigationEndpoint),
-      subscribe_button: Parser.parse(data.featuredChannel.subscribeButton)
+      subscribe_button: Parser.parse(data.featuredChannel.subscribeButton),
     };
 
     this.allow_swipe_dismiss = data.allowSwipeDismiss;

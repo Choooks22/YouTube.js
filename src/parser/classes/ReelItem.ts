@@ -1,7 +1,7 @@
-import NavigationEndpoint from './NavigationEndpoint';
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import { YTNode } from '../helpers.ts';
 
 class ReelItem extends YTNode {
   static type = 'ReelItem';

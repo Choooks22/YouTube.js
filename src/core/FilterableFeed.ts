@@ -1,9 +1,9 @@
-import ChipCloudChip from '../parser/classes/ChipCloudChip';
-import FeedFilterChipBar from '../parser/classes/FeedFilterChipBar';
-import { ObservedArray } from '../parser/helpers';
-import { InnertubeError } from '../utils/Utils';
-import Actions from './Actions';
-import Feed from './Feed';
+import ChipCloudChip from '../parser/classes/ChipCloudChip.ts';
+import FeedFilterChipBar from '../parser/classes/FeedFilterChipBar.ts';
+import { ObservedArray } from '../parser/helpers.ts';
+import { InnertubeError } from '../utils/Utils.ts';
+import Actions from './Actions.ts';
+import Feed from './Feed.ts';
 
 class FilterableFeed extends Feed {
   #chips?: ObservedArray<ChipCloudChip>;
@@ -16,14 +16,19 @@ class FilterableFeed extends Feed {
    * Get filters for the feed
    */
   get filter_chips() {
-    if (this.#chips)
+    if (this.#chips) {
       return this.#chips || [];
+    }
 
-    if (this.memo.getType(FeedFilterChipBar)?.length > 1)
-      throw new InnertubeError('There are too many feed filter chipbars, you\'ll need to find the correct one yourself in this.page');
+    if (this.memo.getType(FeedFilterChipBar)?.length > 1) {
+      throw new InnertubeError(
+        'There are too many feed filter chipbars, you\'ll need to find the correct one yourself in this.page',
+      );
+    }
 
-    if (this.memo.getType(FeedFilterChipBar)?.length === 0)
+    if (this.memo.getType(FeedFilterChipBar)?.length === 0) {
       throw new InnertubeError('There are no feed filter chipbars');
+    }
 
     this.#chips = this.memo.getType(ChipCloudChip);
 
@@ -41,23 +46,32 @@ class FilterableFeed extends Feed {
     let target_filter: ChipCloudChip | undefined;
 
     if (typeof filter === 'string') {
-      if (!this.filters.includes(filter))
+      if (!this.filters.includes(filter)) {
         throw new InnertubeError('Filter not found', {
-          available_filters: this.filters
+          available_filters: this.filters,
         });
-      target_filter = this.filter_chips.find((chip) => chip.text.toString() === filter);
+      }
+      target_filter = this.filter_chips.find((chip) =>
+        chip.text.toString() === filter
+      );
     } else if (filter.type === 'ChipCloudChip') {
       target_filter = filter;
     } else {
       throw new InnertubeError('Invalid filter');
     }
 
-    if (!target_filter)
+    if (!target_filter) {
       throw new InnertubeError('Filter not found');
-    if (target_filter.is_selected)
+    }
+    if (target_filter.is_selected) {
       return this;
+    }
 
-    const response = await target_filter.endpoint?.call(this.actions, undefined, true);
+    const response = await target_filter.endpoint?.call(
+      this.actions,
+      undefined,
+      true,
+    );
     return new Feed(this.actions, response, true);
   }
 }

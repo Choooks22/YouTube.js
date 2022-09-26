@@ -1,6 +1,6 @@
-import Parser from '../index';
-import MusicPlayButton from './MusicPlayButton';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import MusicPlayButton from './MusicPlayButton.ts';
+import { YTNode } from '../helpers.ts';
 
 class MusicItemThumbnailOverlay extends YTNode {
   static type = 'MusicItemThumbnailOverlay';
@@ -11,7 +11,10 @@ class MusicItemThumbnailOverlay extends YTNode {
 
   constructor(data: any) {
     super();
-    this.content = Parser.parseItem<MusicPlayButton>(data.content, MusicPlayButton);
+    this.content = Parser.parseItem<MusicPlayButton>(
+      data.content,
+      MusicPlayButton,
+    );
     this.content_position = data.contentPosition;
     this.display_style = data.displayStyle;
   }

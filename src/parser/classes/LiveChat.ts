@@ -1,6 +1,6 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import { YTNode } from '../helpers.ts';
 
 class LiveChat extends YTNode {
   static type = 'LiveChat';
@@ -23,14 +23,17 @@ class LiveChat extends YTNode {
     super();
     this.header = Parser.parse(data.header);
     this.initial_display_state = data.initialDisplayState;
-    this.continuation = data.continuations[0]?.reloadContinuationData?.continuation;
+    this.continuation = data.continuations[0]?.reloadContinuationData
+      ?.continuation;
 
     this.client_messages = {
       reconnect_message: new Text(data.clientMessages.reconnectMessage),
-      unable_to_reconnect_message: new Text(data.clientMessages.unableToReconnectMessage),
+      unable_to_reconnect_message: new Text(
+        data.clientMessages.unableToReconnectMessage,
+      ),
       fatal_error: new Text(data.clientMessages.fatalError),
       reconnected_message: new Text(data.clientMessages.reconnectedMessage),
-      generic_error: new Text(data.clientMessages.genericError)
+      generic_error: new Text(data.clientMessages.genericError),
     };
 
     this.is_replay = data.isReplay || false;

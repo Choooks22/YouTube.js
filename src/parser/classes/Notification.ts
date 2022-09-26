@@ -1,8 +1,8 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode } from '../helpers.ts';
 
 class Notification extends YTNode {
   static type = 'Notification';
@@ -25,7 +25,9 @@ class Notification extends YTNode {
     this.sent_time = new Text(data.sentTimeText);
     this.notification_id = data.notificationId;
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
-    this.record_click_endpoint = new NavigationEndpoint(data.recordClickEndpoint);
+    this.record_click_endpoint = new NavigationEndpoint(
+      data.recordClickEndpoint,
+    );
     this.menu = Parser.parse(data.contextualMenu);
     this.read = data.read;
   }

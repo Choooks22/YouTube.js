@@ -1,8 +1,8 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class PlaylistSidebarPrimaryInfo extends YTNode {
   static type = 'PlaylistSidebarPrimaryInfo';

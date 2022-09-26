@@ -1,7 +1,7 @@
-import NavigationEndpoint from './NavigationEndpoint';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 
-import { YTNode } from '../helpers';
-import Text from './misc/Text';
+import { YTNode } from '../helpers.ts';
+import Text from './misc/Text.ts';
 
 class ItemSectionTab extends YTNode {
   static type = 'Tab';

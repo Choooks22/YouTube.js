@@ -1,4 +1,4 @@
-import { deepCompare, ParsingError } from '../utils/Utils';
+import { deepCompare, ParsingError } from '../utils/Utils.ts';
 
 const isObserved = Symbol('ObservedArray.isObserved');
 
@@ -24,16 +24,24 @@ export class YTNode {
    * @param types - The type to check
    * @returns whether the node is of the given type
    */
-  is<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K): this is InstanceType<K[number]> {
+  is<T extends YTNode, K extends YTNodeConstructor<T>[]>(
+    ...types: K
+  ): this is InstanceType<K[number]> {
     return types.some((type) => this.#is(type));
   }
 
   /**
    * Cast to one of the given types.
    */
-  as<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K): InstanceType<K[number]> {
+  as<T extends YTNode, K extends YTNodeConstructor<T>[]>(
+    ...types: K
+  ): InstanceType<K[number]> {
     if (!this.is(...types)) {
-      throw new ParsingError(`Cannot cast ${this.type} to one of ${types.map((t) => t.type).join(', ')}`);
+      throw new ParsingError(
+        `Cannot cast ${this.type} to one of ${
+          types.map((t) => t.type).join(', ')
+        }`,
+      );
     }
     return this;
   }
@@ -64,18 +72,38 @@ export class YTNode {
 export class Maybe {
   #value;
 
-  constructor (value: any) {
+  constructor(value: any) {
     this.#value = value;
   }
 
-  #checkPrimative(type: 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'function') {
+  #checkPrimative(
+    type:
+      | 'string'
+      | 'number'
+      | 'bigint'
+      | 'boolean'
+      | 'symbol'
+      | 'undefined'
+      | 'object'
+      | 'function',
+  ) {
     if (typeof this.#value !== type) {
       return false;
     }
     return true;
   }
 
-  #assertPrimative(type: 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'function') {
+  #assertPrimative(
+    type:
+      | 'string'
+      | 'number'
+      | 'bigint'
+      | 'boolean'
+      | 'symbol'
+      | 'undefined'
+      | 'object'
+      | 'function',
+  ) {
     if (!this.#checkPrimative(type)) {
       throw new TypeError(`Expected ${type}, got ${this.typeof}`);
     }
@@ -135,8 +163,9 @@ export class Maybe {
   }
 
   null(): null {
-    if (this.#value !== null)
+    if (this.#value !== null) {
       throw new TypeError(`Expected null, got ${typeof this.#value}`);
+    }
     return this.#value;
   }
 
@@ -186,7 +215,7 @@ export class Maybe {
           return Reflect.get(target, prop);
         }
         return new Maybe(Reflect.get(target, prop));
-      }
+      },
     });
   }
 
@@ -205,7 +234,9 @@ export class Maybe {
    */
   node() {
     if (!(this.#value instanceof YTNode)) {
-      throw new TypeError(`Expected YTNode, got ${this.#value.constructor.name}`);
+      throw new TypeError(
+        `Expected YTNode, got ${this.#value.constructor.name}`,
+      );
     }
     return this.#value;
   }
@@ -233,7 +264,9 @@ export class Maybe {
    * @param type - the type to check
    * @returns Whether the value is a YTNode of the given type
    */
-  isNodeOfType<T extends YTNode, K extends YTNodeConstructor<T>[]>(...types: K) {
+  isNodeOfType<T extends YTNode, K extends YTNodeConstructor<T>[]>(
+    ...types: K
+  ) {
     return this.isNode() && this.node().is(...types);
   }
 
@@ -262,7 +295,9 @@ export class Maybe {
    */
   parsed(): SuperParsedResult {
     if (!(this.#value instanceof SuperParsedResult)) {
-      throw new TypeError(`Expected SuperParsedResult, got ${typeof this.#value}`);
+      throw new TypeError(
+        `Expected SuperParsedResult, got ${typeof this.#value}`,
+      );
     }
     return this.#value;
   }
@@ -278,7 +313,9 @@ export class Maybe {
    * @deprecated This call is not meant to be used outside of debugging. Please use the specific type getter instead.
    */
   any(): any {
-    console.warn('This call is not meant to be used outside of debugging. Please use the specific type getter instead.');
+    console.warn(
+      'This call is not meant to be used outside of debugging. Please use the specific type getter instead.',
+    );
     return this.#value;
   }
 
@@ -290,7 +327,9 @@ export class Maybe {
    */
   instanceof<T extends object>(type: Constructor<T>): T {
     if (!this.isInstanceof(type)) {
-      throw new TypeError(`Expected instance of ${type.name}, got ${this.#value.constructor.name}`);
+      throw new TypeError(
+        `Expected instance of ${type.name}, got ${this.#value.constructor.name}`,
+      );
     }
     return this.#value;
   }
@@ -306,12 +345,12 @@ export class Maybe {
 }
 
 export interface Constructor<T> {
-    new (...args: any[]): T;
+  new (...args: any[]): T;
 }
 
 export interface YTNodeConstructor<T extends YTNode = YTNode> {
-    new(data: any): T;
-    readonly type: string;
+  new (data: any): T;
+  readonly type: string;
 }
 
 /**
@@ -349,32 +388,37 @@ export class SuperParsedResult<T extends YTNode = YTNode> {
   }
 }
 
-
 export type ObservedArray<T extends YTNode = YTNode> = Array<T> & {
-    /**
-     * Returns the first object to match the rule.
-     */
-    get: (rule: object, del_item?: boolean) => T | undefined;
-    /**
-     * Returns all objects that match the rule.
-     */
-    getAll: (rule: object, del_items?: boolean) => T[];
-    /**
-     * Removes the item at the given index.
-     */
-    remove: (index: number) => T[];
-    /**
-     * Get all items of a specific type
-     */
-    filterType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
-    /**
-     * Get the first of a specific type
-     */
-    firstOfType<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): InstanceType<K[number]> | undefined;
-    /**
-     * This is similar to filter but throws if there's a type mismatch.
-     */
-    as<R extends YTNode, K extends YTNodeConstructor<R>[]>(...types: K): ObservedArray<InstanceType<K[number]>>;
+  /**
+   * Returns the first object to match the rule.
+   */
+  get: (rule: object, del_item?: boolean) => T | undefined;
+  /**
+   * Returns all objects that match the rule.
+   */
+  getAll: (rule: object, del_items?: boolean) => T[];
+  /**
+   * Removes the item at the given index.
+   */
+  remove: (index: number) => T[];
+  /**
+   * Get all items of a specific type
+   */
+  filterType<R extends YTNode, K extends YTNodeConstructor<R>[]>(
+    ...types: K
+  ): ObservedArray<InstanceType<K[number]>>;
+  /**
+   * Get the first of a specific type
+   */
+  firstOfType<R extends YTNode, K extends YTNodeConstructor<R>[]>(
+    ...types: K
+  ): InstanceType<K[number]> | undefined;
+  /**
+   * This is similar to filter but throws if there's a type mismatch.
+   */
+  as<R extends YTNode, K extends YTNodeConstructor<R>[]>(
+    ...types: K
+  ): ObservedArray<InstanceType<K[number]>>;
 };
 
 /**
@@ -415,10 +459,10 @@ export function observe<T extends YTNode>(obj: Array<T>) {
       if (prop == 'filterType') {
         return (...types: YTNodeConstructor<YTNode>[]) => {
           return observe(target.filter((node: YTNode) => {
-            if (node.is(...types))
+            if (node.is(...types)) {
               return true;
+            }
             return false;
-
           }));
         };
       }
@@ -426,8 +470,9 @@ export function observe<T extends YTNode>(obj: Array<T>) {
       if (prop == 'firstOfType') {
         return (...types: YTNodeConstructor<YTNode>[]) => {
           return target.find((node: YTNode) => {
-            if (node.is(...types))
+            if (node.is(...types)) {
               return true;
+            }
             return false;
           });
         };
@@ -436,9 +481,14 @@ export function observe<T extends YTNode>(obj: Array<T>) {
       if (prop == 'as') {
         return (...types: YTNodeConstructor<YTNode>[]) => {
           return observe(target.map((node: YTNode) => {
-            if (node.is(...types))
+            if (node.is(...types)) {
               return node;
-            throw new ParsingError(`Expected node of any type ${types.map((type) => type.type).join(', ')}, got ${(node as YTNode).type}`);
+            }
+            throw new ParsingError(
+              `Expected node of any type ${
+                types.map((type) => type.type).join(', ')
+              }, got ${(node as YTNode).type}`,
+            );
           }));
         };
       }
@@ -448,14 +498,19 @@ export function observe<T extends YTNode>(obj: Array<T>) {
       }
 
       return Reflect.get(target, prop);
-    }
+    },
   }) as ObservedArray<T>;
 }
 
 export class Memo extends Map<string, YTNode[]> {
-  getType<T extends YTNode>(type: YTNodeConstructor<T> | YTNodeConstructor<T>[]) {
-    if (Array.isArray(type))
-      return observe(type.flatMap((type) => (this.get(type.type) || []) as T[]));
+  getType<T extends YTNode>(
+    type: YTNodeConstructor<T> | YTNodeConstructor<T>[],
+  ) {
+    if (Array.isArray(type)) {
+      return observe(
+        type.flatMap((type) => (this.get(type.type) || []) as T[]),
+      );
+    }
     return observe((this.get(type.type) || []) as T[]);
   }
 }

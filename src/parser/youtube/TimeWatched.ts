@@ -1,11 +1,11 @@
-import Parser, { ParsedResponse } from '..';
-import { AxioslikeResponse } from '../../core/Actions';
+import Parser, { ParsedResponse } from '../index.ts';
+import { AxioslikeResponse } from '../../core/Actions.ts';
 
-import ItemSection from '../classes/ItemSection';
-import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults';
-import SectionList from '../classes/SectionList';
+import ItemSection from '../classes/ItemSection.ts';
+import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.ts';
+import SectionList from '../classes/SectionList.ts';
 
-import { InnertubeError } from '../../utils/Utils';
+import { InnertubeError } from '../../utils/Utils.ts';
 
 class TimeWatched {
   #page;
@@ -14,12 +14,16 @@ class TimeWatched {
   constructor(response: AxioslikeResponse) {
     this.#page = Parser.parseResponse(response.data);
 
-    const tab = this.#page.contents.item().as(SingleColumnBrowseResults).tabs.get({ selected: true });
+    const tab = this.#page.contents.item().as(SingleColumnBrowseResults).tabs
+      .get({ selected: true });
 
-    if (!tab)
+    if (!tab) {
       throw new InnertubeError('Could not find target tab.');
+    }
 
-    this.contents = tab.content?.as(SectionList).contents.array().as(ItemSection);
+    this.contents = tab.content?.as(SectionList).contents.array().as(
+      ItemSection,
+    );
   }
 
   get page(): ParsedResponse {

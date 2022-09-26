@@ -1,10 +1,10 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
-import MusicResponsiveListItem from './MusicResponsiveListItem';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import MusicResponsiveListItem from './MusicResponsiveListItem.ts';
 
-import { YTNode } from '../helpers';
-import Button from './Button';
+import { YTNode } from '../helpers.ts';
+import Button from './Button.ts';
 
 class MusicShelf extends YTNode {
   static type = 'MusicShelf';
@@ -21,12 +21,19 @@ class MusicShelf extends YTNode {
     super();
 
     this.title = new Text(data.title);
-    this.contents = Parser.parseArray<MusicResponsiveListItem>(data.contents, MusicResponsiveListItem);
-    this.endpoint = Reflect.has(data, 'bottomEndpoint') ? new NavigationEndpoint(data.bottomEndpoint) : null;
+    this.contents = Parser.parseArray<MusicResponsiveListItem>(
+      data.contents,
+      MusicResponsiveListItem,
+    );
+    this.endpoint = Reflect.has(data, 'bottomEndpoint')
+      ? new NavigationEndpoint(data.bottomEndpoint)
+      : null;
     this.continuation =
       data.continuations?.[0].nextContinuationData?.continuation ||
       data.continuations?.[0].reloadContinuationData?.continuation || null;
-    this.bottom_text = Reflect.has(data, 'bottomText') ? new Text(data.bottomText) : null;
+    this.bottom_text = Reflect.has(data, 'bottomText')
+      ? new Text(data.bottomText)
+      : null;
     this.bottom_button = Parser.parseItem(data.bottomButton, Button);
     if (data.subheaders) {
       this.subheaders = Parser.parseArray(data.subheaders);

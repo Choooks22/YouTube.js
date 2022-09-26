@@ -1,9 +1,9 @@
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
-import MusicThumbnail from './MusicThumbnail';
-import Parser from '..';
-import Button from './Button';
-import IconLink from './IconLink';
+import Text from './misc/Text.ts';
+import { YTNode } from '../helpers.ts';
+import MusicThumbnail from './MusicThumbnail.ts';
+import Parser from '../index.ts';
+import Button from './Button.ts';
+import IconLink from './IconLink.ts';
 
 class MusicCarouselShelfBasicHeader extends YTNode {
   static type = 'MusicCarouselShelfBasicHeader';
@@ -25,11 +25,17 @@ class MusicCarouselShelfBasicHeader extends YTNode {
     // This.label = data.accessibilityData.accessibilityData.label;
     // ^^ redundant?
     if (data.thumbnail) {
-      this.thumbnail = Parser.parseItem<MusicThumbnail>(data.thumbnail, MusicThumbnail);
+      this.thumbnail = Parser.parseItem<MusicThumbnail>(
+        data.thumbnail,
+        MusicThumbnail,
+      );
     }
 
     if (data.moreContentButton) {
-      this.more_content = Parser.parseItem<Button>(data.moreContentButton, Button);
+      this.more_content = Parser.parseItem<Button>(
+        data.moreContentButton,
+        Button,
+      );
     }
 
     if (data.endIcons) {

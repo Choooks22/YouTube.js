@@ -1,11 +1,11 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import TextRun from './misc/TextRun';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import { timeToSeconds } from '../../utils/Utils';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import TextRun from './misc/TextRun.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { timeToSeconds } from '../../utils/Utils.ts';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class PlaylistPanelVideo extends YTNode {
   static type = 'PlaylistPanelVideo';
@@ -18,7 +18,7 @@ class PlaylistPanelVideo extends YTNode {
 
   duration: {
     text: string;
-    seconds: number
+    seconds: number;
   };
 
   author: string;
@@ -51,11 +51,15 @@ class PlaylistPanelVideo extends YTNode {
 
     this.duration = {
       text: new Text(data.lengthText).toString(),
-      seconds: timeToSeconds(new Text(data.lengthText).toString())
+      seconds: timeToSeconds(new Text(data.lengthText).toString()),
     };
 
-    const album = new Text(data.longBylineText).runs?.find((run: any) => run.endpoint?.browse?.id.startsWith('MPR'));
-    const artists = new Text(data.longBylineText).runs?.filter((run: any) => run.endpoint?.browse?.id.startsWith('UC'));
+    const album = new Text(data.longBylineText).runs?.find((run: any) =>
+      run.endpoint?.browse?.id.startsWith('MPR')
+    );
+    const artists = new Text(data.longBylineText).runs?.filter((run: any) =>
+      run.endpoint?.browse?.id.startsWith('UC')
+    );
 
     this.author = new Text(data.shortBylineText).toString();
 
@@ -64,7 +68,7 @@ class PlaylistPanelVideo extends YTNode {
         id: (album as TextRun).endpoint?.browse?.id,
         name: (album as TextRun).text,
         year: new Text(data.longBylineText).runs?.slice(-1)[0].text,
-        endpoint: (album as TextRun).endpoint
+        endpoint: (album as TextRun).endpoint,
       };
     }
 
@@ -72,7 +76,7 @@ class PlaylistPanelVideo extends YTNode {
       this.artists = artists.map((artist) => ({
         name: (artist as TextRun).text,
         channel_id: (artist as TextRun).endpoint?.browse?.id,
-        endpoint: (artist as TextRun).endpoint
+        endpoint: (artist as TextRun).endpoint,
       }));
     }
 

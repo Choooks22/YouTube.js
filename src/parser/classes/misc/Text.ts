@@ -1,5 +1,5 @@
-import TextRun from './TextRun';
-import EmojiRun from './EmojiRun';
+import TextRun from './TextRun.ts';
+import EmojiRun from './EmojiRun.ts';
 
 class Text {
   text: string;
@@ -7,9 +7,8 @@ class Text {
 
   constructor(data: any) {
     if (data?.hasOwnProperty('runs') && Array.isArray(data.runs)) {
-      this.runs = (data.runs as any[]).map((run: any) => run.emoji ?
-        new EmojiRun(run) :
-        new TextRun(run)
+      this.runs = (data.runs as any[]).map((run: any) =>
+        run.emoji ? new EmojiRun(run) : new TextRun(run)
       );
       this.text = this.runs.map((run) => run.text).join('');
     } else {

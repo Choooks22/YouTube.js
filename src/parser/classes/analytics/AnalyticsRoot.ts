@@ -1,4 +1,4 @@
-import { YTNode } from '../../helpers';
+import { YTNode } from '../../helpers.ts';
 
 class AnalyticsRoot extends YTNode {
   static type = 'AnalyticsRoot';
@@ -24,7 +24,8 @@ class AnalyticsRoot extends YTNode {
     const cards = data.analyticsTableCarouselData.data.tableCards;
 
     this.title = data.analyticsTableCarouselData.carouselTitle;
-    this.selected_card_index_key = data.analyticsTableCarouselData.selectedCardIndexKey;
+    this.selected_card_index_key =
+      data.analyticsTableCarouselData.selectedCardIndexKey;
 
     this.table_cards = cards.map((card: any) => ({
       title: card.cardData.title,
@@ -34,8 +35,8 @@ class AnalyticsRoot extends YTNode {
         display_value_a11y: row.displayValueA11y,
         bar_ratio: row.barRatio,
         bar_color: row.barColor,
-        bar_opacity: row.barOpacity
-      }))
+        bar_opacity: row.barOpacity,
+      })),
     }));
 
     this.use_main_app_specs = data.analyticsTableCarouselData.useMainAppSpecs;

@@ -1,4 +1,4 @@
-import { Innertube } from '../../bundle/browser.js';
+import { Innertube } from '../../bundle/browser.js.ts';
 
 const yt = await Innertube.create();
 

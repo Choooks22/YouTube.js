@@ -1,4 +1,4 @@
-import { YTNode } from '../../helpers';
+import { YTNode } from '../../helpers.ts';
 
 class DataModelSection extends YTNode {
   static type = 'DataModelSection';
@@ -19,21 +19,21 @@ class DataModelSection extends YTNode {
         style: {
           line_width: number;
           line_color: number;
-        }
-      }
+        };
+      };
       domain_axis: {
         tick_values: number[];
         custom_formatter: {
           labels: string[];
-        }
-      }
+        };
+      };
       measure_axis: {
         tick_values: number[];
         custom_formatter: {
           labels: string[];
-        }
-      }
-    }
+        };
+      };
+    };
   };
 
   constructor(data: any) {
@@ -53,18 +53,18 @@ class DataModelSection extends YTNode {
           y: line_series.linesData[0].y,
           style: {
             line_width: line_series.linesData[0].style.lineWidth,
-            line_color: line_series.linesData[0].style.lineColor
-          }
+            line_color: line_series.linesData[0].style.lineColor,
+          },
         },
         domain_axis: {
           tick_values: line_series.domainAxis.tickValues,
-          custom_formatter: line_series.domainAxis.customFormatter
+          custom_formatter: line_series.domainAxis.customFormatter,
         },
         measure_axis: {
           tick_values: line_series.measureAxis.tickValues,
-          custom_formatter: line_series.measureAxis.customFormatter
-        }
-      }
+          custom_formatter: line_series.measureAxis.customFormatter,
+        },
+      },
     };
   }
 }

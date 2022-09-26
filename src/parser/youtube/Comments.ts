@@ -1,12 +1,12 @@
-import Parser, { ParsedResponse } from '..';
-import Actions, { ActionsResponse } from '../../core/Actions';
-import { InnertubeError } from '../../utils/Utils';
+import Parser, { ParsedResponse } from '../index.ts';
+import Actions, { ActionsResponse } from '../../core/Actions.ts';
+import { InnertubeError } from '../../utils/Utils.ts';
 
-import Button from '../classes/Button';
-import CommentsHeader from '../classes/comments/CommentsHeader';
-import CommentSimplebox from '../classes/comments/CommentSimplebox';
-import CommentThread from '../classes/comments/CommentThread';
-import ContinuationItem from '../classes/ContinuationItem';
+import Button from '../classes/Button.ts';
+import CommentsHeader from '../classes/comments/CommentsHeader.ts';
+import CommentSimplebox from '../classes/comments/CommentSimplebox.ts';
+import CommentThread from '../classes/comments/CommentThread.ts';
+import ContinuationItem from '../classes/ContinuationItem.ts';
 
 class Comments {
   #page: ParsedResponse;
@@ -22,12 +22,16 @@ class Comments {
 
     const contents = this.#page.on_response_received_endpoints;
 
-    if (!contents)
+    if (!contents) {
       throw new InnertubeError('Comments page did not have any content.');
+    }
 
-    this.header = contents[0].contents?.get({ type: 'CommentsHeader' })?.as(CommentsHeader);
+    this.header = contents[0].contents?.get({ type: 'CommentsHeader' })?.as(
+      CommentsHeader,
+    );
 
-    const threads: CommentThread[] = contents[1].contents?.filterType(CommentThread) || [];
+    const threads: CommentThread[] =
+      contents[1].contents?.filterType(CommentThread) || [];
 
     this.contents = threads.map((thread) => {
       thread.comment?.setActions(this.#actions);
@@ -35,23 +39,27 @@ class Comments {
       return thread;
     }) as CommentThread[];
 
-    this.#continuation = contents[1].contents?.get({ type: 'ContinuationItem' })?.as(ContinuationItem);
+    this.#continuation = contents[1].contents?.get({ type: 'ContinuationItem' })
+      ?.as(ContinuationItem);
   }
 
   /**
    * Creates a top-level comment.
    */
   async createComment(text: string): Promise<ActionsResponse> {
-    if (!this.header)
+    if (!this.header) {
       throw new InnertubeError('Page header is missing.');
+    }
 
-    const button = this.header.create_renderer?.as(CommentSimplebox).submit_button.item().as(Button);
+    const button = this.header.create_renderer?.as(CommentSimplebox)
+      .submit_button.item().as(Button);
 
-    if (!button)
+    if (!button) {
       throw new InnertubeError('Could not find target button.');
+    }
 
     const response = await button.endpoint.callTest(this.#actions, {
-      commentText: text
+      commentText: text,
     });
 
     return response;
@@ -61,20 +69,31 @@ class Comments {
    * Retrieves next batch of comments.
    */
   async getContinuation(): Promise<Comments> {
-    if (!this.#continuation)
+    if (!this.#continuation) {
       throw new InnertubeError('Continuation not found');
+    }
 
-    const data = await this.#continuation.endpoint.callTest(this.#actions, { parse: true });
+    const data = await this.#continuation.endpoint.callTest(this.#actions, {
+      parse: true,
+    });
 
     // Copy the previous page so we can keep the header.
     const page = Object.assign({}, this.#page);
 
-    if (!page.on_response_received_endpoints || !data.on_response_received_endpoints)
-      throw new InnertubeError('Invalid reponse format, missing on_response_received_endpoints');
+    if (
+      !page.on_response_received_endpoints ||
+      !data.on_response_received_endpoints
+    ) {
+      throw new InnertubeError(
+        'Invalid reponse format, missing on_response_received_endpoints',
+      );
+    }
 
     // Remove previous items and append the continuation.
     page.on_response_received_endpoints.pop();
-    page.on_response_received_endpoints.push(data.on_response_received_endpoints[0]);
+    page.on_response_received_endpoints.push(
+      data.on_response_received_endpoints[0],
+    );
 
     return new Comments(this.#actions, page, true);
   }

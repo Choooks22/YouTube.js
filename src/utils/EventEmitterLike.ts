@@ -1,6 +1,5 @@
 // Polyfill CustomEvents on node
 if (!Reflect.has(globalThis, 'CustomEvent')) {
-
   // See https://github.com/nodejs/node/issues/40678#issuecomment-1126944677
   class CustomEvent extends Event {
     #detail;

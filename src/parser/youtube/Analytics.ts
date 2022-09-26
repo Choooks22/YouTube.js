@@ -1,6 +1,6 @@
-import Parser, { ParsedResponse } from '..';
-import { AxioslikeResponse } from '../../core/Actions';
-import Element from '../classes/Element';
+import Parser, { ParsedResponse } from '../index.ts';
+import { AxioslikeResponse } from '../../core/Actions.ts';
+import Element from '../classes/Element.ts';
 
 class Analytics {
   #page;

@@ -1,6 +1,12 @@
-import Session, { Context } from '../core/Session';
-import Constants from './Constants';
-import { generateSidAuth, getRandomUserAgent, getStringBetweenStrings, InnertubeError, isServer } from './Utils';
+import Session, { Context } from '../core/Session.ts';
+import Constants from './Constants.ts';
+import {
+  generateSidAuth,
+  getRandomUserAgent,
+  getStringBetweenStrings,
+  InnertubeError,
+  isServer,
+} from './Utils.ts';
 
 export type FetchFunction = typeof fetch;
 
@@ -25,33 +31,43 @@ export default class HTTPClient {
 
   async fetch(
     input: URL | Request | string,
-    init?: RequestInit & HTTPClientInit
+    init?: RequestInit & HTTPClientInit,
   ) {
-    const innertube_url = Constants.URLS.API.PRODUCTION_1 + this.#session.api_version;
+    const innertube_url = Constants.URLS.API.PRODUCTION_1 +
+      this.#session.api_version;
     const baseURL = init?.baseURL || innertube_url;
 
-    const request_url =
-      typeof input === 'string' ?
-        (!baseURL.endsWith('/') && !input.startsWith('/')) ?
-          new URL(`${baseURL}/${input}`) :
-          new URL(baseURL + input) :
-        input instanceof URL ?
-          input : new URL(input.url, baseURL);
+    const request_url = typeof input === 'string'
+      ? (!baseURL.endsWith('/') && !input.startsWith('/'))
+        ? new URL(`${baseURL}/${input}`)
+        : new URL(baseURL + input)
+      : input instanceof URL
+      ? input
+      : new URL(input.url, baseURL);
 
-    const headers =
-      init?.headers ||
-        (input instanceof Request ? input.headers : new Headers()) ||
-        new Headers();
+    const headers = init?.headers ||
+      (input instanceof Request ? input.headers : new Headers()) ||
+      new Headers();
 
-    const body = init?.body || (input instanceof Request ? input.body : undefined);
+    const body = init?.body ||
+      (input instanceof Request ? input.body : undefined);
 
     const request_headers = new Headers(headers);
 
     request_headers.set('Accept', '*/*');
-    request_headers.set('Accept-Language', `en-${this.#session.context.client.gl || 'US'}`);
-    request_headers.set('x-goog-visitor-id', this.#session.context.client.visitorData || '');
+    request_headers.set(
+      'Accept-Language',
+      `en-${this.#session.context.client.gl || 'US'}`,
+    );
+    request_headers.set(
+      'x-goog-visitor-id',
+      this.#session.context.client.visitorData || '',
+    );
     request_headers.set('x-origin', request_url.origin);
-    request_headers.set('x-youtube-client-version', this.#session.context.client.clientVersion || '');
+    request_headers.set(
+      'x-youtube-client-version',
+      this.#session.context.client.clientVersion || '',
+    );
 
     if (isServer()) {
       request_headers.set('User-Agent', getRandomUserAgent('desktop'));
@@ -66,22 +82,27 @@ export default class HTTPClient {
 
     let request_body = body;
 
-    const is_innertube_req =
-      baseURL === innertube_url ||
+    const is_innertube_req = baseURL === innertube_url ||
       baseURL === Constants.URLS.YT_UPLOAD;
 
     // Copy context into payload when possible
-    if (content_type === 'application/json' && is_innertube_req && (typeof body === 'string')) {
+    if (
+      content_type === 'application/json' && is_innertube_req &&
+      (typeof body === 'string')
+    ) {
       const json = JSON.parse(body);
 
       const n_body = {
         ...json,
         // Deep copy since we're gonna be modifying it
-        context: JSON.parse(JSON.stringify(this.#session.context))
+        context: JSON.parse(JSON.stringify(this.#session.context)),
       };
 
       this.#adjustContext(n_body.context, n_body.client);
-      request_headers.set('x-youtube-client-version', n_body.context.client.clientVersion);
+      request_headers.set(
+        'x-youtube-client-version',
+        n_body.context.client.clientVersion,
+      );
 
       delete n_body.client;
 
@@ -95,7 +116,10 @@ export default class HTTPClient {
       if (oauth.validateCredentials()) {
         await oauth.refreshIfRequired();
 
-        request_headers.set('authorization', `Bearer ${oauth.credentials.access_token}`);
+        request_headers.set(
+          'authorization',
+          `Bearer ${oauth.credentials.access_token}`,
+        );
 
         // Remove API key as it is not required when using oauth.
         request_url.searchParams.delete('key');
@@ -110,19 +134,28 @@ export default class HTTPClient {
       }
     }
 
-    const request = new Request(request_url, input instanceof Request ? input : init);
+    const request = new Request(
+      request_url,
+      input instanceof Request ? input : init,
+    );
 
     const response = await this.#fetch(request, {
       body: request_body,
       headers: request_headers,
       credentials: 'include',
-      redirect: input instanceof Request ? input.redirect : init?.redirect || 'follow'
+      redirect: input instanceof Request
+        ? input.redirect
+        : init?.redirect || 'follow',
     });
 
     // Check if 2xx
     if (response.ok) {
       return response;
-    } throw new InnertubeError(`Request to ${response.url} failed with status ${response.status}`, await response.text());
+    }
+    throw new InnertubeError(
+      `Request to ${response.url} failed with status ${response.status}`,
+      await response.text(),
+    );
   }
 
   #adjustContext(ctx: Context, client: string) {

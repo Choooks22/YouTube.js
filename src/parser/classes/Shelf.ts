@@ -1,7 +1,7 @@
-import Text from './misc/Text';
-import Parser from '../index';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.ts';
+import Parser from '../index.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode } from '../helpers.ts';
 
 class Shelf extends YTNode {
   static type = 'Shelf';

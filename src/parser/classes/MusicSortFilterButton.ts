@@ -1,8 +1,8 @@
-import Parser from '../index';
+import Parser from '../index.ts';
 
-import { YTNode } from '../helpers';
-import MusicMultiSelectMenu from './menus/MusicMultiSelectMenu';
-import Text from './misc/Text';
+import { YTNode } from '../helpers.ts';
+import MusicMultiSelectMenu from './menus/MusicMultiSelectMenu.ts';
+import Text from './misc/Text.ts';
 
 class MusicSortFilterButton extends YTNode {
   static type = 'MusicSortFilterButton';

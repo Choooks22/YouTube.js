@@ -1,7 +1,7 @@
-import Text from './misc/Text';
-import Parser from '../index';
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.ts';
+import Parser from '../index.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import { YTNode } from '../helpers.ts';
 
 class LiveChatMessageInput extends YTNode {
   static type = 'LiveChatMessageInput';

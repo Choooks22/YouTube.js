@@ -1,7 +1,7 @@
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
+import Text from './misc/Text.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class SettingBoolean extends YTNode {
   static type = 'SettingBoolean';
@@ -28,7 +28,9 @@ class SettingBoolean extends YTNode {
     }
 
     if (data.disableServiceEndpoint) {
-      this.disable_endpoint = new NavigationEndpoint(data.disableServiceEndpoint);
+      this.disable_endpoint = new NavigationEndpoint(
+        data.disableServiceEndpoint,
+      );
     }
 
     this.item_id = data.itemId;

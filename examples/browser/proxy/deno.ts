@@ -1,4 +1,4 @@
-import { serve } from 'https://deno.land/std@0.148.0/http/server.ts';
+import { serve } from 'https://deno.land/std@0.148.0/http/server.ts.ts';
 
 const port = 8080;
 
@@ -45,7 +45,8 @@ const handler = async (request: Request): Promise<Response> => {
     JSON.parse(url.searchParams.get('__headers') || '{}'),
   );
   copyHeader('range', request_headers, request.headers);
-  !request_headers.has('user-agent') && copyHeader('user-agent', request_headers, request.headers);
+  !request_headers.has('user-agent') &&
+    copyHeader('user-agent', request_headers, request.headers);
   url.searchParams.delete('__headers');
 
   // Make the request to YouTube

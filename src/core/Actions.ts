@@ -1,9 +1,14 @@
-import Proto from '../proto/index';
-import Session from './Session';
+import Proto from '../proto/proto.ts';
+import Session from './Session.ts';
 
-import Parser, { ParsedResponse } from '../parser/index';
+import Parser, { ParsedResponse } from '../parser/index.ts';
 
-import { hasKeys, InnertubeError, MissingParamError, uuidv4 } from '../utils/Utils';
+import {
+  hasKeys,
+  InnertubeError,
+  MissingParamError,
+  uuidv4,
+} from '../utils/Utils.ts';
 
 export interface BrowseArgs {
   params?: string | null;
@@ -30,16 +35,16 @@ export interface AccountArgs {
 }
 
 export interface SearchArgs {
-  query?: string,
+  query?: string;
   options?: {
-    period?: string,
-    duration?: string,
-    order?: string
-  },
-  client?: string,
-  ctoken?: string,
-  params?: string
-  filters?: any // TODO: what is this type??
+    period?: string;
+    duration?: string;
+    order?: string;
+  };
+  client?: string;
+  ctoken?: string;
+  params?: string;
+  filters?: any; // TODO: what is this type??
 }
 
 export interface AxioslikeResponse {
@@ -68,7 +73,7 @@ class Actions {
     return {
       success: response.ok,
       status_code: response.status,
-      data: JSON.parse(await response.text())
+      data: JSON.parse(await response.text()),
     };
   }
 
@@ -81,13 +86,15 @@ class Actions {
    * @param args - additional arguments
    */
   async browse(id: string, args: BrowseArgs = {}) {
-    if (this.#needsLogin(id) && !this.#session.logged_in)
+    if (this.#needsLogin(id) && !this.#session.logged_in) {
       throw new InnertubeError('You are not signed in');
+    }
 
     const data: Record<string, any> = {};
 
-    if (args.params)
+    if (args.params) {
       data.params = args.params;
+    }
 
     if (args.is_ctoken) {
       data.continuation = id;
@@ -107,8 +114,8 @@ class Actions {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -119,8 +126,9 @@ class Actions {
    * on YouTube.
    */
   async engage(action: string, args: EngageArgs = {}) {
-    if (!this.#session.logged_in && !args.hasOwnProperty('text'))
+    if (!this.#session.logged_in && !args.hasOwnProperty('text')) {
       throw new InnertubeError('You are not signed in');
+    }
 
     const data: Record<string, any> = {};
 
@@ -128,8 +136,9 @@ class Actions {
       case 'like/like':
       case 'like/dislike':
       case 'like/removelike':
-        if (!hasKeys(args, 'video_id'))
+        if (!hasKeys(args, 'video_id')) {
           throw new MissingParamError('Arguments lacks video_id');
+        }
 
         data.target = {};
         data.target.videoId = args.video_id;
@@ -140,25 +149,35 @@ class Actions {
         break;
       case 'subscription/subscribe':
       case 'subscription/unsubscribe':
-        if (!hasKeys(args, 'channel_id'))
+        if (!hasKeys(args, 'channel_id')) {
           throw new MissingParamError('Arguments lacks channel_id');
+        }
 
-        data.channelIds = [ args.channel_id ];
-        data.params = action === 'subscription/subscribe' ? 'EgIIAhgA' : 'CgIIAhgA';
+        data.channelIds = [args.channel_id];
+        data.params = action === 'subscription/subscribe'
+          ? 'EgIIAhgA'
+          : 'CgIIAhgA';
         break;
       case 'comment/create_comment':
         data.commentText = args.text;
 
-        if (!hasKeys(args, 'video_id'))
+        if (!hasKeys(args, 'video_id')) {
           throw new MissingParamError('Arguments lacks video_id');
+        }
 
         data.createCommentParams = Proto.encodeCommentParams(args.video_id);
         break;
       case 'comment/create_comment_reply':
-        if (!hasKeys(args, 'comment_id', 'video_id', 'text'))
-          throw new MissingParamError('Arguments lacks comment_id, video_id or text');
+        if (!hasKeys(args, 'comment_id', 'video_id', 'text')) {
+          throw new MissingParamError(
+            'Arguments lacks comment_id, video_id or text',
+          );
+        }
 
-        data.createReplyParams = Proto.encodeCommentReplyParams(args.comment_id, args.video_id);
+        data.createReplyParams = Proto.encodeCommentReplyParams(
+          args.comment_id,
+          args.video_id,
+        );
         data.commentText = args.text;
         break;
       case 'comment/perform_comment_action':
@@ -174,7 +193,7 @@ class Actions {
               break;
           }
         })();
-        data.actions = [ target_action ];
+        data.actions = [target_action];
         break;
       default:
         throw new InnertubeError('Action not implemented', action);
@@ -184,8 +203,8 @@ class Actions {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -195,15 +214,16 @@ class Actions {
    * Covers endpoints related to account management.
    */
   async account(action: string, args: AccountArgs = {}) {
-    if (!this.#session.logged_in)
+    if (!this.#session.logged_in) {
       throw new InnertubeError('You are not signed in');
+    }
 
     const data: Record<string, any> = { client: args.client };
 
     switch (action) {
       case 'account/set_setting':
         data.newValue = {
-          boolValue: args.new_value
+          boolValue: args.new_value,
         };
         data.settingItemId = args.setting_item_id;
         break;
@@ -217,8 +237,8 @@ class Actions {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -243,7 +263,10 @@ class Actions {
     }
 
     if (args.filters) {
-      if (args.client == 'YTMUSIC' && args.filters?.type && args.filters.type !== 'all') {
+      if (
+        args.client == 'YTMUSIC' && args.filters?.type &&
+        args.filters.type !== 'all'
+      ) {
         data.params = Proto.encodeMusicSearchFilters(args.filters);
       } else {
         data.params = Proto.encodeSearchFilters(args.filters);
@@ -254,8 +277,8 @@ class Actions {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -264,18 +287,18 @@ class Actions {
   /**
    * Endpoint used fo Shorts' sound search.
    */
-  async searchSound(args: { query: string; }) {
+  async searchSound(args: { query: string }) {
     const data = {
       query: args.query,
-      client: 'ANDROID'
+      client: 'ANDROID',
     };
 
     const response = await this.#session.http.fetch('/sfv/search', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -284,9 +307,13 @@ class Actions {
   /**
    * Channel management endpoints.
    */
-  async channel(action: string, args: { new_name?: string; new_description?: string; client?: string; } = {}) {
-    if (!this.#session.logged_in)
+  async channel(
+    action: string,
+    args: { new_name?: string; new_description?: string; client?: string } = {},
+  ) {
+    if (!this.#session.logged_in) {
       throw new InnertubeError('You are not signed in');
+    }
 
     const data: Record<string, any> = { client: args.client || 'ANDROID' };
 
@@ -307,8 +334,8 @@ class Actions {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -323,8 +350,9 @@ class Actions {
     playlist_id?: string;
     action?: string;
   } = {}) {
-    if (!this.#session.logged_in)
+    if (!this.#session.logged_in) {
       throw new InnertubeError('You are not signed in');
+    }
 
     const data: Record<string, any> = {};
 
@@ -337,20 +365,21 @@ class Actions {
         data.playlistId = args.playlist_id;
         break;
       case 'browse/edit_playlist':
-        if (!hasKeys(args, 'ids'))
+        if (!hasKeys(args, 'ids')) {
           throw new MissingParamError('Arguments lacks ids');
+        }
         data.playlistId = args.playlist_id;
         data.actions = args.ids.map((id) => {
           switch (args.action) {
             case 'ACTION_ADD_VIDEO':
               return {
                 action: args.action,
-                addedVideoId: id
+                addedVideoId: id,
               };
             case 'ACTION_REMOVE_VIDEO':
               return {
                 action: args.action,
-                setVideoId: id
+                setVideoId: id,
               };
             default:
               break;
@@ -365,8 +394,8 @@ class Actions {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -379,30 +408,38 @@ class Actions {
     pref?: string;
     channel_id?: string;
     ctoken?: string;
-    params?: string
+    params?: string;
   } = {}) {
-    if (!this.#session.logged_in)
+    if (!this.#session.logged_in) {
       throw new InnertubeError('You are not signed in');
+    }
 
     const data: Record<string, any> = {};
 
     switch (action) {
       case 'modify_channel_preference':
-        if (!hasKeys(args, 'channel_id', 'pref'))
+        if (!hasKeys(args, 'channel_id', 'pref')) {
           throw new MissingParamError('Arguments lacks channel_id or pref');
+        }
         const pref_types = {
           PERSONALIZED: 1,
           ALL: 2,
-          NONE: 3
+          NONE: 3,
         };
-        if (!Object.keys(pref_types).includes(args.pref.toUpperCase()))
+        if (!Object.keys(pref_types).includes(args.pref.toUpperCase())) {
           throw new InnertubeError('Invalid preference type', args.pref);
-        data.params = Proto.encodeNotificationPref(args.channel_id, pref_types[args.pref.toUpperCase() as keyof typeof pref_types]);
+        }
+        data.params = Proto.encodeNotificationPref(
+          args.channel_id,
+          pref_types[args.pref.toUpperCase() as keyof typeof pref_types],
+        );
         break;
       case 'get_notification_menu':
-        data.notificationsMenuRequestType = 'NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX';
-        if (args.ctoken)
+        data.notificationsMenuRequestType =
+          'NOTIFICATIONS_MENU_REQUEST_TYPE_INBOX';
+        if (args.ctoken) {
           data.ctoken = args.ctoken;
+        }
         break;
       case 'record_interactions':
         data.serializedRecordNotificationInteractionsRequest = args.params;
@@ -417,8 +454,8 @@ class Actions {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -444,14 +481,17 @@ class Actions {
         data.continuation = args.ctoken;
         break;
       case 'live_chat/send_message':
-        if (!hasKeys(args, 'channel_id', 'video_id', 'text'))
-          throw new MissingParamError('Arguments lacks channel_id, video_id or text');
+        if (!hasKeys(args, 'channel_id', 'video_id', 'text')) {
+          throw new MissingParamError(
+            'Arguments lacks channel_id, video_id or text',
+          );
+        }
         data.params = Proto.encodeMessageParams(args.channel_id, args.video_id);
         data.clientMessageId = uuidv4();
         data.richMessage = {
-          textSegments: [ {
-            text: args.text
-          } ]
+          textSegments: [{
+            text: args.text,
+          }],
         };
         break;
       case 'live_chat/get_item_context_menu':
@@ -463,8 +503,9 @@ class Actions {
         break;
       case 'updated_metadata':
         data.videoId = args.video_id;
-        if (args.ctoken)
+        if (args.ctoken) {
           data.continuation = args.ctoken;
+        }
         break;
       default:
         throw new InnertubeError('Action not implemented', action);
@@ -474,8 +515,8 @@ class Actions {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -484,18 +525,18 @@ class Actions {
   /**
    * Endpoint used to retrieve video thumbnails.
    */
-  async thumbnails(args: { video_id: string; }) {
+  async thumbnails(args: { video_id: string }) {
     const data = {
       client: 'ANDROID',
-      videoId: args.video_id
+      videoId: args.video_id,
     };
 
     const response = await this.#session.http.fetch('/thumbnails', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -511,21 +552,22 @@ class Actions {
    * console.info(places.data);
    * ```
    */
-  async geo(action: string, args: { input: string; }) {
-    if (!this.#session.logged_in)
+  async geo(action: string, args: { input: string }) {
+    if (!this.#session.logged_in) {
       throw new InnertubeError('You are not signed in');
+    }
 
     const data = {
       input: args.input,
-      client: 'ANDROID'
+      client: 'ANDROID',
     };
 
     const response = await this.#session.http.fetch(`/geo/${action}`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -534,9 +576,10 @@ class Actions {
   /**
    * Covers endpoints used to report content.
    */
-  async flag(action: string, args: { action: string; params?: string; }) {
-    if (!this.#session.logged_in)
+  async flag(action: string, args: { action: string; params?: string }) {
+    if (!this.#session.logged_in) {
       throw new InnertubeError('You are not signed in');
+    }
 
     const data: Record<string, any> = {};
 
@@ -555,8 +598,8 @@ class Actions {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -565,18 +608,18 @@ class Actions {
   /**
    * Covers specific YouTube Music endpoints.
    */
-  async music(action: string, args: { input?: string; }) {
+  async music(action: string, args: { input?: string }) {
     const data = {
       input: args.input || '',
-      client: 'YTMUSIC'
+      client: 'YTMUSIC',
     };
 
     const response = await this.#session.http.fetch(`/music/${action}`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -585,7 +628,15 @@ class Actions {
   /**
    * Mostly used for pagination and specific operations.
    */
-  async next(args: { video_id?: string; ctoken?: string; client?: string; playlist_id?: string; params?: string } = {}) {
+  async next(
+    args: {
+      video_id?: string;
+      ctoken?: string;
+      client?: string;
+      playlist_id?: string;
+      params?: string;
+    } = {},
+  ) {
     const data: Record<string, any> = { client: args.client };
 
     if (args.ctoken) {
@@ -608,8 +659,8 @@ class Actions {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -618,7 +669,12 @@ class Actions {
   /**
    * Used to retrieve video info.
    */
-  async getVideoInfo(id: string, cpn?: string, client?: string, playlist_id?: string) {
+  async getVideoInfo(
+    id: string,
+    cpn?: string,
+    client?: string,
+    playlist_id?: string,
+  ) {
     const data: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
@@ -630,13 +686,13 @@ class Actions {
           signatureTimestamp: this.#session.player.sts,
           autoCaptionsDefaultOn: false,
           html5Preference: 'HTML5_PREF_WANTS',
-          lactMilliseconds: '-1'
-        }
+          lactMilliseconds: '-1',
+        },
       },
       attestationRequest: {
-        omitBotguardData: true
+        omitBotguardData: true,
       },
-      videoId: id
+      videoId: id,
     };
 
     if (client) {
@@ -655,8 +711,8 @@ class Actions {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     return this.#wrap(response);
@@ -665,22 +721,26 @@ class Actions {
   /**
    * Endpoint used to retrieve user mention suggestions.
    */
-  async getUserMentionSuggestions(args: { input: string; }) {
-    if (!this.#session.logged_in)
+  async getUserMentionSuggestions(args: { input: string }) {
+    if (!this.#session.logged_in) {
       throw new InnertubeError('You are not signed in');
+    }
 
     const data = {
       input: args.input,
-      client: 'ANDROID'
+      client: 'ANDROID',
     };
 
-    const response = await this.#session.http.fetch('/get_user_mention_suggestions', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    const response = await this.#session.http.fetch(
+      '/get_user_mention_suggestions',
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
 
     return this.#wrap(response);
   }
@@ -688,7 +748,11 @@ class Actions {
   /**
    * Makes calls to the playback tracking API.
    */
-  async stats(url: string, client: { client_name: string; client_version: string }, params: { [key: string]: any }) {
+  async stats(
+    url: string,
+    client: { client_name: string; client_version: string },
+    params: { [key: string]: any },
+  ) {
     const s_url = new URL(url);
 
     s_url.searchParams.set('ver', '2');
@@ -710,36 +774,66 @@ class Actions {
    * @param action - endpoint
    * @param args - call arguments
    */
-  async execute(action: string, args: { [key: string]: any; parse: true; protobuf?: false; serialized_data?: any }) : Promise<ParsedResponse>;
-  async execute(action: string, args: { [key: string]: any; parse?: false; protobuf?: true; serialized_data?: any }) : Promise<ActionsResponse>;
-  async execute(action: string, args: { [key: string]: any; parse?: boolean; protobuf?: boolean; serialized_data?: any }): Promise<ParsedResponse | ActionsResponse> {
+  async execute(
+    action: string,
+    args: {
+      [key: string]: any;
+      parse: true;
+      protobuf?: false;
+      serialized_data?: any;
+    },
+  ): Promise<ParsedResponse>;
+  async execute(
+    action: string,
+    args: {
+      [key: string]: any;
+      parse?: false;
+      protobuf?: true;
+      serialized_data?: any;
+    },
+  ): Promise<ActionsResponse>;
+  async execute(
+    action: string,
+    args: {
+      [key: string]: any;
+      parse?: boolean;
+      protobuf?: boolean;
+      serialized_data?: any;
+    },
+  ): Promise<ParsedResponse | ActionsResponse> {
     let data;
 
     if (!args.protobuf) {
       data = { ...args };
 
       if (Reflect.has(data, 'browseId')) {
-        if (this.#needsLogin(data.browseId) && !this.#session.logged_in)
+        if (this.#needsLogin(data.browseId) && !this.#session.logged_in) {
           throw new InnertubeError('You are not signed in');
+        }
       }
 
-      if (Reflect.has(data, 'override_endpoint'))
+      if (Reflect.has(data, 'override_endpoint')) {
         delete data.override_endpoint;
+      }
 
-      if (Reflect.has(data, 'parse'))
+      if (Reflect.has(data, 'parse')) {
         delete data.parse;
+      }
 
-      if (Reflect.has(data, 'request'))
+      if (Reflect.has(data, 'request')) {
         delete data.request;
+      }
 
-      if (Reflect.has(data, 'clientActions'))
+      if (Reflect.has(data, 'clientActions')) {
         delete data.clientActions;
+      }
 
-      if (Reflect.has(data, 'settingItemIdForClient'))
+      if (Reflect.has(data, 'settingItemIdForClient')) {
         delete data.settingItemIdForClient;
+      }
 
       if (Reflect.has(data, 'action')) {
-        data.actions = [ data.action ];
+        data.actions = [data.action];
         delete data.action;
       }
 
@@ -760,16 +854,18 @@ class Actions {
       data = args.serialized_data;
     }
 
-    const endpoint = Reflect.has(args, 'override_endpoint') ? args.override_endpoint : action;
+    const endpoint = Reflect.has(args, 'override_endpoint')
+      ? args.override_endpoint
+      : action;
 
     const response = await this.#session.http.fetch(endpoint, {
       method: 'POST',
       body: args.protobuf ? data : JSON.stringify(data),
       headers: {
-        'Content-Type': args.protobuf ?
-          'application/x-protobuf' :
-          'application/json'
-      }
+        'Content-Type': args.protobuf
+          ? 'application/x-protobuf'
+          : 'application/json',
+      },
     });
 
     if (args.parse) {
@@ -787,7 +883,7 @@ class Actions {
       'FEmusic_listening_review',
       'SPaccount_notifications',
       'SPaccount_privacy',
-      'SPtime_watched'
+      'SPtime_watched',
     ].includes(id);
   }
 }

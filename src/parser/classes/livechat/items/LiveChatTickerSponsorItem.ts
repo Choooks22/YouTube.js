@@ -1,6 +1,6 @@
-import Text from '../../misc/Text';
-import Thumbnail from '../../misc/Thumbnail';
-import { YTNode } from '../../../helpers';
+import Text from '../../misc/Text.ts';
+import Thumbnail from '../../misc/Thumbnail.ts';
+import { YTNode } from '../../../helpers.ts';
 
 class LiveChatTickerSponsorItem extends YTNode {
   static type = 'LiveChatTickerSponsorItem';
@@ -23,7 +23,7 @@ class LiveChatTickerSponsorItem extends YTNode {
     this.author = {
       id: data.authorExternalChannelId,
       name: new Text(data?.authorName),
-      thumbnails: Thumbnail.fromResponse(data.sponsorPhoto)
+      thumbnails: Thumbnail.fromResponse(data.sponsorPhoto),
     };
 
     this.duration_sec = data.durationSec;

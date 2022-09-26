@@ -1,6 +1,6 @@
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode } from '../helpers.ts';
 
 class DidYouMean extends YTNode {
   static type = 'DidYouMean';
@@ -13,7 +13,9 @@ class DidYouMean extends YTNode {
     super();
     this.text = new Text(data.didYouMean).toString();
     this.corrected_query = new Text(data.correctedQuery);
-    this.endpoint = new NavigationEndpoint(data.navigationEndpoint || data.correctedQueryEndpoint);
+    this.endpoint = new NavigationEndpoint(
+      data.navigationEndpoint || data.correctedQueryEndpoint,
+    );
   }
 }
 

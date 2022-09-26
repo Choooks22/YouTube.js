@@ -1,17 +1,17 @@
-import Actions from '../../core/Actions';
-import { observe, ObservedArray, YTNode } from '../helpers';
-import { InnertubeError } from '../../utils/Utils';
+import Actions from '../../core/Actions.ts';
+import { observe, ObservedArray, YTNode } from '../helpers.ts';
+import { InnertubeError } from '../../utils/Utils.ts';
 
-import Feed from '../../core/Feed';
-import SectionList from '../classes/SectionList';
-import ItemSection from '../classes/ItemSection';
-import HorizontalCardList from '../classes/HorizontalCardList';
-import RichListHeader from '../classes/RichListHeader';
-import SearchRefinementCard from '../classes/SearchRefinementCard';
-import TwoColumnSearchResults from '../classes/TwoColumnSearchResults';
-import UniversalWatchCard from '../classes/UniversalWatchCard';
-import WatchCardHeroVideo from '../classes/WatchCardHeroVideo';
-import WatchCardSectionSequence from '../classes/WatchCardSectionSequence';
+import Feed from '../../core/Feed.ts';
+import SectionList from '../classes/SectionList.ts';
+import ItemSection from '../classes/ItemSection.ts';
+import HorizontalCardList from '../classes/HorizontalCardList.ts';
+import RichListHeader from '../classes/RichListHeader.ts';
+import SearchRefinementCard from '../classes/SearchRefinementCard.ts';
+import TwoColumnSearchResults from '../classes/TwoColumnSearchResults.ts';
+import UniversalWatchCard from '../classes/UniversalWatchCard.ts';
+import WatchCardHeroVideo from '../classes/WatchCardHeroVideo.ts';
+import WatchCardSectionSequence from '../classes/WatchCardSectionSequence.ts';
 
 class Search extends Feed {
   results: ObservedArray<YTNode> | null | undefined;
@@ -24,29 +24,43 @@ class Search extends Feed {
     super(actions, data, already_parsed);
 
     const contents =
-      this.page.contents?.item().as(TwoColumnSearchResults).primary_contents?.item().as(SectionList).contents.array() ||
+      this.page.contents?.item().as(TwoColumnSearchResults).primary_contents
+        ?.item().as(SectionList).contents.array() ||
       this.page.on_response_received_commands?.[0].contents;
 
-    const secondary_contents_maybe = this.page.contents?.item().key('secondary_contents');
-    const secondary_contents = secondary_contents_maybe?.isParsed() ? secondary_contents_maybe.parsed().item().key('contents').parsed().array() : undefined;
+    const secondary_contents_maybe = this.page.contents?.item().key(
+      'secondary_contents',
+    );
+    const secondary_contents = secondary_contents_maybe?.isParsed()
+      ? secondary_contents_maybe.parsed().item().key('contents').parsed()
+        .array()
+      : undefined;
 
     this.results = contents.firstOfType(ItemSection)?.contents;
 
-    const card_list = this.results?.get({ type: 'HorizontalCardList' }, true)?.as(HorizontalCardList);
-    const universal_watch_card = secondary_contents?.firstOfType(UniversalWatchCard);
+    const card_list = this.results?.get({ type: 'HorizontalCardList' }, true)
+      ?.as(HorizontalCardList);
+    const universal_watch_card = secondary_contents?.firstOfType(
+      UniversalWatchCard,
+    );
 
     this.refinements = this.page.refinements || [];
     this.estimated_results = this.page.estimated_results;
 
     this.watch_card = {
       header: universal_watch_card?.header.item() || null,
-      call_to_action: universal_watch_card?.call_to_action.item().as(WatchCardHeroVideo) || null,
-      sections: universal_watch_card?.sections.array().filterType(WatchCardSectionSequence) || []
+      call_to_action:
+        universal_watch_card?.call_to_action.item().as(WatchCardHeroVideo) ||
+        null,
+      sections: universal_watch_card?.sections.array().filterType(
+        WatchCardSectionSequence,
+      ) || [],
     };
 
     this.refinement_cards = {
       header: card_list?.header.item().as(RichListHeader) || null,
-      cards: card_list?.cards.array().filterType(SearchRefinementCard) || observe([] as SearchRefinementCard[])
+      cards: card_list?.cards.array().filterType(SearchRefinementCard) ||
+        observe([] as SearchRefinementCard[]),
     };
   }
 
@@ -58,8 +72,11 @@ class Search extends Feed {
 
     if (typeof card === 'string') {
       target_card = this.refinement_cards.cards.get({ query: card });
-      if (!target_card)
-        throw new InnertubeError(`Refinement card "${card}" not found`, { available_cards: this.refinement_card_queries });
+      if (!target_card) {
+        throw new InnertubeError(`Refinement card "${card}" not found`, {
+          available_cards: this.refinement_card_queries,
+        });
+      }
     } else if (card.type === 'SearchRefinementCard') {
       target_card = card;
     } else {

@@ -1,6 +1,6 @@
-import Parser from '../index';
-import Button from './Button';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Button from './Button.ts';
+import { YTNode } from '../helpers.ts';
 
 class CopyLink extends YTNode {
   static type = 'CopyLink';

@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "@pbkit/runtime/": "https://deno.land/x/pbkit@v0.0.54/core/runtime/"
+  }
+}

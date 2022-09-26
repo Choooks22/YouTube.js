@@ -1,4 +1,4 @@
-import Thumbnail from './Thumbnail';
+import Thumbnail from './Thumbnail.ts';
 
 class EmojiRun {
   text: string;
@@ -10,8 +10,7 @@ class EmojiRun {
   };
 
   constructor(data: any) {
-    this.text =
-      data.emoji?.emojiId ||
+    this.text = data.emoji?.emojiId ||
       data.emoji?.shortcuts?.[0] ||
       '';
 
@@ -19,7 +18,7 @@ class EmojiRun {
       emoji_id: data.emoji.emojiId,
       shortcuts: data.emoji.shortcuts,
       search_terms: data.emoji.searchTerms,
-      image: Thumbnail.fromResponse(data.emoji.image)
+      image: Thumbnail.fromResponse(data.emoji.image),
     };
   }
 }

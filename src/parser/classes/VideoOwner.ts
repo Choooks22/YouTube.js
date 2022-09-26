@@ -1,6 +1,6 @@
-import Text from './misc/Text';
-import Author from './misc/Author';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.ts';
+import Author from './misc/Author.ts';
+import { YTNode } from '../helpers.ts';
 
 class VideoOwner extends YTNode {
   static type = 'VideoOwner';
@@ -15,10 +15,14 @@ class VideoOwner extends YTNode {
     this.subscription_button = data.subscriptionButton || null;
     this.subscriber_count = new Text(data.subscriberCountText);
 
-    this.author = new Author({
-      ...data.title,
-      navigationEndpoint: data.navigationEndpoint
-    }, data.badges, data.thumbnail);
+    this.author = new Author(
+      {
+        ...data.title,
+        navigationEndpoint: data.navigationEndpoint,
+      },
+      data.badges,
+      data.thumbnail,
+    );
   }
 }
 

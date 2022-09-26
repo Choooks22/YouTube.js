@@ -1,8 +1,8 @@
-import Parser from '../../../index';
-import NavigationEndpoint from '../../NavigationEndpoint';
-import Thumbnail from '../../misc/Thumbnail';
-import Text from '../../misc/Text';
-import { YTNode } from '../../../helpers';
+import Parser from '../../../index.ts';
+import NavigationEndpoint from '../../NavigationEndpoint.ts';
+import Thumbnail from '../../misc/Thumbnail.ts';
+import Text from '../../misc/Text.ts';
+import { YTNode } from '../../../helpers.ts';
 
 class LiveChatPaidSticker extends YTNode {
   static type = 'LiveChatPaidSticker';
@@ -33,7 +33,7 @@ class LiveChatPaidSticker extends YTNode {
       id: data.authorExternalChannelId,
       name: new Text(data.authorName),
       thumbnails: Thumbnail.fromResponse(data.authorPhoto),
-      badges: Parser.parse(data.authorBadges)
+      badges: Parser.parse(data.authorBadges),
     };
 
     this.money_chip_background_color = data.moneyChipBackgroundColor;

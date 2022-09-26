@@ -1,4 +1,4 @@
-import Author from './Author';
+import Author from './Author.ts';
 
 class PlaylistAuthor extends Author {
   constructor(item: any, badges?: any, thumbs?: any) {

@@ -1,6 +1,6 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import { YTNode } from '../helpers.ts';
 
 class ChannelFeaturedContent extends YTNode {
   static type = 'ChannelFeaturedContent';

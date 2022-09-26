@@ -1,6 +1,6 @@
-import Parser from '../index';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode } from '../helpers.ts';
 
 class WatchCardHeroVideo extends YTNode {
   static type = 'WatchCardHeroVideo';

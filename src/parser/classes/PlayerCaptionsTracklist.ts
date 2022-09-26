@@ -1,5 +1,5 @@
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.ts';
+import { YTNode } from '../helpers.ts';
 
 class PlayerCaptionsTracklist extends YTNode {
   static type = 'PlayerCaptionsTracklist';
@@ -30,16 +30,16 @@ class PlayerCaptionsTracklist extends YTNode {
       vss_id: ct.vssId,
       language_code: ct.languageCode,
       kind: ct.kind,
-      is_translatable: ct.isTranslatable
+      is_translatable: ct.isTranslatable,
     }));
 
     this.audio_tracks = data.audioTracks.map((at: any) => ({
-      caption_track_indices: at.captionTrackIndices
+      caption_track_indices: at.captionTrackIndices,
     }));
 
     this.translation_languages = data.translationLanguages.map((tl: any) => ({
       language_code: tl.languageCode,
-      language_name: new Text(tl.languageName)
+      language_name: new Text(tl.languageName),
     }));
   }
 }

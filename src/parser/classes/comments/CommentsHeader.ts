@@ -1,7 +1,7 @@
-import Parser from '../../index';
-import Text from '../misc/Text';
-import Thumbnail from '../misc/Thumbnail';
-import { YTNode } from '../../helpers';
+import Parser from '../../index.ts';
+import Text from '../misc/Text.ts';
+import Thumbnail from '../misc/Thumbnail.ts';
+import { YTNode } from '../../helpers.ts';
 
 class CommentsHeader extends YTNode {
   static type = 'CommentsHeader';
@@ -33,7 +33,7 @@ class CommentsHeader extends YTNode {
       shortcuts: emoji.shortcuts,
       search_terms: emoji.searchTerms,
       image: Thumbnail.fromResponse(emoji.image),
-      is_custom_emoji: emoji.isCustomEmoji
+      is_custom_emoji: emoji.isCustomEmoji,
     })) || null;
   }
 }

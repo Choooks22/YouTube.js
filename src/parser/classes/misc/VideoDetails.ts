@@ -1,4 +1,4 @@
-import Thumbnail from './Thumbnail';
+import Thumbnail from './Thumbnail.ts';
 
 class VideoDetails {
   id: string;

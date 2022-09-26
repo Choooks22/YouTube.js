@@ -1,5 +1,5 @@
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import Thumbnail from './misc/Thumbnail.ts';
+import { YTNode } from '../helpers.ts';
 
 class SingleHeroImage extends YTNode {
   static type = 'SingleHeroImage';

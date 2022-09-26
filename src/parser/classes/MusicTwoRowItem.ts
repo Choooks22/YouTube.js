@@ -1,14 +1,14 @@
 // TODO: refactor this
 
-import Parser from '../index';
-import Text from './misc/Text';
-import TextRun from './misc/TextRun';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay';
-import Menu from './menus/Menu';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import TextRun from './misc/TextRun.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay.ts';
+import Menu from './menus/Menu.ts';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class MusicTwoRowItem extends YTNode {
   static type = 'MusicTwoRowItem';
@@ -47,8 +47,7 @@ class MusicTwoRowItem extends YTNode {
     this.title = new Text(data.title);
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
 
-    this.id =
-      this.endpoint?.browse?.id ||
+    this.id = this.endpoint?.browse?.id ||
       this.endpoint?.watch?.video_id;
 
     this.subtitle = new Text(data.subtitle);
@@ -82,46 +81,66 @@ class MusicTwoRowItem extends YTNode {
     }
 
     if (this.item_type == 'artist') {
-      this.subscribers = this.subtitle.runs?.find((run) => (/^(\d*\.)?\d+[M|K]? subscribers?$/i).test(run.text))?.text || '';
+      this.subscribers = this.subtitle.runs?.find((run) =>
+        (/^(\d*\.)?\d+[M|K]? subscribers?$/i).test(run.text)
+      )?.text || '';
     } else if (this.item_type == 'playlist') {
-      const item_count_run = this.subtitle.runs?.find((run) => run.text.match(/\d+ songs|song/));
-      this.item_count = item_count_run ? (item_count_run as TextRun).text : null;
+      const item_count_run = this.subtitle.runs?.find((run) =>
+        run.text.match(/\d+ songs|song/)
+      );
+      this.item_count = item_count_run
+        ? (item_count_run as TextRun).text
+        : null;
     } else if (this.item_type == 'album') {
-      const artists = this.subtitle.runs?.filter((run: any) => run.endpoint?.browse?.id.startsWith('UC'));
+      const artists = this.subtitle.runs?.filter((run: any) =>
+        run.endpoint?.browse?.id.startsWith('UC')
+      );
       if (artists) {
         this.artists = artists.map((artist: any) => ({
           name: artist.text,
           channel_id: artist.endpoint.browse.id,
-          endpoint: artist.endpoint
+          endpoint: artist.endpoint,
         }));
       }
       this.year = this.subtitle.runs?.slice(-1)[0].text;
-      if (isNaN(Number(this.year)))
+      if (isNaN(Number(this.year))) {
         delete this.year;
+      }
     } else if (this.item_type == 'video') {
-      this.views = this?.subtitle.runs?.find((run) => run?.text.match(/(.*?) views/))?.text || 'N/A';
+      this.views = this?.subtitle.runs?.find((run) =>
+        run?.text.match(/(.*?) views/)
+      )?.text || 'N/A';
 
-      const author = this.subtitle.runs?.find((run: any) => run.endpoint?.browse?.id?.startsWith('UC'));
+      const author = this.subtitle.runs?.find((run: any) =>
+        run.endpoint?.browse?.id?.startsWith('UC')
+      );
       if (author) {
         this.author = {
           name: (author as TextRun)?.text,
           channel_id: (author as TextRun)?.endpoint?.browse?.id,
-          endpoint: (author as TextRun)?.endpoint
+          endpoint: (author as TextRun)?.endpoint,
         };
       }
     } else if (this.item_type == 'song') {
-      const artists = this.subtitle.runs?.filter((run: any) => run.endpoint?.browse?.id.startsWith('UC'));
+      const artists = this.subtitle.runs?.filter((run: any) =>
+        run.endpoint?.browse?.id.startsWith('UC')
+      );
       if (artists) {
         this.artists = artists.map((artist: any) => ({
           name: (artist as TextRun)?.text,
           channel_id: (artist as TextRun)?.endpoint?.browse?.id,
-          endpoint: (artist as TextRun)?.endpoint
+          endpoint: (artist as TextRun)?.endpoint,
         }));
       }
     }
 
-    this.thumbnail = Thumbnail.fromResponse(data.thumbnailRenderer.musicThumbnailRenderer.thumbnail);
-    this.thumbnail_overlay = Parser.parseItem<MusicItemThumbnailOverlay>(data.thumbnailOverlay, MusicItemThumbnailOverlay);
+    this.thumbnail = Thumbnail.fromResponse(
+      data.thumbnailRenderer.musicThumbnailRenderer.thumbnail,
+    );
+    this.thumbnail_overlay = Parser.parseItem<MusicItemThumbnailOverlay>(
+      data.thumbnailOverlay,
+      MusicItemThumbnailOverlay,
+    );
     this.menu = Parser.parseItem<Menu>(data.menu, Menu);
   }
 }

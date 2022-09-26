@@ -1,4 +1,4 @@
-import { Innertube, UniversalCache } from 'youtubei.js';
+import { Innertube, UniversalCache } from 'youtubei.js.ts';
 
 (async () => {
   const yt = await Innertube.create({ cache: new UniversalCache() });
@@ -28,14 +28,14 @@ import { Innertube, UniversalCache } from 'youtubei.js';
 
   console.info('\nLists the following channels:');
   const channels = await channel.getChannels();
- 
+
   for (const channel of channels.channels) {
     console.info('Channel:', channel.author.name);
   }
 
   console.info('\nLists the following community posts:');
   const posts = await channel.getCommunity();
- 
+
   for (const post of posts.posts) {
     console.info('Post:', post.content.toString().substring(0, 20) + '...');
   }

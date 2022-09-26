@@ -1,11 +1,11 @@
-import Parser from '..';
+import Parser from '../index.ts';
 
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import AccountItemSectionHeader from './AccountItemSectionHeader';
+import Text from './misc/Text.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import AccountItemSectionHeader from './AccountItemSectionHeader.ts';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class AccountItem {
   static type = 'AccountItem';
@@ -37,8 +37,13 @@ class AccountItemSection extends YTNode {
 
   constructor(data: any) {
     super();
-    this.contents = data.contents.map((ac: any) => new AccountItem(ac.accountItem));
-    this.header = Parser.parseItem<AccountItemSectionHeader>(data.header, AccountItemSectionHeader);
+    this.contents = data.contents.map((ac: any) =>
+      new AccountItem(ac.accountItem)
+    );
+    this.header = Parser.parseItem<AccountItemSectionHeader>(
+      data.header,
+      AccountItemSectionHeader,
+    );
   }
 }
 

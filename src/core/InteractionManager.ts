@@ -1,5 +1,5 @@
-import { throwIfMissing } from '../utils/Utils';
-import Actions from './Actions';
+import { throwIfMissing } from '../utils/Utils.ts';
+import Actions from './Actions.ts';
 
 class InteractionManager {
   #actions;
@@ -40,7 +40,9 @@ class InteractionManager {
    */
   async subscribe(channel_id: string) {
     throwIfMissing({ channel_id });
-    const action = await this.#actions.engage('subscription/subscribe', { channel_id });
+    const action = await this.#actions.engage('subscription/subscribe', {
+      channel_id,
+    });
     return action;
   }
 
@@ -49,7 +51,9 @@ class InteractionManager {
    */
   async unsubscribe(channel_id: string) {
     throwIfMissing({ channel_id });
-    const action = await this.#actions.engage('subscription/unsubscribe', { channel_id });
+    const action = await this.#actions.engage('subscription/unsubscribe', {
+      channel_id,
+    });
     return action;
   }
 
@@ -58,7 +62,10 @@ class InteractionManager {
    */
   async comment(video_id: string, text: string) {
     throwIfMissing({ video_id, text });
-    const action = await this.#actions.engage('comment/create_comment', { video_id, text });
+    const action = await this.#actions.engage('comment/create_comment', {
+      video_id,
+      text,
+    });
     return action;
   }
 
@@ -68,24 +75,33 @@ class InteractionManager {
    * @param target_language - an ISO language code
    * @param args - optional arguments
    */
-  async translate(text: string, target_language: string, args: { video_id?: string; comment_id?: string; } = {}) {
+  async translate(
+    text: string,
+    target_language: string,
+    args: { video_id?: string; comment_id?: string } = {},
+  ) {
     throwIfMissing({ text, target_language });
 
-    const response = await await this.#actions.engage('comment/perform_comment_action', {
-      video_id: args.video_id,
-      comment_id: args.comment_id,
-      target_language: target_language,
-      comment_action: 'translate',
-      text
-    });
+    const response = await await this.#actions.engage(
+      'comment/perform_comment_action',
+      {
+        video_id: args.video_id,
+        comment_id: args.comment_id,
+        target_language: target_language,
+        comment_action: 'translate',
+        text,
+      },
+    );
 
-    const mutation = response.data.frameworkUpdates.entityBatchUpdate.mutations[0].payload.commentEntityPayload;
+    const mutation =
+      response.data.frameworkUpdates.entityBatchUpdate.mutations[0].payload
+        .commentEntityPayload;
 
     return {
       success: response.success,
       status_code: response.status_code,
       translated_content: mutation.translatedContent.content,
-      data: response.data
+      data: response.data,
     };
   }
 
@@ -93,9 +109,15 @@ class InteractionManager {
    * Changes notification preferences for a given channel.
    * Only works with channels you are subscribed to.
    */
-  async setNotificationPreferences(channel_id: string, type: 'PERSONALIZED' | 'ALL' | 'NONE') {
+  async setNotificationPreferences(
+    channel_id: string,
+    type: 'PERSONALIZED' | 'ALL' | 'NONE',
+  ) {
     throwIfMissing({ channel_id, type });
-    const action = await this.#actions.notifications('modify_channel_preference', { channel_id, pref: type || 'NONE' });
+    const action = await this.#actions.notifications(
+      'modify_channel_preference',
+      { channel_id, pref: type || 'NONE' },
+    );
     return action;
   }
 }

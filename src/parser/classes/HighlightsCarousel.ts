@@ -1,5 +1,5 @@
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode } from '../helpers.ts';
 
 class Panel {
   static type = 'Panel';
@@ -46,14 +46,16 @@ class Panel {
     this.thumbnail = {
       image: data.thumbnail.image.sources,
       endpoint: new NavigationEndpoint(data.thumbnail.onTap),
-      on_long_press_endpoint: new NavigationEndpoint(data.thumbnail.onLongPress),
+      on_long_press_endpoint: new NavigationEndpoint(
+        data.thumbnail.onLongPress,
+      ),
       content_mode: data.thumbnail.contentMode,
-      crop_options: data.thumbnail.cropOptions
+      crop_options: data.thumbnail.cropOptions,
     };
 
     this.background_image = {
       image: data.backgroundImage.image.sources,
-      gradient_image: data.backgroundImage.gradientImage.sources
+      gradient_image: data.backgroundImage.gradientImage.sources,
     };
 
     this.strapline = data.strapline;
@@ -65,7 +67,7 @@ class Panel {
       title: data.cta.title,
       endpoint: new NavigationEndpoint(data.cta.onTap),
       accessibility_text: data.cta.accessibilityText,
-      state: data.cta.state
+      state: data.cta.state,
     };
 
     this.text_on_tap_endpoint = new NavigationEndpoint(data.textOnTap);
@@ -79,7 +81,9 @@ class HighlightsCarousel extends YTNode {
 
   constructor(data: any) {
     super();
-    this.panels = data.highlightsCarousel.panels.map((el: any) => new Panel(el));
+    this.panels = data.highlightsCarousel.panels.map((el: any) =>
+      new Panel(el)
+    );
   }
 }
 

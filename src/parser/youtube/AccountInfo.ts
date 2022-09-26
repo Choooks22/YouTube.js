@@ -1,9 +1,9 @@
-import Parser, { ParsedResponse } from '..';
-import { AxioslikeResponse } from '../../core/Actions';
+import Parser, { ParsedResponse } from '../index.ts';
+import { AxioslikeResponse } from '../../core/Actions.ts';
 
-import AccountSectionList from '../classes/AccountSectionList';
-import AccountItemSection from '../classes/AccountItemSection';
-import AccountChannel from '../classes/AccountChannel';
+import AccountSectionList from '../classes/AccountSectionList.ts';
+import AccountItemSection from '../classes/AccountItemSection.ts';
+import AccountChannel from '../classes/AccountChannel.ts';
 
 class AccountInfo {
   #page;
@@ -14,7 +14,8 @@ class AccountInfo {
   constructor(response: AxioslikeResponse) {
     this.#page = Parser.parseResponse(response.data);
 
-    const account_section_list = this.#page.contents.array().as(AccountSectionList)[0];
+    const account_section_list =
+      this.#page.contents.array().as(AccountSectionList)[0];
 
     this.contents = account_section_list.contents;
     this.footers = account_section_list.footers;

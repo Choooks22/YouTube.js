@@ -1,5 +1,5 @@
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import Thumbnail from './misc/Thumbnail.ts';
+import { YTNode } from '../helpers.ts';
 
 class MusicThumbnail extends YTNode {
   static type = 'MusicThumbnail';

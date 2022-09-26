@@ -1,5 +1,5 @@
-import Parser from '../index';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import { YTNode } from '../helpers.ts';
 
 class Card extends YTNode {
   static type = 'Card';
@@ -27,7 +27,7 @@ class Card extends YTNode {
       start_card_active_ms: cr.startCardActiveMs,
       end_card_active_ms: cr.endCardActiveMs,
       teaser_duration_ms: cr.teaserDurationMs,
-      icon_after_teaser_ms: cr.iconAfterTeaserMs
+      icon_after_teaser_ms: cr.iconAfterTeaserMs,
     }));
   }
 }

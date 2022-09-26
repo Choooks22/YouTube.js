@@ -1,10 +1,10 @@
-import Actions from '../../core/Actions';
-import TabbedFeed from '../../core/TabbedFeed';
-import C4TabbedHeader from '../classes/C4TabbedHeader';
-import ChannelAboutFullMetadata from '../classes/ChannelAboutFullMetadata';
-import ChannelMetadata from '../classes/ChannelMetadata';
-import MicroformatData from '../classes/MicroformatData';
-import Tab from '../classes/Tab';
+import Actions from '../../core/Actions.ts';
+import TabbedFeed from '../../core/TabbedFeed.ts';
+import C4TabbedHeader from '../classes/C4TabbedHeader.ts';
+import ChannelAboutFullMetadata from '../classes/ChannelAboutFullMetadata.ts';
+import ChannelMetadata from '../classes/ChannelMetadata.ts';
+import MicroformatData from '../classes/MicroformatData.ts';
+import Tab from '../classes/Tab.ts';
 
 class Channel extends TabbedFeed {
   header;
@@ -24,7 +24,8 @@ class Channel extends TabbedFeed {
     this.sponsor_button = this.header.sponsor_button;
     this.subscribe_button = this.header.subscribe_button;
 
-    const tab = this.page.contents.item().key('tabs').parsed().array().filterType(Tab).get({ selected: true });
+    const tab = this.page.contents.item().key('tabs').parsed().array()
+      .filterType(Tab).get({ selected: true });
 
     this.current_tab = tab;
   }

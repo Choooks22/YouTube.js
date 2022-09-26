@@ -1,5 +1,5 @@
-import Thumbnail from './misc/Thumbnail';
-import { YTNode } from '../helpers';
+import Thumbnail from './misc/Thumbnail.ts';
+import { YTNode } from '../helpers.ts';
 
 class MicroformatData extends YTNode {
   static type = 'MicroformatData';
@@ -33,7 +33,9 @@ class MicroformatData extends YTNode {
     this.url_canonical = data.urlCanonical;
     this.title = data.title;
     this.description = data.description;
-    this.thumbnail = data.thumbnail ? Thumbnail.fromResponse(data.thumbnail) : null;
+    this.thumbnail = data.thumbnail
+      ? Thumbnail.fromResponse(data.thumbnail)
+      : null;
     this.site_name = data.siteName;
     this.app_name = data.appName;
     this.android_package = data.androidPackage;

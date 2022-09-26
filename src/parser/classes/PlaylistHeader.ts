@@ -1,7 +1,7 @@
-import Text from './misc/Text';
-import PlaylistAuthor from './misc/PlaylistAuthor';
-import Parser from '../index';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.ts';
+import PlaylistAuthor from './misc/PlaylistAuthor.ts';
+import Parser from '../index.ts';
+import { YTNode } from '../helpers.ts';
 
 class PlaylistHeader extends YTNode {
   static type = 'PlaylistHeader';
@@ -28,7 +28,11 @@ class PlaylistHeader extends YTNode {
     this.title = new Text(data.title);
     this.stats = data.stats.map((stat: any) => new Text(stat));
     this.brief_stats = data.briefStats.map((stat: any) => new Text(stat));
-    this.author = new PlaylistAuthor({ ...data.ownerText, navigationEndpoint: data.ownerEndpoint }, data.ownerBadges, null);
+    this.author = new PlaylistAuthor(
+      { ...data.ownerText, navigationEndpoint: data.ownerEndpoint },
+      data.ownerBadges,
+      null,
+    );
     this.description = new Text(data.descriptionText);
     this.num_videos = new Text(data.numVideosText);
     this.view_count = new Text(data.viewCountText);

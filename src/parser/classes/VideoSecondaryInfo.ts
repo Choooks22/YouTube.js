@@ -1,15 +1,15 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import Button from './Button';
-import VideoOwner from './VideoOwner';
-import SubscribeButton from './SubscribeButton';
-import MetadataRowContainer from './MetadataRowContainer';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import Button from './Button.ts';
+import VideoOwner from './VideoOwner.ts';
+import SubscribeButton from './SubscribeButton.ts';
+import MetadataRowContainer from './MetadataRowContainer.ts';
+import { YTNode } from '../helpers.ts';
 
 class VideoSecondaryInfo extends YTNode {
   static type = 'VideoSecondaryInfo';
 
-  owner: VideoOwner | null;// TODO: VideoOwner?
+  owner: VideoOwner | null; // TODO: VideoOwner?
   description: Text;
   subscribe_button;
   metadata: MetadataRowContainer | null;
@@ -22,8 +22,14 @@ class VideoSecondaryInfo extends YTNode {
     super();
     this.owner = Parser.parseItem<VideoOwner>(data.owner);
     this.description = new Text(data.description);
-    this.subscribe_button = Parser.parseItem<SubscribeButton | Button>(data.subscribeButton, [ SubscribeButton, Button ]);
-    this.metadata = Parser.parseItem<MetadataRowContainer>(data.metadataRowContainer, MetadataRowContainer);
+    this.subscribe_button = Parser.parseItem<SubscribeButton | Button>(
+      data.subscribeButton,
+      [SubscribeButton, Button],
+    );
+    this.metadata = Parser.parseItem<MetadataRowContainer>(
+      data.metadataRowContainer,
+      MetadataRowContainer,
+    );
     this.show_more_text = data.showMoreText;
     this.show_less_text = data.showLessText;
     this.default_expanded = data.defaultExpanded;

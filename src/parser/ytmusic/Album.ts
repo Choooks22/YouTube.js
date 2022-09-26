@@ -1,10 +1,10 @@
-import Parser, { ParsedResponse } from '../index';
-import Actions, { AxioslikeResponse } from '../../core/Actions';
+import Parser, { ParsedResponse } from '../index.ts';
+import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
 
-import MusicDetailHeader from '../classes/MusicDetailHeader';
-import MicroformatData from '../classes/MicroformatData';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf';
-import MusicShelf from '../classes/MusicShelf';
+import MusicDetailHeader from '../classes/MusicDetailHeader.ts';
+import MicroformatData from '../classes/MicroformatData.ts';
+import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
+import MusicShelf from '../classes/MusicShelf.ts';
 
 class Album {
   #page;
@@ -21,10 +21,14 @@ class Album {
     this.#actions = actions;
 
     this.header = this.#page.header.item().as(MusicDetailHeader);
-    this.url = this.#page.microformat?.as(MicroformatData).url_canonical || null;
+    this.url = this.#page.microformat?.as(MicroformatData).url_canonical ||
+      null;
 
-    this.contents = this.#page.contents_memo.get('MusicShelf')?.[0].as(MusicShelf).contents;
-    this.sections = this.#page.contents_memo.get('MusicCarouselShelf') as MusicCarouselShelf[] || ([] as MusicCarouselShelf[]);
+    this.contents =
+      this.#page.contents_memo.get('MusicShelf')?.[0].as(MusicShelf).contents;
+    this.sections = this.#page.contents_memo.get(
+      'MusicCarouselShelf',
+    ) as MusicCarouselShelf[] || ([] as MusicCarouselShelf[]);
   }
 
   get page(): ParsedResponse {

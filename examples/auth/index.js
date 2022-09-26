@@ -3,12 +3,14 @@ const { Innertube, UniversalCache } = require('youtubei.js');
 (async () => {
   const yt = await Innertube.create({
     // required if you wish to use OAuth#cacheCredentials
-    cache: new UniversalCache()
+    cache: new UniversalCache(),
   });
 
   // 'auth-pending' is fired with the info needed to sign in via OAuth.
   yt.session.on('auth-pending', (data) => {
-    console.log(`Go to ${data.verification_url} in your browser and enter code ${data.user_code} to authenticate.`);
+    console.log(
+      `Go to ${data.verification_url} in your browser and enter code ${data.user_code} to authenticate.`,
+    );
   });
 
   // 'auth' is fired once the authentication is complete
@@ -16,7 +18,7 @@ const { Innertube, UniversalCache } = require('youtubei.js');
     console.log('Sign in successful:', credentials);
   });
 
-  // 'update-credentials' is fired when the access token expires, if you do not save the updated credentials any subsequent request will fail 
+  // 'update-credentials' is fired when the access token expires, if you do not save the updated credentials any subsequent request will fail
   yt.session.on('update-credentials', ({ credentials }) => {
     console.log('Credentials updated:', credentials);
   });
@@ -29,7 +31,6 @@ const { Innertube, UniversalCache } = require('youtubei.js');
   // You may cache the session for later use
   // If you use this, the next call to signIn won't fire 'auth-pending' instead just 'auth'.
   await yt.session.oauth.cacheCredentials();
-
 
   // Sign out of the session
   // this will also remove the cached credentials

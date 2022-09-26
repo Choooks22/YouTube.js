@@ -1,6 +1,6 @@
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
-import NavigationEndpoint from './NavigationEndpoint';
+import Text from './misc/Text.ts';
+import { YTNode } from '../helpers.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 
 class IconLink extends YTNode {
   static type = 'IconLink';

@@ -1,7 +1,7 @@
-import Text from '../../misc/Text';
-import Thumbnail from '../../misc/Thumbnail';
-import Parser from '../../../index';
-import { YTNode } from '../../../helpers';
+import Text from '../../misc/Text.ts';
+import Thumbnail from '../../misc/Thumbnail.ts';
+import Parser from '../../../index.ts';
+import { YTNode } from '../../../helpers.ts';
 
 class PollHeader extends YTNode {
   static type = 'PollHeader';

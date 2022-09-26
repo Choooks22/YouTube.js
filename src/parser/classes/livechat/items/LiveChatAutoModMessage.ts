@@ -1,6 +1,6 @@
-import Text from '../../misc/Text';
-import Parser from '../../../index';
-import { YTNode } from '../../../helpers';
+import Text from '../../misc/Text.ts';
+import Parser from '../../../index.ts';
+import { YTNode } from '../../../helpers.ts';
 
 class LiveChatAutoModMessage extends YTNode {
   static type = 'LiveChatAutoModMessage';

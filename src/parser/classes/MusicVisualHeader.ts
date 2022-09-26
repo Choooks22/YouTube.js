@@ -1,8 +1,8 @@
-import Parser from '../index';
-import { YTNode } from '../helpers';
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import Menu from './menus/Menu';
+import Parser from '../index.ts';
+import { YTNode } from '../helpers.ts';
+import Text from './misc/Text.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import Menu from './menus/Menu.ts';
 
 class MusicVisualHeader extends YTNode {
   static type = 'MusicVisualHeader';
@@ -16,9 +16,15 @@ class MusicVisualHeader extends YTNode {
     super();
 
     this.title = new Text(data.title);
-    this.thumbnails = data.thumbnail ? Thumbnail.fromResponse(data.thumbnail.musicThumbnailRenderer?.thumbnail) : [];
+    this.thumbnails = data.thumbnail
+      ? Thumbnail.fromResponse(data.thumbnail.musicThumbnailRenderer?.thumbnail)
+      : [];
     this.menu = Parser.parseItem(data.menu, Menu);
-    this.foreground_thumbnails = data.foregroundThumbnail ? Thumbnail.fromResponse(data.foregroundThumbnail.musicThumbnailRenderer?.thumbnail) : [];
+    this.foreground_thumbnails = data.foregroundThumbnail
+      ? Thumbnail.fromResponse(
+        data.foregroundThumbnail.musicThumbnailRenderer?.thumbnail,
+      )
+      : [];
   }
 }
 

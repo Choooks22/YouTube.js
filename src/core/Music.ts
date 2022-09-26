@@ -1,32 +1,36 @@
-import Session from './Session';
+import Session from './Session.ts';
 
-import TrackInfo from '../parser/ytmusic/TrackInfo';
-import Search from '../parser/ytmusic/Search';
-import HomeFeed from '../parser/ytmusic/HomeFeed';
-import Explore from '../parser/ytmusic/Explore';
-import Library from '../parser/ytmusic/Library';
-import Artist from '../parser/ytmusic/Artist';
-import Album from '../parser/ytmusic/Album';
-import Playlist from '../parser/ytmusic/Playlist';
-import Recap from '../parser/ytmusic/Recap';
+import TrackInfo from '../parser/ytmusic/TrackInfo.ts';
+import Search from '../parser/ytmusic/Search.ts';
+import HomeFeed from '../parser/ytmusic/HomeFeed.ts';
+import Explore from '../parser/ytmusic/Explore.ts';
+import Library from '../parser/ytmusic/Library.ts';
+import Artist from '../parser/ytmusic/Artist.ts';
+import Album from '../parser/ytmusic/Album.ts';
+import Playlist from '../parser/ytmusic/Playlist.ts';
+import Recap from '../parser/ytmusic/Recap.ts';
 
-import Tab from '../parser/classes/Tab';
-import Tabbed from '../parser/classes/Tabbed';
-import SingleColumnMusicWatchNextResults from '../parser/classes/SingleColumnMusicWatchNextResults';
-import WatchNextTabbedResults from '../parser/classes/WatchNextTabbedResults';
-import SectionList from '../parser/classes/SectionList';
+import Tab from '../parser/classes/Tab.ts';
+import Tabbed from '../parser/classes/Tabbed.ts';
+import SingleColumnMusicWatchNextResults from '../parser/classes/SingleColumnMusicWatchNextResults.ts';
+import WatchNextTabbedResults from '../parser/classes/WatchNextTabbedResults.ts';
+import SectionList from '../parser/classes/SectionList.ts';
 
-import Message from '../parser/classes/Message';
-import MusicQueue from '../parser/classes/MusicQueue';
-import PlaylistPanel from '../parser/classes/PlaylistPanel';
-import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf';
-import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf';
-import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection';
-import AutomixPreviewVideo from '../parser/classes/AutomixPreviewVideo';
-import MusicTwoRowItem from '../parser/classes/MusicTwoRowItem';
+import Message from '../parser/classes/Message.ts';
+import MusicQueue from '../parser/classes/MusicQueue.ts';
+import PlaylistPanel from '../parser/classes/PlaylistPanel.ts';
+import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf.ts';
+import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf.ts';
+import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection.ts';
+import AutomixPreviewVideo from '../parser/classes/AutomixPreviewVideo.ts';
+import MusicTwoRowItem from '../parser/classes/MusicTwoRowItem.ts';
 
-import { observe, ObservedArray, YTNode } from '../parser/helpers';
-import { InnertubeError, throwIfMissing, generateRandomString } from '../utils/Utils';
+import { observe, ObservedArray, YTNode } from '../parser/helpers.ts';
+import {
+  generateRandomString,
+  InnertubeError,
+  throwIfMissing,
+} from '../utils/Utils.ts';
 
 class Music {
   #session;
@@ -48,7 +52,10 @@ class Music {
       return this.#fetchInfoFromVideoId(target);
     }
 
-    throw new InnertubeError('Invalid target, expected either a video id or a valid MusicTwoRowItem', target);
+    throw new InnertubeError(
+      'Invalid target, expected either a video id or a valid MusicTwoRowItem',
+      target,
+    );
   }
 
   async #fetchInfoFromVideoId(video_id: string) {
@@ -60,26 +67,28 @@ class Music {
       videoId: video_id,
       playbackContext: {
         contentPlaybackContext: {
-          signatureTimestamp: this.#session.player.sts
-        }
-      }
+          signatureTimestamp: this.#session.player.sts,
+        },
+      },
     });
 
     const continuation = this.#actions.execute('/next', {
       client: 'YTMUSIC',
-      videoId: video_id
+      videoId: video_id,
     });
 
-    const response = await Promise.all([ initial_info, continuation ]);
+    const response = await Promise.all([initial_info, continuation]);
     return new TrackInfo(response, this.#actions, cpn);
   }
 
   async #fetchInfoFromListItem(list_item: MusicTwoRowItem | undefined) {
-    if (!list_item)
+    if (!list_item) {
       throw new InnertubeError('List item cannot be undefined');
+    }
 
-    if (!list_item.endpoint)
+    if (!list_item.endpoint) {
       throw new Error('This item does not have an endpoint.');
+    }
 
     const cpn = generateRandomString(16);
 
@@ -88,18 +97,18 @@ class Music {
       client: 'YTMUSIC',
       playbackContext: {
         contentPlaybackContext: {
-          signatureTimestamp: this.#session.player.sts
-        }
-      }
+          signatureTimestamp: this.#session.player.sts,
+        },
+      },
     });
 
     const continuation = list_item.endpoint.callTest(this.#actions, {
       client: 'YTMUSIC',
       enablePersistentPlaylistPanel: true,
-      override_endpoint: '/next'
+      override_endpoint: '/next',
     });
 
-    const response = await Promise.all([ initial_info, continuation ]);
+    const response = await Promise.all([initial_info, continuation]);
     return new TrackInfo(response, this.#actions, cpn);
   }
 
@@ -110,15 +119,23 @@ class Music {
     type?: 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist';
   } = {}): Promise<Search> {
     throwIfMissing({ query });
-    const response = await this.#actions.search({ query, filters, client: 'YTMUSIC' });
-    return new Search(response, this.#actions, { is_filtered: Reflect.has(filters, 'type') && filters.type !== 'all' });
+    const response = await this.#actions.search({
+      query,
+      filters,
+      client: 'YTMUSIC',
+    });
+    return new Search(response, this.#actions, {
+      is_filtered: Reflect.has(filters, 'type') && filters.type !== 'all',
+    });
   }
 
   /**
    * Retrieves the home feed.
    */
   async getHomeFeed(): Promise<HomeFeed> {
-    const response = await this.#actions.browse('FEmusic_home', { client: 'YTMUSIC' });
+    const response = await this.#actions.browse('FEmusic_home', {
+      client: 'YTMUSIC',
+    });
     return new HomeFeed(response, this.#actions);
   }
 
@@ -126,7 +143,9 @@ class Music {
    * Retrieves the Explore feed.
    */
   async getExplore(): Promise<Explore> {
-    const response = await this.#actions.browse('FEmusic_explore', { client: 'YTMUSIC' });
+    const response = await this.#actions.browse('FEmusic_explore', {
+      client: 'YTMUSIC',
+    });
     return new Explore(response);
     // TODO: return new Explore(response, this.#actions);
   }
@@ -144,10 +163,16 @@ class Music {
   async getArtist(artist_id: string): Promise<Artist> {
     throwIfMissing({ artist_id });
 
-    if (!artist_id.startsWith('UC') && !artist_id.startsWith('FEmusic_library_privately_owned_artist'))
+    if (
+      !artist_id.startsWith('UC') &&
+      !artist_id.startsWith('FEmusic_library_privately_owned_artist')
+    ) {
       throw new InnertubeError('Invalid artist id', artist_id);
+    }
 
-    const response = await this.#actions.browse(artist_id, { client: 'YTMUSIC' });
+    const response = await this.#actions.browse(artist_id, {
+      client: 'YTMUSIC',
+    });
     return new Artist(response, this.#actions);
   }
 
@@ -157,10 +182,16 @@ class Music {
   async getAlbum(album_id: string): Promise<Album> {
     throwIfMissing({ album_id });
 
-    if (!album_id.startsWith('MPR') && !album_id.startsWith('FEmusic_library_privately_owned_release'))
+    if (
+      !album_id.startsWith('MPR') &&
+      !album_id.startsWith('FEmusic_library_privately_owned_release')
+    ) {
       throw new InnertubeError('Invalid album id', album_id);
+    }
 
-    const response = await this.#actions.browse(album_id, { client: 'YTMUSIC' });
+    const response = await this.#actions.browse(album_id, {
+      client: 'YTMUSIC',
+    });
     return new Album(response, this.#actions);
   }
 
@@ -174,7 +205,9 @@ class Music {
       playlist_id = `VL${playlist_id}`;
     }
 
-    const response = await this.#actions.browse(playlist_id, { client: 'YTMUSIC' });
+    const response = await this.#actions.browse(playlist_id, {
+      client: 'YTMUSIC',
+    });
     return new Playlist(response, this.#actions);
   }
 
@@ -187,7 +220,7 @@ class Music {
     const data = await this.#actions.execute('/next', {
       videoId: video_id,
       client: 'YTMUSIC',
-      parse: true
+      parse: true,
     });
 
     const tabs = data.contents.item()
@@ -198,30 +231,40 @@ class Music {
 
     const tab = tabs.get({ title: 'Up next' });
 
-    if (!tab)
+    if (!tab) {
       throw new InnertubeError('Could not find target tab.');
+    }
 
     const music_queue = tab.content?.as(MusicQueue);
 
-    if (!music_queue || !music_queue.content)
-      throw new InnertubeError('Music queue was empty, the given id is probably invalid.', music_queue);
+    if (!music_queue || !music_queue.content) {
+      throw new InnertubeError(
+        'Music queue was empty, the given id is probably invalid.',
+        music_queue,
+      );
+    }
 
     const playlist_panel = music_queue.content.as(PlaylistPanel);
 
     if (!playlist_panel.playlist_id && automix) {
-      const automix_preview_video = playlist_panel.contents.firstOfType(AutomixPreviewVideo);
+      const automix_preview_video = playlist_panel.contents.firstOfType(
+        AutomixPreviewVideo,
+      );
 
-      if (!automix_preview_video)
+      if (!automix_preview_video) {
         throw new InnertubeError('Automix item not found');
+      }
 
-      const page = await automix_preview_video.playlist_video?.endpoint.callTest(this.#actions, {
-        videoId: video_id,
-        client: 'YTMUSIC',
-        parse: true
-      });
+      const page = await automix_preview_video.playlist_video?.endpoint
+        .callTest(this.#actions, {
+          videoId: video_id,
+          client: 'YTMUSIC',
+          parse: true,
+        });
 
-      if (!page)
+      if (!page) {
         throw new InnertubeError('Could not fetch automix');
+      }
 
       return page.contents_memo.getType(PlaylistPanel)?.[0];
     }
@@ -232,13 +275,15 @@ class Music {
   /**
    * Retrieves related content.
    */
-  async getRelated(video_id: string): Promise<ObservedArray<MusicCarouselShelf | MusicDescriptionShelf>> {
+  async getRelated(
+    video_id: string,
+  ): Promise<ObservedArray<MusicCarouselShelf | MusicDescriptionShelf>> {
     throwIfMissing({ video_id });
 
     const data = await this.#actions.execute('/next', {
       videoId: video_id,
       client: 'YTMUSIC',
-      parse: true
+      parse: true,
     });
 
     const tabs = data.contents.item()
@@ -249,15 +294,22 @@ class Music {
 
     const tab = tabs.get({ title: 'Related' });
 
-    if (!tab)
+    if (!tab) {
       throw new InnertubeError('Could not find target tab.');
+    }
 
     const page = await tab.endpoint.call(this.#actions, 'YTMUSIC', true);
 
-    if (!page)
-      throw new InnertubeError('Could not retrieve tab contents, the given id may be invalid or is not a song.');
+    if (!page) {
+      throw new InnertubeError(
+        'Could not retrieve tab contents, the given id may be invalid or is not a song.',
+      );
+    }
 
-    const shelves = page.contents.item().as(SectionList).contents.array().as(MusicCarouselShelf, MusicDescriptionShelf);
+    const shelves = page.contents.item().as(SectionList).contents.array().as(
+      MusicCarouselShelf,
+      MusicDescriptionShelf,
+    );
 
     return shelves;
   }
@@ -265,13 +317,15 @@ class Music {
   /**
    * Retrieves song lyrics.
    */
-  async getLyrics(video_id: string): Promise<MusicDescriptionShelf | undefined> {
+  async getLyrics(
+    video_id: string,
+  ): Promise<MusicDescriptionShelf | undefined> {
     throwIfMissing({ video_id });
 
     const data = await this.#actions.execute('/next', {
       videoId: video_id,
       client: 'YTMUSIC',
-      parse: true
+      parse: true,
     });
 
     const tabs = data.contents.item()
@@ -282,16 +336,21 @@ class Music {
 
     const tab = tabs.get({ title: 'Lyrics' });
 
-    if (!tab)
+    if (!tab) {
       throw new InnertubeError('Could not find target tab.');
+    }
 
     const page = await tab.endpoint.call(this.#actions, 'YTMUSIC', true);
 
-    if (!page)
-      throw new InnertubeError('Could not retrieve tab contents, the given id may be invalid or is not a song.');
+    if (!page) {
+      throw new InnertubeError(
+        'Could not retrieve tab contents, the given id may be invalid or is not a song.',
+      );
+    }
 
-    if (page.contents.item().key('type').string() === 'Message')
+    if (page.contents.item().key('type').string() === 'Message') {
       throw new InnertubeError(page.contents.item().as(Message).text, video_id);
+    }
 
     const section_list = page.contents.item().as(SectionList).contents.array();
     return section_list.firstOfType(MusicDescriptionShelf);
@@ -303,7 +362,7 @@ class Music {
   async getRecap(): Promise<Recap> {
     const response = await this.#actions.execute('/browse', {
       browseId: 'FEmusic_listening_review',
-      client: 'YTMUSIC_ANDROID'
+      client: 'YTMUSIC_ANDROID',
     });
 
     return new Recap(response, this.#actions);
@@ -313,16 +372,22 @@ class Music {
    * Retrieves search suggestions for the given query.
    */
   async getSearchSuggestions(query: string) {
-    const response = await this.#actions.execute('/music/get_search_suggestions', {
-      parse: true,
-      input: query,
-      client: 'YTMUSIC'
-    });
+    const response = await this.#actions.execute(
+      '/music/get_search_suggestions',
+      {
+        parse: true,
+        input: query,
+        client: 'YTMUSIC',
+      },
+    );
 
-    const search_suggestions_section = response.contents_memo.getType(SearchSuggestionsSection)?.[0];
+    const search_suggestions_section = response.contents_memo.getType(
+      SearchSuggestionsSection,
+    )?.[0];
 
-    if (!search_suggestions_section.contents.is_array)
+    if (!search_suggestions_section.contents.is_array) {
       return observe([] as YTNode[]);
+    }
 
     return search_suggestions_section?.contents.array();
   }

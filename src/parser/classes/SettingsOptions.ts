@@ -1,13 +1,13 @@
-import Parser from '..';
+import Parser from '../index.ts';
 
-import Text from './misc/Text';
-import Dropdown from './Dropdown';
-import SettingsSwitch from './SettingsSwitch';
-import SettingsCheckbox from './SettingsCheckbox';
-import ChannelOptions from './ChannelOptions';
-import CopyLink from './CopyLink';
+import Text from './misc/Text.ts';
+import Dropdown from './Dropdown.ts';
+import SettingsSwitch from './SettingsSwitch.ts';
+import SettingsCheckbox from './SettingsCheckbox.ts';
+import ChannelOptions from './ChannelOptions.ts';
+import CopyLink from './CopyLink.ts';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class SettingsOptions extends YTNode {
   static type = 'SettingsOptions';
@@ -25,9 +25,14 @@ class SettingsOptions extends YTNode {
     }
 
     if (Reflect.has(data, 'options')) {
-      this.options = Parser.parseArray<SettingsSwitch | Dropdown | CopyLink | SettingsCheckbox | ChannelOptions>(data.options, [
-        SettingsSwitch, Dropdown, CopyLink,
-        SettingsCheckbox, ChannelOptions
+      this.options = Parser.parseArray<
+        SettingsSwitch | Dropdown | CopyLink | SettingsCheckbox | ChannelOptions
+      >(data.options, [
+        SettingsSwitch,
+        Dropdown,
+        CopyLink,
+        SettingsCheckbox,
+        ChannelOptions,
       ]);
     }
   }

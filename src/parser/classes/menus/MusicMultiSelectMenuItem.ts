@@ -1,6 +1,6 @@
-import { YTNode } from '../../helpers';
-import Text from '../misc/Text';
-import NavigationEndpoint from '../NavigationEndpoint';
+import { YTNode } from '../../helpers.ts';
+import Text from '../misc/Text.ts';
+import NavigationEndpoint from '../NavigationEndpoint.ts';
 
 class MusicMultiSelectMenuItem extends YTNode {
   static type = 'MusicMultiSelectMenuItem';
@@ -17,14 +17,19 @@ class MusicMultiSelectMenuItem extends YTNode {
     this.title = new Text(data.title).text;
     this.form_item_entity_key = data.formItemEntityKey;
     this.selected_icon_type = data.selectedIcon?.iconType || null;
-    const command = data.selectedCommand?.commandExecutorCommand?.commands?.find((command: any) => command.musicBrowseFormBinderCommand?.browseEndpoint);
+    const command = data.selectedCommand?.commandExecutorCommand?.commands
+      ?.find((command: any) =>
+        command.musicBrowseFormBinderCommand?.browseEndpoint
+      );
     if (command) {
       /**
        * At this point, endpoint will still be missing `form_data` field which is required for
        * selection to take effect. This can only be obtained from the response data which
        * we don't have here. We shall delegate this task back to `Parser`.
        */
-      this.endpoint = new NavigationEndpoint(command.musicBrowseFormBinderCommand);
+      this.endpoint = new NavigationEndpoint(
+        command.musicBrowseFormBinderCommand,
+      );
     }
     /**
      * Inferring selected state from existence of endpoint. `Parser` shall

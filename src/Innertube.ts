@@ -1,39 +1,47 @@
+import Session, { SessionOptions } from './core/Session.ts';
 
-import Session, { SessionOptions } from './core/Session';
+import Search from './parser/youtube/Search.ts';
+import Channel from './parser/youtube/Channel.ts';
+import Playlist from './parser/youtube/Playlist.ts';
+import Library from './parser/youtube/Library.ts';
+import History from './parser/youtube/History.ts';
+import Comments from './parser/youtube/Comments.ts';
+import NotificationsMenu from './parser/youtube/NotificationsMenu.ts';
+import VideoInfo, {
+  DownloadOptions,
+  FormatOptions,
+} from './parser/youtube/VideoInfo.ts';
+import NavigationEndpoint from './parser/classes/NavigationEndpoint.ts';
 
-import Search from './parser/youtube/Search';
-import Channel from './parser/youtube/Channel';
-import Playlist from './parser/youtube/Playlist';
-import Library from './parser/youtube/Library';
-import History from './parser/youtube/History';
-import Comments from './parser/youtube/Comments';
-import NotificationsMenu from './parser/youtube/NotificationsMenu';
-import VideoInfo, { DownloadOptions, FormatOptions } from './parser/youtube/VideoInfo';
-import NavigationEndpoint from './parser/classes/NavigationEndpoint';
+import { ParsedResponse } from './parser/index.ts';
+import { ActionsResponse } from './core/Actions.ts';
 
-import { ParsedResponse } from './parser';
-import { ActionsResponse } from './core/Actions';
+import Feed from './core/Feed.ts';
+import YTMusic from './core/Music.ts';
+import Studio from './core/Studio.ts';
+import AccountManager from './core/AccountManager.ts';
+import PlaylistManager from './core/PlaylistManager.ts';
+import InteractionManager from './core/InteractionManager.ts';
+import FilterableFeed from './core/FilterableFeed.ts';
+import TabbedFeed from './core/TabbedFeed.ts';
+import Constants from './utils/Constants.ts';
+import Proto from './proto/proto.ts';
 
-import Feed from './core/Feed';
-import YTMusic from './core/Music';
-import Studio from './core/Studio';
-import AccountManager from './core/AccountManager';
-import PlaylistManager from './core/PlaylistManager';
-import InteractionManager from './core/InteractionManager';
-import FilterableFeed from './core/FilterableFeed';
-import TabbedFeed from './core/TabbedFeed';
-import Constants from './utils/Constants';
-import Proto from './proto/index';
+import { generateRandomString, throwIfMissing } from './utils/Utils.ts';
 
-import { throwIfMissing, generateRandomString } from './utils/Utils';
-
-export type InnertubeConfig = SessionOptions
+export type InnertubeConfig = SessionOptions;
 
 export interface SearchFilters {
   /**
    * Filter videos by upload date, can be: any | last_hour | today | this_week | this_month | this_year
    */
-  upload_date?: 'any' | 'last_hour' | 'today' | 'this_week' | 'this_month' | 'this_year';
+  upload_date?:
+    | 'any'
+    | 'last_hour'
+    | 'today'
+    | 'this_week'
+    | 'this_month'
+    | 'this_year';
   /**
    * Filter results by type, can be: any | video | channel | playlist | movie
    */
@@ -48,7 +56,12 @@ export interface SearchFilters {
   sort_by?: 'relevance' | 'rating' | 'upload_date' | 'view_count';
 }
 
-export type InnerTubeClient = 'WEB' | 'ANDROID' | 'YTMUSIC_ANDROID' | 'YTMUSIC' | 'TV_EMBEDDED';
+export type InnerTubeClient =
+  | 'WEB'
+  | 'ANDROID'
+  | 'YTMUSIC_ANDROID'
+  | 'YTMUSIC'
+  | 'TV_EMBEDDED';
 
 class Innertube {
   session;
@@ -82,7 +95,7 @@ class Innertube {
     const initial_info = await this.actions.getVideoInfo(video_id, cpn, client);
     const continuation = this.actions.next({ video_id });
 
-    const response = await Promise.all([ initial_info, continuation ]);
+    const response = await Promise.all([initial_info, continuation]);
     return new VideoInfo(response, this.actions, this.session.player, cpn);
   }
 
@@ -93,7 +106,7 @@ class Innertube {
     const cpn = generateRandomString(16);
     const response = await this.actions.getVideoInfo(video_id, cpn, client);
 
-    return new VideoInfo([ response ], this.actions, this.session.player, cpn);
+    return new VideoInfo([response], this.actions, this.session.player, cpn);
   }
 
   /**
@@ -127,7 +140,7 @@ class Innertube {
     const response_data = await response.text();
 
     const data = JSON.parse(response_data.replace(')]}\'', ''));
-    const suggestions = data[1].map((suggestion: any) => suggestion[0]);
+    const suggestions = data[1].map((suggestion: string[]) => suggestion[0]);
 
     return suggestions;
   }
@@ -137,11 +150,14 @@ class Innertube {
    * @param video_id - the video id.
    * @param sort_by - can be: `TOP_COMMENTS` or `NEWEST_FIRST`.
    */
-  async getComments(video_id: string, sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST') {
+  async getComments(
+    video_id: string,
+    sort_by?: 'TOP_COMMENTS' | 'NEWEST_FIRST',
+  ) {
     throwIfMissing({ video_id });
 
     const payload = Proto.encodeCommentsSectionParams(video_id, {
-      sort_by: sort_by || 'TOP_COMMENTS'
+      sort_by: sort_by || 'TOP_COMMENTS',
     });
 
     const response = await this.actions.next({ ctoken: payload });
@@ -245,9 +261,18 @@ class Innertube {
     return info.download(options);
   }
 
-  call(endpoint: NavigationEndpoint, args: { [ key: string ]: any; parse: true }): Promise<ParsedResponse>;
-  call(endpoint: NavigationEndpoint, args?: { [ key: string ]: any; parse?: false }): Promise<ActionsResponse>;
-  call(endpoint: NavigationEndpoint, args?: object): Promise<ActionsResponse | ParsedResponse> {
+  call(
+    endpoint: NavigationEndpoint,
+    args: { [key: string]: any; parse: true },
+  ): Promise<ParsedResponse>;
+  call(
+    endpoint: NavigationEndpoint,
+    args?: { [key: string]: any; parse?: false },
+  ): Promise<ActionsResponse>;
+  call(
+    endpoint: NavigationEndpoint,
+    args?: object,
+  ): Promise<ActionsResponse | ParsedResponse> {
     return endpoint.callTest(this.actions, args);
   }
 }

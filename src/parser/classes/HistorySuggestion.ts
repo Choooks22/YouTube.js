@@ -1,4 +1,4 @@
-import SearchSuggestion from './SearchSuggestion';
+import SearchSuggestion from './SearchSuggestion.ts';
 
 class HistorySuggestion extends SearchSuggestion {
   static type = 'HistorySuggestion';

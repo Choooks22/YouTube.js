@@ -1,5 +1,5 @@
-import Text from '../misc/Text';
-import { YTNode } from '../../helpers';
+import Text from '../misc/Text.ts';
+import { YTNode } from '../../helpers.ts';
 
 class UpdateTitleAction extends YTNode {
   static type = 'UpdateTitleAction';

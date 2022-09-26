@@ -1,19 +1,30 @@
-import Player from './Player';
-import Proto from '../proto/index';
-import Actions from './Actions';
-import Constants from '../utils/Constants';
-import UniversalCache from '../utils/Cache';
-import EventEmitterLike from '../utils/EventEmitterLike';
+import Player from './Player.ts';
+import Proto from '../proto/proto.ts';
+import Actions from './Actions.ts';
+import Constants from '../utils/Constants.ts';
+import UniversalCache from '../utils/Cache.ts';
+import EventEmitterLike from '../utils/EventEmitterLike.ts';
 
-import HTTPClient, { FetchFunction } from '../utils/HTTPClient';
-import { DeviceCategory, generateRandomString, getRandomUserAgent, InnertubeError, SessionError } from '../utils/Utils';
-import OAuth, { Credentials, OAuthAuthErrorEventHandler, OAuthAuthEventHandler, OAuthAuthPendingEventHandler } from './OAuth';
+import HTTPClient, { FetchFunction } from '../utils/HTTPClient.ts';
+import {
+  DeviceCategory,
+  generateRandomString,
+  getRandomUserAgent,
+  InnertubeError,
+  SessionError,
+} from '../utils/Utils.ts';
+import OAuth, {
+  Credentials,
+  OAuthAuthErrorEventHandler,
+  OAuthAuthEventHandler,
+  OAuthAuthPendingEventHandler,
+} from './OAuth.ts';
 
 export enum ClientType {
   WEB = 'WEB',
   MUSIC = 'WEB_REMIX',
   ANDROID = 'ANDROID',
-  ANDROID_MUSIC = 'ANDROID_MUSIC'
+  ANDROID_MUSIC = 'ANDROID_MUSIC',
 }
 
 export interface Context {
@@ -25,7 +36,7 @@ export interface Context {
     userAgent: string;
     clientName: string;
     clientVersion: string;
-    clientScreen?: string,
+    clientScreen?: string;
     androidSdkVersion?: string;
     osName: string;
     osVersion: string;
@@ -73,7 +84,15 @@ export default class Session extends EventEmitterLike {
   actions;
   cache;
 
-  constructor(context: Context, api_key: string, api_version: string, player: Player, cookie?: string, fetch?: FetchFunction, cache?: UniversalCache) {
+  constructor(
+    context: Context,
+    api_key: string,
+    api_version: string,
+    player: Player,
+    cookie?: string,
+    fetch?: FetchFunction,
+    cache?: UniversalCache,
+  ) {
     super();
     this.#context = context;
     this.#key = api_key;
@@ -104,8 +123,22 @@ export default class Session extends EventEmitterLike {
   }
 
   static async create(options: SessionOptions = {}) {
-    const { context, api_key, api_version } = await Session.getSessionData(options.lang, options.device_category, options.client_type, options.timezone, options.fetch);
-    return new Session(context, api_key, api_version, await Player.create(options.cache, options.fetch), options.cookie, options.fetch, options.cache);
+    const { context, api_key, api_version } = await Session.getSessionData(
+      options.lang,
+      options.device_category,
+      options.client_type,
+      options.timezone,
+      options.fetch,
+    );
+    return new Session(
+      context,
+      api_key,
+      api_version,
+      await Player.create(options.cache, options.fetch),
+      options.cookie,
+      options.fetch,
+      options.cache,
+    );
   }
 
   static async getSessionData(
@@ -113,7 +146,7 @@ export default class Session extends EventEmitterLike {
     device_category: DeviceCategory = 'desktop',
     client_name: ClientType = ClientType.WEB,
     tz: string = Intl.DateTimeFormat().resolvedOptions().timeZone,
-    fetch: FetchFunction = globalThis.fetch
+    fetch: FetchFunction = globalThis.fetch,
   ) {
     const url = new URL('/sw.js_data', Constants.URLS.YT_BASE);
 
@@ -123,8 +156,8 @@ export default class Session extends EventEmitterLike {
         'user-agent': getRandomUserAgent('desktop'),
         'accept': '*/*',
         'referer': 'https://www.youtube.com/sw.js',
-        'cookie': `PREF=tz=${tz.replace('/', '.')}`
-      }
+        'cookie': `PREF=tz=${tz.replace('/', '.')}`,
+      },
     });
 
     if (!res.ok) {
@@ -138,7 +171,7 @@ export default class Session extends EventEmitterLike {
 
     const api_version = `v${ytcfg[0][0][6]}`;
 
-    const [ [ device_info ], api_key ] = ytcfg;
+    const [[device_info], api_key] = ytcfg;
 
     const id = generateRandomString(11);
     const timestamp = Math.floor(Date.now() / 1000);
@@ -164,14 +197,14 @@ export default class Session extends EventEmitterLike {
         originalUrl: Constants.URLS.API.BASE,
         deviceMake: device_info[11],
         deviceModel: device_info[12],
-        utcOffsetMinutes: new Date().getTimezoneOffset()
+        utcOffsetMinutes: new Date().getTimezoneOffset(),
       },
       user: {
-        lockedSafetyMode: false
+        lockedSafetyMode: false,
       },
       request: {
-        useSsl: true
-      }
+        useSsl: true,
+      },
     };
 
     return { context, api_key, api_version };
@@ -209,8 +242,9 @@ export default class Session extends EventEmitterLike {
   }
 
   async signOut() {
-    if (!this.logged_in)
+    if (!this.logged_in) {
       throw new InnertubeError('You are not signed in');
+    }
 
     const response = await this.oauth.revokeCredentials();
     this.logged_in = false;

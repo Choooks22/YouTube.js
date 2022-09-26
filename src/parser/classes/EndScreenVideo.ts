@@ -1,9 +1,9 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import Author from './misc/Author';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import Author from './misc/Author.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode } from '../helpers.ts';
 
 class EndScreenVideo extends YTNode {
   static type = 'EndScreenVideo';
@@ -34,7 +34,7 @@ class EndScreenVideo extends YTNode {
     this.badges = Parser.parse(data.badges);
     this.duration = {
       text: new Text(data.lengthText).toString(),
-      seconds: data.lengthInSeconds
+      seconds: data.lengthInSeconds,
     };
   }
 }

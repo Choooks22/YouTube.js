@@ -1,12 +1,15 @@
+import { FetchFunction } from '../utils/HTTPClient.ts';
+import {
+  getRandomUserAgent,
+  getStringBetweenStrings,
+  PlayerError,
+} from '../utils/Utils.ts';
 
-import { FetchFunction } from '../utils/HTTPClient';
-import { getRandomUserAgent, getStringBetweenStrings, PlayerError } from '../utils/Utils';
-
-import Constants from '../utils/Constants';
-import UniversalCache from '../utils/Cache';
+import Constants from '../utils/Constants.ts';
+import UniversalCache from '../utils/Cache.ts';
 
 // See https://github.com/LuanRT/Jinter
-import Jinter from 'jintr';
+import Jinter from 'https://esm.sh/jintr@0.3.1';
 
 export default class Player {
   #nsig_sc;
@@ -14,7 +17,12 @@ export default class Player {
   #sig_sc_timestamp;
   #player_id;
 
-  constructor(signature_timestamp: number, sig_sc: string, nsig_sc: string, player_id: string) {
+  constructor(
+    signature_timestamp: number,
+    sig_sc: string,
+    nsig_sc: string,
+    player_id: string,
+  ) {
     this.#nsig_sc = nsig_sc;
     this.#sig_sc = sig_sc;
 
@@ -23,33 +31,42 @@ export default class Player {
     this.#player_id = player_id;
   }
 
-  static async create(cache: UniversalCache | undefined, fetch: FetchFunction = globalThis.fetch) {
+  static async create(
+    cache: UniversalCache | undefined,
+    fetch: FetchFunction = globalThis.fetch,
+  ) {
     const url = new URL('/iframe_api', Constants.URLS.YT_BASE);
     const res = await fetch(url);
 
-    if (res.status !== 200)
+    if (res.status !== 200) {
       throw new PlayerError('Failed to request player id');
+    }
 
     const js = await res.text();
 
     const player_id = getStringBetweenStrings(js, 'player\\/', '\\/');
 
-    if (!player_id)
+    if (!player_id) {
       throw new PlayerError('Failed to get player id');
+    }
 
     // We have the playerID now we can check if we have a cached player
     if (cache) {
       const cached_player = await Player.fromCache(cache, player_id);
-      if (cached_player)
+      if (cached_player) {
         return cached_player;
+      }
     }
 
-    const player_url = new URL(`/s/player/${player_id}/player_ias.vflset/en_US/base.js`, Constants.URLS.YT_BASE);
+    const player_url = new URL(
+      `/s/player/${player_id}/player_ias.vflset/en_US/base.js`,
+      Constants.URLS.YT_BASE,
+    );
 
     const player_res = await fetch(player_url, {
       headers: {
-        'user-agent': getRandomUserAgent('desktop')
-      }
+        'user-agent': getRandomUserAgent('desktop'),
+      },
     });
 
     if (!player_res.ok) {
@@ -63,14 +80,21 @@ export default class Player {
     const sig_sc = this.extractSigSourceCode(player_js);
     const nsig_sc = this.extractNSigSourceCode(player_js);
 
-    return await Player.fromSource(cache, sig_timestamp, sig_sc, nsig_sc, player_id);
+    return await Player.fromSource(
+      cache,
+      sig_timestamp,
+      sig_sc,
+      nsig_sc,
+      player_id,
+    );
   }
 
   decipher(url?: string, signature_cipher?: string, cipher?: string) {
     url = url || signature_cipher || cipher;
 
-    if (!url)
+    if (!url) {
       throw new PlayerError('No valid URL to decipher');
+    }
 
     const args = new URLSearchParams(url);
     const url_components = new URL(args.get('url') || url);
@@ -85,9 +109,9 @@ export default class Player {
 
       const sp = args.get('sp');
 
-      sp ?
-        url_components.searchParams.set(sp, signature) :
-        url_components.searchParams.set('signature', signature);
+      sp
+        ? url_components.searchParams.set(sp, signature)
+        : url_components.searchParams.set('signature', signature);
     }
 
     const n = url_components.searchParams.get('n');
@@ -99,7 +123,9 @@ export default class Player {
       const nsig = nsig_decipher.interpret();
 
       if (nsig.startsWith('enhanced_except_')) {
-        console.warn('Warning:\nCould not transform nsig, download may be throttled.\nChanging the InnerTube client to "ANDROID" might help!');
+        console.warn(
+          'Warning:\nCould not transform nsig, download may be throttled.\nChanging the InnerTube client to "ANDROID" might help!',
+        );
       }
 
       url_components.searchParams.set('n', nsig);
@@ -111,14 +137,16 @@ export default class Player {
   static async fromCache(cache: UniversalCache, player_id: string) {
     const buffer = await cache.get(player_id);
 
-    if (!buffer)
+    if (!buffer) {
       return null;
+    }
 
     const view = new DataView(buffer);
     const version = view.getUint32(0, true);
 
-    if (version !== Player.LIBRARY_VERSION)
+    if (version !== Player.LIBRARY_VERSION) {
       return null;
+    }
 
     const sig_timestamp = view.getUint32(4, true);
 
@@ -134,7 +162,13 @@ export default class Player {
     return new Player(sig_timestamp, sig_sc, nsig_sc, player_id);
   }
 
-  static async fromSource(cache: UniversalCache | undefined, sig_timestamp: number, sig_sc: string, nsig_sc: string, player_id: string) {
+  static async fromSource(
+    cache: UniversalCache | undefined,
+    sig_timestamp: number,
+    sig_sc: string,
+    nsig_sc: string,
+    player_id: string,
+  ) {
     const player = new Player(sig_timestamp, sig_sc, nsig_sc, player_id);
     await player.cache(cache);
     return player;
@@ -148,7 +182,9 @@ export default class Player {
     const sig_buf = encoder.encode(this.#sig_sc);
     const nsig_buf = encoder.encode(this.#nsig_sc);
 
-    const buffer = new ArrayBuffer(12 + sig_buf.byteLength + nsig_buf.byteLength);
+    const buffer = new ArrayBuffer(
+      12 + sig_buf.byteLength + nsig_buf.byteLength,
+    );
     const view = new DataView(buffer);
 
     view.setUint32(0, Player.LIBRARY_VERSION, true);
@@ -162,31 +198,48 @@ export default class Player {
   }
 
   static extractSigTimestamp(data: string) {
-    return parseInt(getStringBetweenStrings(data, 'signatureTimestamp:', ',') || '0');
+    return parseInt(
+      getStringBetweenStrings(data, 'signatureTimestamp:', ',') || '0',
+    );
   }
 
   static extractSigSourceCode(data: string) {
-    const calls = getStringBetweenStrings(data, 'function(a){a=a.split("")', 'return a.join("")}');
+    const calls = getStringBetweenStrings(
+      data,
+      'function(a){a=a.split("")',
+      'return a.join("")}',
+    );
     const obj_name = calls?.split('.')?.[0]?.replace(';', '');
     const functions = getStringBetweenStrings(data, `var ${obj_name}=`, '};');
 
-    if (!functions || !calls)
-      console.warn(new PlayerError('Failed to extract signature decipher algorithm'));
+    if (!functions || !calls) {
+      console.warn(
+        new PlayerError('Failed to extract signature decipher algorithm'),
+      );
+    }
 
     return `function descramble_sig(a) { a = a.split(""); let ${obj_name}=${functions}}${calls} return a.join("") } descramble_sig(sig);`;
   }
 
   static extractNSigSourceCode(data: string) {
-    const sc = `function descramble_nsig(a) { let b=a.split("")${getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')}} return b.join(""); } descramble_nsig(nsig)`;
+    const sc = `function descramble_nsig(a) { let b=a.split("")${
+      getStringBetweenStrings(data, 'b=a.split("")', '}return b.join("")}')
+    }} return b.join(""); } descramble_nsig(nsig)`;
 
-    if (!sc)
-      console.warn(new PlayerError('Failed to extract n-token decipher algorithm'));
+    if (!sc) {
+      console.warn(
+        new PlayerError('Failed to extract n-token decipher algorithm'),
+      );
+    }
 
     return sc;
   }
 
   get url() {
-    return new URL(`/s/player/${this.#player_id}/player_ias.vflset/en_US/base.js`, Constants.URLS.YT_BASE).toString();
+    return new URL(
+      `/s/player/${this.#player_id}/player_ias.vflset/en_US/base.js`,
+      Constants.URLS.YT_BASE,
+    ).toString();
   }
 
   get sts() {

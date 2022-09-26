@@ -1,5 +1,5 @@
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode } from '../helpers.ts';
 
 class ActionButton {
   static type = 'ActionButton';
@@ -32,13 +32,15 @@ class Panel {
   caption: string;
   action_buttons: ActionButton[];
 
-  constructor (data: any) {
+  constructor(data: any) {
     this.image = data.image.image.sources;
     this.content_mode = data.image.contentMode;
     this.crop_options = data.image.cropOptions;
     this.image_aspect_ratio = data.imageAspectRatio;
     this.caption = data.caption;
-    this.action_buttons = data.actionButtons.map((el: any) => new ActionButton(el));
+    this.action_buttons = data.actionButtons.map((el: any) =>
+      new ActionButton(el)
+    );
   }
 }
 

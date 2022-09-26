@@ -1,4 +1,4 @@
-import Player from '../../../core/Player';
+import Player from '../../../core/Player.ts';
 
 class Format {
   itag: string;
@@ -42,17 +42,23 @@ class Format {
     this.width = data.width || undefined;
     this.height = data.height || undefined;
 
-    this.init_range = data.initRange ? {
-      start: parseInt(data.initRange.start),
-      end: parseInt(data.initRange.end)
-    } : undefined;
+    this.init_range = data.initRange
+      ? {
+        start: parseInt(data.initRange.start),
+        end: parseInt(data.initRange.end),
+      }
+      : undefined;
 
-    this.index_range = data.indexRange ? {
-      start: parseInt(data.indexRange.start),
-      end: parseInt(data.indexRange.end)
-    } : undefined;
+    this.index_range = data.indexRange
+      ? {
+        start: parseInt(data.indexRange.start),
+        end: parseInt(data.indexRange.end),
+      }
+      : undefined;
 
-    this.last_modified = new Date(Math.floor(parseInt(data.lastModified) / 1000));
+    this.last_modified = new Date(
+      Math.floor(parseInt(data.lastModified) / 1000),
+    );
     this.content_length = parseInt(data.contentLength);
     this.quality = data.quality;
     this.quality_label = data.qualityLabel || undefined;

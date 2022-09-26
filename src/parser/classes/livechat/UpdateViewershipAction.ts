@@ -1,5 +1,5 @@
-import Text from '../misc/Text';
-import { YTNode } from '../../helpers';
+import Text from '../misc/Text.ts';
+import { YTNode } from '../../helpers.ts';
 
 class UpdateViewershipAction extends YTNode {
   static type = 'UpdateViewershipAction';
@@ -12,7 +12,9 @@ class UpdateViewershipAction extends YTNode {
     super();
     const view_count_renderer = data.viewCount.videoViewCountRenderer;
     this.view_count = new Text(view_count_renderer.viewCount);
-    this.extra_short_view_count = new Text(view_count_renderer.extraShortViewCount);
+    this.extra_short_view_count = new Text(
+      view_count_renderer.extraShortViewCount,
+    );
     this.is_live = view_count_renderer.isLive;
   }
 }

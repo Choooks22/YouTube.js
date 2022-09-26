@@ -10,7 +10,9 @@ class ChildElement {
     this.properties = data.properties;
 
     if (data.childElements) {
-      this.child_elements = data.childElements.map((el: any) => new ChildElement(el));
+      this.child_elements = data.childElements.map((el: any) =>
+        new ChildElement(el)
+      );
     }
   }
 }

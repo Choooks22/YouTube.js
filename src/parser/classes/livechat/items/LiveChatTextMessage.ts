@@ -1,11 +1,11 @@
-import Text from '../../misc/Text';
-import Thumbnail from '../../misc/Thumbnail';
-import NavigationEndpoint from '../../NavigationEndpoint';
-import MetadataBadge from '../../MetadataBadge';
-import LiveChatAuthorBadge from '../../LiveChatAuthorBadge';
-import Parser from '../../../index';
+import Text from '../../misc/Text.ts';
+import Thumbnail from '../../misc/Thumbnail.ts';
+import NavigationEndpoint from '../../NavigationEndpoint.ts';
+import MetadataBadge from '../../MetadataBadge.ts';
+import LiveChatAuthorBadge from '../../LiveChatAuthorBadge.ts';
+import Parser from '../../../index.ts';
 
-import { YTNode } from '../../../helpers';
+import { YTNode } from '../../../helpers.ts';
 
 class LiveChatTextMessage extends YTNode {
   static type = 'LiveChatTextMessage';
@@ -36,15 +36,26 @@ class LiveChatTextMessage extends YTNode {
       badges: [] as LiveChatAuthorBadge[] | [] as MetadataBadge[],
       is_moderator: null,
       is_verified: null,
-      is_verified_artist: null
+      is_verified_artist: null,
     };
 
-    const badges = Parser.parseArray<LiveChatAuthorBadge | MetadataBadge>(data.authorBadges, [ MetadataBadge, LiveChatAuthorBadge ]);
+    const badges = Parser.parseArray<LiveChatAuthorBadge | MetadataBadge>(
+      data.authorBadges,
+      [MetadataBadge, LiveChatAuthorBadge],
+    );
 
     this.author.badges = badges;
-    this.author.is_moderator = badges ? badges.some((badge) => badge.icon_type == 'MODERATOR') : null;
-    this.author.is_verified = badges ? badges.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED') : null;
-    this.author.is_verified_artist = badges ? badges.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED_ARTIST') : null;
+    this.author.is_moderator = badges
+      ? badges.some((badge) => badge.icon_type == 'MODERATOR')
+      : null;
+    this.author.is_verified = badges
+      ? badges.some((badge) => badge.style == 'BADGE_STYLE_TYPE_VERIFIED')
+      : null;
+    this.author.is_verified_artist = badges
+      ? badges.some((badge) =>
+        badge.style == 'BADGE_STYLE_TYPE_VERIFIED_ARTIST'
+      )
+      : null;
 
     this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
     this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1000);

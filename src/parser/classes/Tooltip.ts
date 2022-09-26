@@ -1,6 +1,6 @@
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode } from '../helpers.ts';
 
 class Tooltip extends YTNode {
   static type = 'Tooltip';
@@ -26,7 +26,7 @@ class Tooltip extends YTNode {
       impression_endpoints: data.promoConfig.impressionEndpoints
         .map((endpoint: any) => new NavigationEndpoint(endpoint)),
       accept: new NavigationEndpoint(data.promoConfig.acceptCommand),
-      dismiss: new NavigationEndpoint(data.promoConfig.dismissCommand)
+      dismiss: new NavigationEndpoint(data.promoConfig.dismissCommand),
     };
 
     this.target_id = data.targetId;

@@ -1,4 +1,4 @@
-import { YTNode } from '../../helpers';
+import { YTNode } from '../../helpers.ts';
 
 class CtaGoToCreatorStudio extends YTNode {
   static type = 'CtaGoToCreatorStudio';

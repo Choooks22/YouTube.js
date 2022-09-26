@@ -1,6 +1,6 @@
-import Parser from '..';
-import { YTNode } from '../helpers';
-import PlaylistPanelVideo from './PlaylistPanelVideo';
+import Parser from '../index.ts';
+import { YTNode } from '../helpers.ts';
+import PlaylistPanelVideo from './PlaylistPanelVideo.ts';
 
 class PlaylistPanelVideoWrapper extends YTNode {
   static type = 'PlaylistPanelVideoWrapper';
@@ -11,7 +11,10 @@ class PlaylistPanelVideoWrapper extends YTNode {
   constructor(data: any) {
     super();
     this.primary = Parser.parseItem<PlaylistPanelVideo>(data.primaryRenderer);
-    this.counterpart = data.counterpart?.map((item: any) => Parser.parseItem<PlaylistPanelVideo>(item.counterpartRenderer)) || [];
+    this.counterpart =
+      data.counterpart?.map((item: any) =>
+        Parser.parseItem<PlaylistPanelVideo>(item.counterpartRenderer)
+      ) || [];
   }
 }
 

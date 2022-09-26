@@ -1,7 +1,7 @@
-import Tab from '../parser/classes/Tab';
-import { InnertubeError } from '../utils/Utils';
-import Actions from './Actions';
-import Feed from './Feed';
+import Tab from '../parser/classes/Tab.ts';
+import { InnertubeError } from '../utils/Utils.ts';
+import Actions from './Actions.ts';
+import Feed from './Feed.ts';
 
 class TabbedFeed extends Feed {
   #tabs;
@@ -18,24 +18,30 @@ class TabbedFeed extends Feed {
   }
 
   async getTab(title: string) {
-    const tab = this.#tabs.find((tab) => tab.title.toLowerCase() === title.toLowerCase());
+    const tab = this.#tabs.find((tab) =>
+      tab.title.toLowerCase() === title.toLowerCase()
+    );
 
-    if (!tab)
+    if (!tab) {
       throw new InnertubeError(`Tab "${title}" not found`);
+    }
 
-    if (tab.selected)
+    if (tab.selected) {
       return this;
+    }
 
     const response = await tab.endpoint.call(this.#actions);
 
-    if (!response)
+    if (!response) {
       throw new InnertubeError('Failed to call endpoint');
+    }
 
     return new TabbedFeed(this.#actions, response.data, false);
   }
 
   get title() {
-    return this.page.contents_memo.getType(Tab)?.find((tab) => tab.selected)?.title.toString();
+    return this.page.contents_memo.getType(Tab)?.find((tab) => tab.selected)
+      ?.title.toString();
   }
 }
 

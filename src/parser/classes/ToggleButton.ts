@@ -1,6 +1,6 @@
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode } from '../helpers.ts';
 
 class ToggleButton extends YTNode {
   static type = 'ToggleButton';
@@ -42,12 +42,15 @@ class ToggleButton extends YTNode {
     }
 
     this.endpoint =
-      data.defaultServiceEndpoint?.commandExecutorCommand?.commands ?
-        new NavigationEndpoint(data.defaultServiceEndpoint.commandExecutorCommand.commands.pop()) :
-        new NavigationEndpoint(data.defaultServiceEndpoint);
+      data.defaultServiceEndpoint?.commandExecutorCommand?.commands
+        ? new NavigationEndpoint(
+          data.defaultServiceEndpoint.commandExecutorCommand.commands.pop(),
+        )
+        : new NavigationEndpoint(data.defaultServiceEndpoint);
 
     this.toggled_endpoint = new NavigationEndpoint(data.toggledServiceEndpoint);
-    this.button_id = data.toggleButtonSupportedData?.toggleButtonIdData?.id || null;
+    this.button_id = data.toggleButtonSupportedData?.toggleButtonIdData?.id ||
+      null;
     this.target_id = data.targetId || null;
   }
 }

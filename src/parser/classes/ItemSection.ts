@@ -1,8 +1,8 @@
-import Parser from '../index';
-import ItemSectionHeader from './ItemSectionHeader';
+import Parser from '../index.ts';
+import ItemSectionHeader from './ItemSectionHeader.ts';
 
-import { YTNode } from '../helpers';
-import ItemSectionTabbedHeader from './ItemSectionTabbedHeader';
+import { YTNode } from '../helpers.ts';
+import ItemSectionTabbedHeader from './ItemSectionTabbedHeader.ts';
 
 class ItemSection extends YTNode {
   static type = 'ItemSection';
@@ -13,7 +13,10 @@ class ItemSection extends YTNode {
 
   constructor(data: any) {
     super();
-    this.header = Parser.parseItem<ItemSectionHeader | ItemSectionTabbedHeader>(data.header, [ ItemSectionHeader, ItemSectionTabbedHeader ]);
+    this.header = Parser.parseItem<ItemSectionHeader | ItemSectionTabbedHeader>(
+      data.header,
+      [ItemSectionHeader, ItemSectionTabbedHeader],
+    );
     this.contents = Parser.parse(data.contents, true);
 
     if (data.targetId || data.sectionIdentifier) {

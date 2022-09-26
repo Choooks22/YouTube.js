@@ -1,5 +1,5 @@
-import MetadataBadge from './MetadataBadge';
-import Thumbnail from './misc/Thumbnail';
+import MetadataBadge from './MetadataBadge.ts';
+import Thumbnail from './misc/Thumbnail.ts';
 
 class LiveChatAuthorBadge extends MetadataBadge {
   static type = 'LiveChatAuthorBadge';
@@ -8,7 +8,9 @@ class LiveChatAuthorBadge extends MetadataBadge {
 
   constructor(data: any) {
     super(data);
-    this.custom_thumbnail = data.customThumbnail ? Thumbnail.fromResponse(data.customThumbnail) : null;
+    this.custom_thumbnail = data.customThumbnail
+      ? Thumbnail.fromResponse(data.customThumbnail)
+      : null;
   }
 }
 

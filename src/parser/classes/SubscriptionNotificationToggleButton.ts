@@ -1,5 +1,5 @@
-import Parser from '../index';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import { YTNode } from '../helpers.ts';
 
 class SubscriptionNotificationToggleButton extends YTNode {
   static type = 'SubscriptionNotificationToggleButton';
@@ -18,7 +18,7 @@ class SubscriptionNotificationToggleButton extends YTNode {
     this.states = data.states.map((data: any) => ({
       id: data.stateId,
       next_id: data.nextStateId,
-      state: Parser.parse(data.state)
+      state: Parser.parse(data.state),
     }));
 
     this.current_state_id = data.currentStateId;

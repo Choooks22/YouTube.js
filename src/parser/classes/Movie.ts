@@ -1,10 +1,10 @@
-import Parser from '../index';
-import Author from './misc/Author';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import { timeToSeconds } from '../../utils/Utils';
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Author from './misc/Author.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { timeToSeconds } from '../../utils/Utils.ts';
+import Text from './misc/Text.ts';
+import { YTNode } from '../helpers.ts';
 
 class Movie extends YTNode {
   static type = 'Movie';
@@ -36,15 +36,28 @@ class Movie extends YTNode {
 
     this.id = data.videoId;
     this.title = new Text(data.title);
-    this.description_snippet = data.descriptionSnippet ? new Text(data.descriptionSnippet) : null;
+    this.description_snippet = data.descriptionSnippet
+      ? new Text(data.descriptionSnippet)
+      : null;
     this.top_metadata_items = new Text(data.topMetadataItems);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays);
-    this.author = new Author(data.longBylineText, data.ownerBadges, data.channelThumbnailSupportedRenderers?.channelThumbnailWithLinkRenderer?.thumbnail);
+    this.author = new Author(
+      data.longBylineText,
+      data.ownerBadges,
+      data.channelThumbnailSupportedRenderers?.channelThumbnailWithLinkRenderer
+        ?.thumbnail,
+    );
 
     this.duration = {
-      text: data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text,
-      seconds: timeToSeconds(data.lengthText ? new Text(data.lengthText).text : new Text(overlay_time_status).text)
+      text: data.lengthText
+        ? new Text(data.lengthText).text
+        : new Text(overlay_time_status).text,
+      seconds: timeToSeconds(
+        data.lengthText
+          ? new Text(data.lengthText).text
+          : new Text(overlay_time_status).text,
+      ),
     };
 
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);

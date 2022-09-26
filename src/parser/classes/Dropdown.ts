@@ -1,6 +1,6 @@
-import Parser from '..';
-import { ObservedArray, YTNode } from '../helpers';
-import DropdownItem from './DropdownItem';
+import Parser from '../index.ts';
+import { ObservedArray, YTNode } from '../helpers.ts';
+import DropdownItem from './DropdownItem.ts';
 
 class Dropdown extends YTNode {
   static type = 'Dropdown';

@@ -1,8 +1,8 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
-import SubscriptionNotificationToggleButton from './SubscriptionNotificationToggleButton';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import SubscriptionNotificationToggleButton from './SubscriptionNotificationToggleButton.ts';
+import { YTNode } from '../helpers.ts';
 
 class SubscribeButton extends YTNode {
   static type = 'SubscribeButton';
@@ -28,8 +28,12 @@ class SubscribeButton extends YTNode {
     this.show_preferences = data.showPreferences;
     this.subscribed_text = new Text(data.subscribedButtonText);
     this.unsubscribed_text = new Text(data.unsubscribedButtonText);
-    this.notification_preference_button = Parser.parseItem<SubscriptionNotificationToggleButton>(data.notificationPreferenceButton, SubscriptionNotificationToggleButton);
-    this.endpoint = new NavigationEndpoint(data.serviceEndpoints?.[0] || data.onSubscribeEndpoints?.[0]);
+    this.notification_preference_button = Parser.parseItem<
+      SubscriptionNotificationToggleButton
+    >(data.notificationPreferenceButton, SubscriptionNotificationToggleButton);
+    this.endpoint = new NavigationEndpoint(
+      data.serviceEndpoints?.[0] || data.onSubscribeEndpoints?.[0],
+    );
   }
 }
 

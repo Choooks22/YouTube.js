@@ -1,7 +1,7 @@
-import Parser from '../index';
-import NavigationEndpoint from './NavigationEndpoint';
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
+import { YTNode } from '../helpers.ts';
 
 class ReelShelf extends YTNode {
   static type = 'ReelShelf';
@@ -14,7 +14,9 @@ class ReelShelf extends YTNode {
     super();
     this.title = new Text(data.title);
     this.items = Parser.parse(data.items);
-    this.endpoint = data.endpoint ? new NavigationEndpoint(data.endpoint) : null;
+    this.endpoint = data.endpoint
+      ? new NavigationEndpoint(data.endpoint)
+      : null;
   }
 
   // XXX: alias for consistency

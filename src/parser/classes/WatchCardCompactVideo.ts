@@ -1,6 +1,6 @@
-import Text from './misc/Text';
-import { timeToSeconds } from '../../utils/Utils';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.ts';
+import { timeToSeconds } from '../../utils/Utils.ts';
+import { YTNode } from '../helpers.ts';
 
 class WatchCardCompactVideo extends YTNode {
   static type = 'WatchCardCompactVideo';
@@ -22,7 +22,7 @@ class WatchCardCompactVideo extends YTNode {
 
     this.duration = {
       text: new Text(data.lengthText).toString(),
-      seconds: timeToSeconds(data.lengthText.simpleText)
+      seconds: timeToSeconds(data.lengthText.simpleText),
     };
 
     this.style = data.style;

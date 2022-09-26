@@ -1,4 +1,4 @@
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class SortFilterSubMenu extends YTNode {
   static type = 'SortFilterSubMenu';
@@ -19,7 +19,7 @@ class SortFilterSubMenu extends YTNode {
       title: item.title,
       selected: item.selected,
       continuation: item.continuation?.reloadContinuationData.continuation,
-      subtitle: item.subtitle
+      subtitle: item.subtitle,
     }));
 
     this.label = data.accessibility.accessibilityData.label;

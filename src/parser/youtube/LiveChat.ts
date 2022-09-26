@@ -1,32 +1,39 @@
-import Parser, { LiveChatContinuation } from '../index';
-import EventEmitter from '../../utils/EventEmitterLike';
-import VideoInfo from './VideoInfo';
+import Parser, { LiveChatContinuation } from '../index.ts';
+import EventEmitter from '../../utils/EventEmitterLike.ts';
+import VideoInfo from './VideoInfo.ts';
 
-import AddChatItemAction from '../classes/livechat/AddChatItemAction';
-import AddLiveChatTickerItemAction from '../classes/livechat/AddLiveChatTickerItemAction';
-import MarkChatItemAsDeletedAction from '../classes/livechat/MarkChatItemAsDeletedAction';
-import MarkChatItemsByAuthorAsDeletedAction from '../classes/livechat/MarkChatItemsByAuthorAsDeletedAction';
-import ReplaceChatItemAction from '../classes/livechat/ReplaceChatItemAction';
-import ReplayChatItemAction from '../classes/livechat/ReplayChatItemAction';
-import ShowLiveChatActionPanelAction from '../classes/livechat/ShowLiveChatActionPanelAction';
+import AddChatItemAction from '../classes/livechat/AddChatItemAction.ts';
+import AddLiveChatTickerItemAction from '../classes/livechat/AddLiveChatTickerItemAction.ts';
+import MarkChatItemAsDeletedAction from '../classes/livechat/MarkChatItemAsDeletedAction.ts';
+import MarkChatItemsByAuthorAsDeletedAction from '../classes/livechat/MarkChatItemsByAuthorAsDeletedAction.ts';
+import ReplaceChatItemAction from '../classes/livechat/ReplaceChatItemAction.ts';
+import ReplayChatItemAction from '../classes/livechat/ReplayChatItemAction.ts';
+import ShowLiveChatActionPanelAction from '../classes/livechat/ShowLiveChatActionPanelAction.ts';
 
-import UpdateTitleAction from '../classes/livechat/UpdateTitleAction';
-import UpdateDescriptionAction from '../classes/livechat/UpdateDescriptionAction';
-import UpdateViewershipAction from '../classes/livechat/UpdateViewershipAction';
-import UpdateDateTextAction from '../classes/livechat/UpdateDateTextAction';
-import UpdateToggleButtonTextAction from '../classes/livechat/UpdateToggleButtonTextAction';
+import UpdateTitleAction from '../classes/livechat/UpdateTitleAction.ts';
+import UpdateDescriptionAction from '../classes/livechat/UpdateDescriptionAction.ts';
+import UpdateViewershipAction from '../classes/livechat/UpdateViewershipAction.ts';
+import UpdateDateTextAction from '../classes/livechat/UpdateDateTextAction.ts';
+import UpdateToggleButtonTextAction from '../classes/livechat/UpdateToggleButtonTextAction.ts';
 
-import AddBannerToLiveChatCommand from '../classes/livechat/AddBannerToLiveChatCommand';
-import RemoveBannerForLiveChatCommand from '../classes/livechat/RemoveBannerForLiveChatCommand';
-import ShowLiveChatTooltipCommand from '../classes/livechat/ShowLiveChatTooltipCommand';
+import AddBannerToLiveChatCommand from '../classes/livechat/AddBannerToLiveChatCommand.ts';
+import RemoveBannerForLiveChatCommand from '../classes/livechat/RemoveBannerForLiveChatCommand.ts';
+import ShowLiveChatTooltipCommand from '../classes/livechat/ShowLiveChatTooltipCommand.ts';
 
-import { InnertubeError } from '../../utils/Utils';
-import { ObservedArray, YTNode } from '../helpers';
+import { InnertubeError } from '../../utils/Utils.ts';
+import { ObservedArray, YTNode } from '../helpers.ts';
 
 export type ChatAction =
-  AddChatItemAction | AddBannerToLiveChatCommand | AddLiveChatTickerItemAction |
-  MarkChatItemAsDeletedAction | MarkChatItemsByAuthorAsDeletedAction | RemoveBannerForLiveChatCommand |
-  ReplaceChatItemAction | ReplayChatItemAction | ShowLiveChatActionPanelAction | ShowLiveChatTooltipCommand;
+  | AddChatItemAction
+  | AddBannerToLiveChatCommand
+  | AddLiveChatTickerItemAction
+  | MarkChatItemAsDeletedAction
+  | MarkChatItemsByAuthorAsDeletedAction
+  | RemoveBannerForLiveChatCommand
+  | ReplaceChatItemAction
+  | ReplayChatItemAction
+  | ShowLiveChatActionPanelAction
+  | ShowLiveChatTooltipCommand;
 
 export interface LiveMetadata {
   title: UpdateTitleAction | undefined;
@@ -75,14 +82,21 @@ class LiveChat extends EventEmitter {
   #pollLivechat() {
     const lc_poller = setTimeout(() => {
       (async () => {
-        const endpoint = this.is_replay ? 'live_chat/get_live_chat_replay' : 'live_chat/get_live_chat';
-        const response = await this.#actions.livechat(endpoint, { ctoken: this.#continuation });
+        const endpoint = this.is_replay
+          ? 'live_chat/get_live_chat_replay'
+          : 'live_chat/get_live_chat';
+        const response = await this.#actions.livechat(endpoint, {
+          ctoken: this.#continuation,
+        });
 
         const data = Parser.parseResponse(response.data);
         const contents = data.continuation_contents;
 
-        if (!(contents instanceof LiveChatContinuation))
-          throw new InnertubeError('Continuation is not a LiveChatContinuation');
+        if (!(contents instanceof LiveChatContinuation)) {
+          throw new InnertubeError(
+            'Continuation is not a LiveChatContinuation',
+          );
+        }
 
         this.#continuation = contents.continuation.token;
         this.#lc_polling_interval_ms = contents.continuation.timeout_ms;
@@ -111,13 +125,14 @@ class LiveChat extends EventEmitter {
 
     let delay = actions.length < base / 80 ? 1 : 0;
 
-    const emit_delay_ms =
-      delay == 1 ? (
+    const emit_delay_ms = delay == 1
+      ? (
         delay = base / actions.length,
-        delay *= Math.random() + 0.5,
-        delay = Math.min(1E3, delay),
-        delay = Math.max(80, delay)
-      ) : delay = 80;
+          delay *= Math.random() + 0.5,
+          delay = Math.min(1E3, delay),
+          delay = Math.max(80, delay)
+      )
+      : delay = 80;
 
     for (const action of actions) {
       await this.#wait(emit_delay_ms);
@@ -130,25 +145,36 @@ class LiveChat extends EventEmitter {
       (async () => {
         const payload = {
           video_id: this.#video_info.basic_info.id,
-          ctoken: undefined as string | undefined
+          ctoken: undefined as string | undefined,
         };
 
         if (this.#mcontinuation) {
           payload.ctoken = this.#mcontinuation;
         }
 
-        const response = await this.#actions.livechat('updated_metadata', payload);
+        const response = await this.#actions.livechat(
+          'updated_metadata',
+          payload,
+        );
         const data = Parser.parseResponse(response.data);
 
         this.#mcontinuation = data.continuation?.token;
-        this.#md_polling_interval_ms = data.continuation?.timeout_ms || this.#md_polling_interval_ms;
+        this.#md_polling_interval_ms = data.continuation?.timeout_ms ||
+          this.#md_polling_interval_ms;
 
         this.metadata = {
-          title: data.actions?.array().firstOfType(UpdateTitleAction) || this.metadata?.title,
-          description: data.actions?.array().firstOfType(UpdateDescriptionAction) || this.metadata?.description,
-          views: data.actions?.array().firstOfType(UpdateViewershipAction) || this.metadata?.views,
-          likes: data.actions?.array().firstOfType(UpdateToggleButtonTextAction) || this.metadata?.likes,
-          date: data.actions?.array().firstOfType(UpdateDateTextAction) || this.metadata?.date
+          title: data.actions?.array().firstOfType(UpdateTitleAction) ||
+            this.metadata?.title,
+          description:
+            data.actions?.array().firstOfType(UpdateDescriptionAction) ||
+            this.metadata?.description,
+          views: data.actions?.array().firstOfType(UpdateViewershipAction) ||
+            this.metadata?.views,
+          likes:
+            data.actions?.array().firstOfType(UpdateToggleButtonTextAction) ||
+            this.metadata?.likes,
+          date: data.actions?.array().firstOfType(UpdateDateTextAction) ||
+            this.metadata?.date,
         };
 
         this.emit('metadata-update', this.metadata);
@@ -168,14 +194,17 @@ class LiveChat extends EventEmitter {
       text,
       ...{
         video_id: this.#video_info.basic_info.id,
-        channel_id: this.#video_info.basic_info.channel_id
-      }
+        channel_id: this.#video_info.basic_info.channel_id,
+      },
     });
 
     const data = Parser.parseResponse(response.data);
 
-    if (!data.actions)
-      throw new InnertubeError('Response did not have an "actions" property. The call may have failed.');
+    if (!data.actions) {
+      throw new InnertubeError(
+        'Response did not have an "actions" property. The call may have failed.',
+      );
+    }
 
     return data.actions.array().as(AddChatItemAction);
   }

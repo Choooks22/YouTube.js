@@ -4,53 +4,61 @@ YouTube.js works in the browser!
 
 ## How to use
 
-To use YouTube.js in the browser you must proxy requests through your own server. You can see our simple reference implementation in Deno in `examples/browser/proxy/deno.ts`.
+To use YouTube.js in the browser you must proxy requests through your own
+server. You can see our simple reference implementation in Deno in
+`examples/browser/proxy/deno.ts`.
 
-We'll use our own fetch implementation to proxy requests through our server. This is a simple example, but you can use any fetch implementation you want.
+We'll use our own fetch implementation to proxy requests through our server.
+This is a simple example, but you can use any fetch implementation you want.
 
 ```ts
-import { Innertube } from "youtubei.js/build/browser";
+import { Innertube } from 'youtubei.js/build/browser';
 
 const yt = await Innertube.create({
-    fetch: async (input, init) => {
-        // url
-        const url = typeof input === 'string'
-            ? new URL(input)
-            : input instanceof URL
-            ? input
-            : new URL(input.url);
+  fetch: async (input, init) => {
+    // url
+    const url = typeof input === 'string'
+      ? new URL(input)
+      : input instanceof URL
+      ? input
+      : new URL(input.url);
 
-        // transform the url for use with our proxy
-        url.searchParams.set('__host', url.host);
-        url.host = 'localhost:8080';
-        url.protocol = 'http';
+    // transform the url for use with our proxy
+    url.searchParams.set('__host', url.host);
+    url.host = 'localhost:8080';
+    url.protocol = 'http';
 
-        const headers = init?.headers
-            ? new Headers(init.headers)
-            : input instanceof Request
-            ? input.headers
-            : new Headers();
+    const headers = init?.headers
+      ? new Headers(init.headers)
+      : input instanceof Request
+      ? input.headers
+      : new Headers();
 
-        // now serialize the headers
-        url.searchParams.set('__headers', JSON.stringify([...headers]));
+    // now serialize the headers
+    url.searchParams.set('__headers', JSON.stringify([...headers]));
 
-        // copy over the request
-        const request = new Request(
-            url,
-            input instanceof Request ? input : undefined,
-        );
+    // copy over the request
+    const request = new Request(
+      url,
+      input instanceof Request ? input : undefined,
+    );
 
-        headers.delete('user-agent');
+    headers.delete('user-agent');
 
-        // fetch the url
-        return fetch(request, init ? {
-            ...init,
-            headers
-        } : {
-            headers
-        });
-    },
-    cache: new UniversalCache(),
+    // fetch the url
+    return fetch(
+      request,
+      init
+        ? {
+          ...init,
+          headers,
+        }
+        : {
+          headers,
+        },
+    );
+  },
+  cache: new UniversalCache(),
 });
 ```
 

@@ -1,5 +1,5 @@
-import Parser from '../index';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import { YTNode } from '../helpers.ts';
 
 class LiveChatItemList extends YTNode {
   static type = 'LiveChatItemList';
@@ -10,7 +10,9 @@ class LiveChatItemList extends YTNode {
   constructor(data: any) {
     super();
     this.max_items_to_display = data.maxItemsToDisplay;
-    this.more_comments_below_button = Parser.parse(data.moreCommentsBelowButton);
+    this.more_comments_below_button = Parser.parse(
+      data.moreCommentsBelowButton,
+    );
   }
 }
 

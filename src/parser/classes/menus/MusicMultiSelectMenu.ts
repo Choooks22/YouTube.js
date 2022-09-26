@@ -1,8 +1,8 @@
-import MusicMultiSelectMenuItem from './MusicMultiSelectMenuItem';
-import MusicMenuItemDivider from './MusicMenuItemDivider';
-import { YTNode } from '../../helpers';
-import Text from '../misc/Text';
-import Parser from '../..';
+import MusicMultiSelectMenuItem from './MusicMultiSelectMenuItem.ts';
+import MusicMenuItemDivider from './MusicMenuItemDivider.ts';
+import { YTNode } from '../../helpers.ts';
+import Text from '../misc/Text.ts';
+import Parser from '../../index.ts';
 
 class MusicMultiSelectMenu extends YTNode {
   static type = 'MusicMultiSelectMenu';
@@ -14,7 +14,10 @@ class MusicMultiSelectMenu extends YTNode {
     super();
 
     this.title = new Text(data.title.musicMenuTitleRenderer?.primaryText).text;
-    this.options = Parser.parseArray(data.options, [ MusicMultiSelectMenuItem, MusicMenuItemDivider ]);
+    this.options = Parser.parseArray(data.options, [
+      MusicMultiSelectMenuItem,
+      MusicMenuItemDivider,
+    ]);
   }
 }
 

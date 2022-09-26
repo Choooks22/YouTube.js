@@ -4,30 +4,31 @@ YouTube Music class.
 
 ## API
 
-* Music 
-  * [.getInfo(target)](#getinfo)
-  * [.search(query, filters?)](#search)
-  * [.getHomeFeed()](#gethomefeed)
-  * [.getExplore()](#getexplore)
-  * [.getLibrary()](#getlibrary)
-  * [.getArtist(artist_id)](#getartist)
-  * [.getAlbum(album_id)](#getalbum)
-  * [.getPlaylist(playlist_id)](#getplaylist)
-  * [.getLyrics(video_id)](#getlyrics)
-  * [.getUpNext(video_id, automix?)](#getupnext)
-  * [.getRelated(video_id)](#getrelated)
-  * [.getRecap()](#getrecap)
-  * [.getSearchSuggestions(query)](#getsearchsuggestions)
+- Music
+  - [.getInfo(target)](#getinfo)
+  - [.search(query, filters?)](#search)
+  - [.getHomeFeed()](#gethomefeed)
+  - [.getExplore()](#getexplore)
+  - [.getLibrary()](#getlibrary)
+  - [.getArtist(artist_id)](#getartist)
+  - [.getAlbum(album_id)](#getalbum)
+  - [.getPlaylist(playlist_id)](#getplaylist)
+  - [.getLyrics(video_id)](#getlyrics)
+  - [.getUpNext(video_id, automix?)](#getupnext)
+  - [.getRelated(video_id)](#getrelated)
+  - [.getRecap()](#getrecap)
+  - [.getSearchSuggestions(query)](#getsearchsuggestions)
 
 <a name="getinfo"></a>
+
 ### getInfo(target)
 
 Retrieves track info.
 
 **Returns:** `Promise.<TrackInfo>`
 
-| Param | Type | Description |
-| --- | --- | --- |
+| Param  | Type                          | Description           |
+| ------ | ----------------------------- | --------------------- |
 | target | `string` or `MusicTwoRowItem` | video id or list item |
 
 <details>
@@ -50,18 +51,19 @@ Retrieves track info.
   - Returns available tabs.
 
 </p>
-</details> 
+</details>
 
 <a name="search"></a>
+
 ### search(query, filters?)
 
 Searches on YouTube Music.
 
 **Returns:** `Promise.<Search>`
 
-| Param | Type | Description |
-| --- | --- | --- |
-| query | `string` | Search query |
+| Param    | Type     | Description    |
+| -------- | -------- | -------------- |
+| query    | `string` | Search query   |
 | filters? | `object` | Search filters |
 
 <details>
@@ -72,7 +74,8 @@ Searches on YouTube Music.
   - Equivalent to clicking on the shelf to load more items.
 
 - `<search>#getContinuation()`
-  - Retrieves continuation, only works for individual sections or filtered results.
+  - Retrieves continuation, only works for individual sections or filtered
+    results.
 
 - `<search>#selectFilter(name)`
   - Applies given filter to the search.
@@ -102,9 +105,10 @@ Searches on YouTube Music.
   - Returns original InnerTube response (sanitized).
 
 </p>
-</details> 
+</details>
 
 <a name="gethomefeed"></a>
+
 ### getHomeFeed()
 
 Retrieves home feed.
@@ -116,7 +120,8 @@ Retrieves home feed.
 <p>
 
 - `<homefeed>#getContinuation()`
-  - Retrieves continuation, only works for individual sections or filtered results.
+  - Retrieves continuation, only works for individual sections or filtered
+    results.
 
 - `<homefeed>#has_continuation`
   - Checks if continuation is available.
@@ -125,9 +130,10 @@ Retrieves home feed.
   - Returns original InnerTube response (sanitized).
 
 </p>
-</details> 
+</details>
 
 <a name="getexplore"></a>
+
 ### getExplore()
 
 Retrieves “Explore” feed.
@@ -142,9 +148,10 @@ Retrieves “Explore” feed.
   - Returns original InnerTube response (sanitized).
 
 </p>
-</details> 
+</details>
 
 <a name="getlibrary"></a>
+
 ### getLibrary()
 
 Retrieves library.
@@ -154,15 +161,16 @@ Retrieves library.
 <!-- TODO: document Library's methods and getters. -->
 
 <a name="getartist"></a>
+
 ### getArtist(artist_id)
 
 Retrieves artist's info & content.
 
 **Returns:** `Promise.<Artist>`
 
-| Param | Type | Description |
-| --- | --- | --- |
-| artist_id | `string` | Artist id |
+| Param     | Type     | Description |
+| --------- | -------- | ----------- |
+| artist_id | `string` | Artist id   |
 
 <details>
 <summary>Methods & Getters</summary>
@@ -172,18 +180,19 @@ Retrieves artist's info & content.
   - Returns original InnerTube response (sanitized).
 
 </p>
-</details> 
+</details>
 
 <a name="getalbum"></a>
+
 ### getAlbum(album_id)
 
 Retrieves given album.
 
 **Returns:** `Promise.<Album>`
 
-| Param | Type | Description |
-| --- | --- | --- |
-| album_id | `string` | Album id |
+| Param    | Type     | Description |
+| -------- | -------- | ----------- |
+| album_id | `string` | Album id    |
 
 <details>
 <summary>Methods & Getters</summary>
@@ -193,17 +202,18 @@ Retrieves given album.
   - Returns original InnerTube response (sanitized).
 
 </p>
-</details> 
+</details>
 
 <a name="getplaylist"></a>
+
 ### getPlaylist(playlist_id)
 
 Retrieves given playlist.
 
 **Returns:** `Promise.<Playlist>`
 
-| Param | Type | Description |
-| --- | --- | --- |
+| Param       | Type     | Description |
+| ----------- | -------- | ----------- |
 | playlist_id | `string` | Playlist id |
 
 <details>
@@ -226,43 +236,47 @@ Retrieves given playlist.
   - Returns original InnerTube response (sanitized).
 
 </p>
-</details> 
+</details>
 
 <a name="getlyrics"></a>
+
 ### getLyrics(video_id)
 
 Retrieves song lyrics.
 
 **Returns:** `Promise.<MusicDescriptionShelf | undefined>`
 
-| Param | Type | Description |
-| --- | --- | --- |
-| video_id | `string` | Video id |
+| Param    | Type     | Description |
+| -------- | -------- | ----------- |
+| video_id | `string` | Video id    |
 
 <a name="getupnext"></a>
+
 ### getUpNext(video_id, automix?)
 
 Retrieves up next content.
 
 **Returns:** `Promise.<PlaylistPanel>`
 
-| Param | Type | Description |
-| --- | --- | --- |
-| video_id | `string` | Video id |
+| Param    | Type      | Description                  |
+| -------- | --------- | ---------------------------- |
+| video_id | `string`  | Video id                     |
 | automix? | `boolean` | if automix should be fetched |
 
 <a name="getrelated"></a>
+
 ### getRelated(video_id)
 
 Retrieves related content.
 
 **Returns:** `Promise.<Array.<MusicCarouselShelf | MusicDescriptionShelf>>`
 
-| Param | Type | Description |
-| --- | --- | --- |
-| video_id | `string` | Video id |
+| Param    | Type     | Description |
+| -------- | -------- | ----------- |
+| video_id | `string` | Video id    |
 
 <a name="getrecap"></a>
+
 ### getRecap()
 
 Retrieves your YouTube Music recap.
@@ -280,15 +294,16 @@ Retrieves your YouTube Music recap.
   - Returns original InnerTube response (sanitized).
 
 </p>
-</details> 
+</details>
 
 <a name="getsearchsuggestions"></a>
+
 ### getSearchSuggestions(query)
 
 Retrieves search suggestions.
 
 **Returns:** `Promise.<Array.<SearchSuggestion | HistorySuggestion>>`
 
-| Param | Type | Description |
-| --- | --- | --- |
+| Param | Type     | Description  |
+| ----- | -------- | ------------ |
 | query | `string` | Search query |

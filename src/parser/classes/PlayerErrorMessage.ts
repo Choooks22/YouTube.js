@@ -1,9 +1,9 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import Thumbnail from './misc/Thumbnail';
-import Button from './Button';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import Button from './Button.ts';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class PlayerErrorMessage extends YTNode {
   static type = 'PlayerErrorMessage';

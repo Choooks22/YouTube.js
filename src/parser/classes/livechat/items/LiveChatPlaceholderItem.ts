@@ -1,4 +1,4 @@
-import { YTNode } from '../../../helpers';
+import { YTNode } from '../../../helpers.ts';
 
 class LiveChatPlaceholderItem extends YTNode {
   static type = 'LiveChatPlaceholderItem';

@@ -1,5 +1,5 @@
-import { YTNode } from '../helpers';
-import NavigationEndpoint from './NavigationEndpoint';
+import { YTNode } from '../helpers.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 
 class AutomixPreviewVideo extends YTNode {
   static type = 'AutomixPreviewVideo';
@@ -10,7 +10,9 @@ class AutomixPreviewVideo extends YTNode {
     super();
     if (data?.content?.automixPlaylistVideoRenderer?.navigationEndpoint) {
       this.playlist_video = {
-        endpoint: new NavigationEndpoint(data.content.automixPlaylistVideoRenderer.navigationEndpoint)
+        endpoint: new NavigationEndpoint(
+          data.content.automixPlaylistVideoRenderer.navigationEndpoint,
+        ),
       };
     }
   }

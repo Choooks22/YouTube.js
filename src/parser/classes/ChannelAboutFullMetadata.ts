@@ -1,8 +1,8 @@
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import Text from './misc/Text';
-import Parser from '../index';
-import { YTNode } from '../helpers';
+import Thumbnail from './misc/Thumbnail.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
+import Parser from '../index.ts';
+import { YTNode } from '../helpers.ts';
 
 class ChannelAboutFullMetadata extends YTNode {
   static type = 'ChannelAboutFullMetadata';
@@ -28,7 +28,9 @@ class ChannelAboutFullMetadata extends YTNode {
     this.views = new Text(data.viewCountText);
     this.joined = new Text(data.joinedDateText);
     this.description = new Text(data.description);
-    this.email_reveal = new NavigationEndpoint(data.onBusinessEmailRevealClickCommand);
+    this.email_reveal = new NavigationEndpoint(
+      data.onBusinessEmailRevealClickCommand,
+    );
     this.can_reveal_email = !data.signInForBusinessEmail;
     this.country = new Text(data.country);
     this.buttons = Parser.parse(data.actionButtons);

@@ -1,9 +1,9 @@
-import Parser from '..';
-import { ObservedArray, YTNode } from '../helpers';
-import Button from './Button';
-import Dropdown from './Dropdown';
-import DropdownItem from './DropdownItem';
-import Text from './misc/Text';
+import Parser from '../index.ts';
+import { ObservedArray, YTNode } from '../helpers.ts';
+import Button from './Button.ts';
+import Dropdown from './Dropdown.ts';
+import DropdownItem from './DropdownItem.ts';
+import Text from './misc/Text.ts';
 
 class CreatePlaylistDialog extends YTNode {
   static type = 'CreatePlaylistDialog';
@@ -18,7 +18,8 @@ class CreatePlaylistDialog extends YTNode {
     super();
     this.title = new Text(data.dialogTitle).toString();
     this.title_placeholder = data.titlePlaceholder || '';
-    this.privacy_option = Parser.parseItem(data.privacyOption, Dropdown)?.entries || null;
+    this.privacy_option =
+      Parser.parseItem(data.privacyOption, Dropdown)?.entries || null;
     this.create_button = Parser.parseItem(data.cancelButton);
     this.cancel_button = Parser.parseItem(data.cancelButton);
   }

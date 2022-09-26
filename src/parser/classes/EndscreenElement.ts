@@ -1,8 +1,8 @@
-import Parser from '../index';
-import Thumbnail from './misc/Thumbnail';
-import NavigationEndpoint from './NavigationEndpoint';
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
+import { YTNode } from '../helpers.ts';
 
 class EndscreenElement extends YTNode {
   static type = 'EndscreenElement';
@@ -60,7 +60,9 @@ class EndscreenElement extends YTNode {
       this.playlist_length = new Text(data.playlistLength);
     }
 
-    this.thumbnail_overlays = data.thumbnailOverlays ? Parser.parseArray(data.thumbnailOverlays) : undefined;
+    this.thumbnail_overlays = data.thumbnailOverlays
+      ? Parser.parseArray(data.thumbnailOverlays)
+      : undefined;
     this.left = parseFloat(data.left);
     this.width = parseFloat(data.width);
     this.top = parseFloat(data.top);

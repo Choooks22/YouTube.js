@@ -14,7 +14,10 @@ class Thumbnail {
    */
   static fromResponse(data: any): Thumbnail[] {
     if (!data || !data.thumbnails) return [];
-    return data.thumbnails.map((x: any) => new Thumbnail(x)).sort((a: Thumbnail, b: Thumbnail) => b.width - a.width);
+    return data.thumbnails.map((x: any) => new Thumbnail(x)).sort((
+      a: Thumbnail,
+      b: Thumbnail,
+    ) => b.width - a.width);
   }
 }
 

@@ -1,6 +1,6 @@
 import './style.css';
-import { Innertube, UniversalCache } from '../../../../bundle/browser';
-import dashjs from 'dashjs';
+import { Innertube, UniversalCache } from '../../../../bundle/browser.ts';
+import dashjs from 'dashjs.ts';
 
 async function main() {
   const yt = await Innertube.create({
@@ -35,12 +35,17 @@ async function main() {
       headers.delete('user-agent');
 
       // fetch the url
-      return fetch(request, init ? {
-        ...init,
-        headers
-      } : {
-        headers
-      });
+      return fetch(
+        request,
+        init
+          ? {
+            ...init,
+            headers,
+          }
+          : {
+            headers,
+          },
+      );
     },
     cache: new UniversalCache(),
   });

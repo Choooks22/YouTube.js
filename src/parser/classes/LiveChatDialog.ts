@@ -1,7 +1,7 @@
-import Parser from '..';
-import Text from './misc/Text';
-import Button from './Button';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import Button from './Button.ts';
+import { YTNode } from '../helpers.ts';
 
 class LiveChatDialog extends YTNode {
   static type = 'LiveChatDialog';
@@ -9,7 +9,7 @@ class LiveChatDialog extends YTNode {
   confirm_button: Button | null;
   dialog_messages: Text[];
 
-  constructor (data: any) {
+  constructor(data: any) {
     super();
     this.confirm_button = Parser.parseItem<Button>(data.confirmButton, Button);
     this.dialog_messages = data.dialogMessages.map((el: any) => new Text(el));

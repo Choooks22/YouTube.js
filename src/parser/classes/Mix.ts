@@ -1,4 +1,4 @@
-import Playlist from './Playlist';
+import Playlist from './Playlist.ts';
 
 class Mix extends Playlist {
   static type = 'Mix';

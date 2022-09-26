@@ -1,8 +1,8 @@
-import Parser from '../../../index';
-import Text from '../../misc/Text';
-import Thumbnail from '../../misc/Thumbnail';
-import NavigationEndpoint from '../../NavigationEndpoint';
-import { YTNode } from '../../../helpers';
+import Parser from '../../../index.ts';
+import Text from '../../misc/Text.ts';
+import Thumbnail from '../../misc/Thumbnail.ts';
+import NavigationEndpoint from '../../NavigationEndpoint.ts';
+import { YTNode } from '../../../helpers.ts';
 
 class LiveChatMembershipItem extends YTNode {
   static type = 'LiveChatMembershipItem';
@@ -30,7 +30,7 @@ class LiveChatMembershipItem extends YTNode {
       id: data.authorExternalChannelId,
       name: new Text(data?.authorName),
       thumbnails: Thumbnail.fromResponse(data.authorPhoto),
-      badges: Parser.parse(data.authorBadges)
+      badges: Parser.parse(data.authorBadges),
     };
 
     this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);

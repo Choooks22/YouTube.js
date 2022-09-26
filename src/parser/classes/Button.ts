@@ -1,7 +1,7 @@
-import Text from './misc/Text';
-import NavigationEndpoint from './NavigationEndpoint';
+import Text from './misc/Text.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class Button extends YTNode {
   static type = 'Button';
@@ -30,7 +30,9 @@ class Button extends YTNode {
       this.icon_type = data.icon?.iconType;
     }
 
-    this.endpoint = new NavigationEndpoint(data.navigationEndpoint || data.serviceEndpoint || data.command);
+    this.endpoint = new NavigationEndpoint(
+      data.navigationEndpoint || data.serviceEndpoint || data.command,
+    );
   }
 }
 

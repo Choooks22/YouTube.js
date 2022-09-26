@@ -1,34 +1,37 @@
-import Parser, { ParsedResponse, ReloadContinuationItemsCommand } from '../parser/index';
-import { Memo, ObservedArray } from '../parser/helpers';
-import { InnertubeError } from '../utils/Utils';
-import Actions from './Actions';
+import Parser, {
+  ParsedResponse,
+  ReloadContinuationItemsCommand,
+} from '../parser/index.ts';
+import { Memo, ObservedArray } from '../parser/helpers.ts';
+import { InnertubeError } from '../utils/Utils.ts';
+import Actions from './Actions.ts';
 
-import Post from '../parser/classes/Post';
-import BackstagePost from '../parser/classes/BackstagePost';
+import Post from '../parser/classes/Post.ts';
+import BackstagePost from '../parser/classes/BackstagePost.ts';
 
-import Channel from '../parser/classes/Channel';
-import CompactVideo from '../parser/classes/CompactVideo';
+import Channel from '../parser/classes/Channel.ts';
+import CompactVideo from '../parser/classes/CompactVideo.ts';
 
-import GridChannel from '../parser/classes/GridChannel';
-import GridPlaylist from '../parser/classes/GridPlaylist';
-import GridVideo from '../parser/classes/GridVideo';
+import GridChannel from '../parser/classes/GridChannel.ts';
+import GridPlaylist from '../parser/classes/GridPlaylist.ts';
+import GridVideo from '../parser/classes/GridVideo.ts';
 
-import Playlist from '../parser/classes/Playlist';
-import PlaylistPanelVideo from '../parser/classes/PlaylistPanelVideo';
-import PlaylistVideo from '../parser/classes/PlaylistVideo';
+import Playlist from '../parser/classes/Playlist.ts';
+import PlaylistPanelVideo from '../parser/classes/PlaylistPanelVideo.ts';
+import PlaylistVideo from '../parser/classes/PlaylistVideo.ts';
 
-import Tab from '../parser/classes/Tab';
-import ReelShelf from '../parser/classes/ReelShelf';
-import RichShelf from '../parser/classes/RichShelf';
-import Shelf from '../parser/classes/Shelf';
+import Tab from '../parser/classes/Tab.ts';
+import ReelShelf from '../parser/classes/ReelShelf.ts';
+import RichShelf from '../parser/classes/RichShelf.ts';
+import Shelf from '../parser/classes/Shelf.ts';
 
-import TwoColumnBrowseResults from '../parser/classes/TwoColumnBrowseResults';
-import TwoColumnSearchResults from '../parser/classes/TwoColumnSearchResults';
-import WatchCardCompactVideo from '../parser/classes/WatchCardCompactVideo';
-import AppendContinuationItemsAction from '../parser/classes/actions/AppendContinuationItemsAction';
-import ContinuationItem from '../parser/classes/ContinuationItem';
+import TwoColumnBrowseResults from '../parser/classes/TwoColumnBrowseResults.ts';
+import TwoColumnSearchResults from '../parser/classes/TwoColumnSearchResults.ts';
+import WatchCardCompactVideo from '../parser/classes/WatchCardCompactVideo.ts';
+import AppendContinuationItemsAction from '../parser/classes/actions/AppendContinuationItemsAction.ts';
+import ContinuationItem from '../parser/classes/ContinuationItem.ts';
 
-import Video from '../parser/classes/Video';
+import Video from '../parser/classes/Video.ts';
 
 // TODO: add a way subdivide into sections and return subfeeds?
 class Feed {
@@ -38,25 +41,29 @@ class Feed {
   #memo;
 
   constructor(actions: Actions, data: any, already_parsed = false) {
-    if (data.on_response_received_actions || data.on_response_received_endpoints || already_parsed) {
+    if (
+      data.on_response_received_actions ||
+      data.on_response_received_endpoints || already_parsed
+    ) {
       this.#page = data;
     } else {
       this.#page = Parser.parseResponse(data);
     }
 
     // Xxx: this can be extremely confusing — maybe refactor?
-    const memo =
-            this.#page.on_response_received_commands ?
-              this.#page.on_response_received_commands_memo :
-              this.#page.on_response_received_endpoints ?
-                this.#page.on_response_received_endpoints_memo :
-                this.#page.contents ?
-                  this.#page.contents_memo :
-                  this.#page.on_response_received_actions ?
-                    this.#page.on_response_received_actions_memo : undefined;
+    const memo = this.#page.on_response_received_commands
+      ? this.#page.on_response_received_commands_memo
+      : this.#page.on_response_received_endpoints
+      ? this.#page.on_response_received_endpoints_memo
+      : this.#page.contents
+      ? this.#page.contents_memo
+      : this.#page.on_response_received_actions
+      ? this.#page.on_response_received_actions_memo
+      : undefined;
 
-    if (!memo)
+    if (!memo) {
       throw new InnertubeError('No memo found in feed');
+    }
 
     this.#memo = memo;
     this.#actions = actions;
@@ -66,13 +73,20 @@ class Feed {
    * Get all videos on a given page via memo
    */
   static getVideosFromMemo(memo: Memo) {
-    return memo.getType<Video | GridVideo | CompactVideo | PlaylistVideo | PlaylistPanelVideo | WatchCardCompactVideo>([
+    return memo.getType<
+      | Video
+      | GridVideo
+      | CompactVideo
+      | PlaylistVideo
+      | PlaylistPanelVideo
+      | WatchCardCompactVideo
+    >([
       Video,
       GridVideo,
       CompactVideo,
       PlaylistVideo,
       PlaylistPanelVideo,
-      WatchCardCompactVideo
+      WatchCardCompactVideo,
     ]);
   }
 
@@ -80,7 +94,7 @@ class Feed {
    * Get all playlists on a given page via memo
    */
   static getPlaylistsFromMemo(memo: Memo) {
-    return memo.getType<Playlist | GridPlaylist>([ Playlist, GridPlaylist ]);
+    return memo.getType<Playlist | GridPlaylist>([Playlist, GridPlaylist]);
   }
 
   /**
@@ -94,14 +108,14 @@ class Feed {
    * Get all the community posts in the feed
    */
   get posts() {
-    return this.#memo.getType<Post | BackstagePost>([ BackstagePost, Post ]);
+    return this.#memo.getType<Post | BackstagePost>([BackstagePost, Post]);
   }
 
   /**
    * Get all the channels in the feed
    */
   get channels() {
-    return this.#memo.getType<Channel | GridChannel>([ Channel, GridChannel ]);
+    return this.#memo.getType<Channel | GridChannel>([Channel, GridChannel]);
   }
 
   /**
@@ -120,17 +134,26 @@ class Feed {
    */
   get contents() {
     const tab_content = this.#memo.getType(Tab)?.[0]?.content;
-    const reload_continuation_items = this.#memo.getType(ReloadContinuationItemsCommand)?.[0];
-    const append_continuation_items = this.#memo.getType(AppendContinuationItemsAction)?.[0];
+    const reload_continuation_items = this.#memo.getType(
+      ReloadContinuationItemsCommand,
+    )?.[0];
+    const append_continuation_items = this.#memo.getType(
+      AppendContinuationItemsAction,
+    )?.[0];
 
-    return tab_content || reload_continuation_items || append_continuation_items;
+    return tab_content || reload_continuation_items ||
+      append_continuation_items;
   }
 
   /**
    * Returns all segments/sections from the page.
    */
   get shelves() {
-    return this.#memo.getType<Shelf | RichShelf | ReelShelf>([ Shelf, RichShelf, ReelShelf ]);
+    return this.#memo.getType<Shelf | RichShelf | ReelShelf>([
+      Shelf,
+      RichShelf,
+      ReelShelf,
+    ]);
   }
 
   /**
@@ -144,13 +167,15 @@ class Feed {
    * Returns secondary contents from the page.
    */
   get secondary_contents() {
-    if (!this.#page.contents.is_node)
+    if (!this.#page.contents.is_node) {
       return undefined;
+    }
 
     const node = this.#page.contents.item();
 
-    if (!node.is(TwoColumnBrowseResults, TwoColumnSearchResults))
+    if (!node.is(TwoColumnBrowseResults, TwoColumnSearchResults)) {
       return undefined;
+    }
 
     return node.secondary_contents;
   }
@@ -178,20 +203,29 @@ class Feed {
    */
   async getContinuationData(): Promise<ParsedResponse | undefined> {
     if (this.#continuation) {
-      if (this.#continuation.length > 1)
-        throw new InnertubeError('There are too many continuations, you\'ll need to find the correct one yourself in this.page');
-      if (this.#continuation.length === 0)
+      if (this.#continuation.length > 1) {
+        throw new InnertubeError(
+          'There are too many continuations, you\'ll need to find the correct one yourself in this.page',
+        );
+      }
+      if (this.#continuation.length === 0) {
         throw new InnertubeError('There are no continuations');
+      }
 
-      const response = await this.#continuation[0].endpoint.call(this.#actions, undefined, true);
+      const response = await this.#continuation[0].endpoint.call(
+        this.#actions,
+        undefined,
+        true,
+      );
 
       return response;
     }
 
     this.#continuation = this.#memo.getType(ContinuationItem);
 
-    if (this.#continuation)
+    if (this.#continuation) {
       return this.getContinuationData();
+    }
   }
 
   /**

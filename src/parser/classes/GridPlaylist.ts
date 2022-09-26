@@ -1,10 +1,10 @@
-import Text from './misc/Text';
-import Parser from '../index';
-import Thumbnail from './misc/Thumbnail';
-import PlaylistAuthor from './misc/PlaylistAuthor';
-import NavigationEndpoint from './NavigationEndpoint';
-import NavigatableText from './misc/NavigatableText';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.ts';
+import Parser from '../index.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import PlaylistAuthor from './misc/PlaylistAuthor.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import NavigatableText from './misc/NavigatableText.ts';
+import { YTNode } from '../helpers.ts';
 
 class GridPlaylist extends YTNode {
   static type = 'GridPlaylist';
@@ -35,7 +35,11 @@ class GridPlaylist extends YTNode {
     this.view_playlist = new NavigatableText(data.viewPlaylistText);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
     this.thumbnail_renderer = Parser.parse(data.thumbnailRenderer);
-    this.sidebar_thumbnails = [].concat(...data.sidebarThumbnails?.map((thumbnail: any) => Thumbnail.fromResponse(thumbnail)) || []) || null;
+    this.sidebar_thumbnails = [].concat(
+      ...data.sidebarThumbnails?.map((thumbnail: any) =>
+        Thumbnail.fromResponse(thumbnail)
+      ) || [],
+    ) || null;
     this.video_count = new Text(data.thumbnailText);
     this.video_count_short = new Text(data.videoCountShortText);
   }

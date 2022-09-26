@@ -1,5 +1,5 @@
-import Parser from '../index';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import { YTNode } from '../helpers.ts';
 
 class SectionList extends YTNode {
   static type = 'SectionList';
@@ -19,9 +19,11 @@ class SectionList extends YTNode {
 
     if (data.continuations) {
       if (data.continuations[0].nextContinuationData) {
-        this.continuation = data.continuations[0].nextContinuationData.continuation;
+        this.continuation =
+          data.continuations[0].nextContinuationData.continuation;
       } else if (data.continuations[0].reloadContinuationData) {
-        this.continuation = data.continuations[0].reloadContinuationData.continuation;
+        this.continuation =
+          data.continuations[0].reloadContinuationData.continuation;
       }
     }
 

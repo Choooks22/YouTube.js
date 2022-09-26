@@ -1,8 +1,8 @@
-import Parser from '../index';
-import Author from './misc/Author';
-import Thumbnail from './misc/Thumbnail';
-import Text from './misc/Text';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Author from './misc/Author.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import Text from './misc/Text.ts';
+import { YTNode } from '../helpers.ts';
 
 class C4TabbedHeader extends YTNode {
   static type = 'C4TabbedHeader';
@@ -18,18 +18,30 @@ class C4TabbedHeader extends YTNode {
 
   constructor(data: any) {
     super();
-    this.author = new Author({
-      simpleText: data.title,
-      navigationEndpoint: data.navigationEndpoint
-    }, data.badges, data.avatar);
+    this.author = new Author(
+      {
+        simpleText: data.title,
+        navigationEndpoint: data.navigationEndpoint,
+      },
+      data.badges,
+      data.avatar,
+    );
 
     this.banner = data.banner ? Thumbnail.fromResponse(data.banner) : [];
     this.tv_banner = data.tvBanner ? Thumbnail.fromResponse(data.tvBanner) : [];
-    this.mobile_banner = data.mobileBanner ? Thumbnail.fromResponse(data.mobileBanner) : [];
+    this.mobile_banner = data.mobileBanner
+      ? Thumbnail.fromResponse(data.mobileBanner)
+      : [];
     this.subscribers = new Text(data.subscriberCountText);
-    this.sponsor_button = data.sponsorButton ? Parser.parseItem(data.sponsorButton) : undefined;
-    this.subscribe_button = data.subscribeButton ? Parser.parseItem(data.subscribeButton) : undefined;
-    this.header_links = data.headerLinks ? Parser.parse(data.headerLinks) : undefined;
+    this.sponsor_button = data.sponsorButton
+      ? Parser.parseItem(data.sponsorButton)
+      : undefined;
+    this.subscribe_button = data.subscribeButton
+      ? Parser.parseItem(data.subscribeButton)
+      : undefined;
+    this.header_links = data.headerLinks
+      ? Parser.parse(data.headerLinks)
+      : undefined;
   }
 }
 

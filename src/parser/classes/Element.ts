@@ -1,7 +1,7 @@
-import Parser from '../index';
-import ChildElement from './misc/ChildElement';
+import Parser from '../index.ts';
+import ChildElement from './misc/ChildElement.ts';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class Element extends YTNode {
   static type = 'Element';
@@ -20,7 +20,9 @@ class Element extends YTNode {
     this.model = Parser.parse(type?.model);
 
     if (data.newElement?.childElements) {
-      this.child_elements = data.newElement?.childElements?.map((el: any) => new ChildElement(el)) || null;
+      this.child_elements = data.newElement?.childElements?.map((el: any) =>
+        new ChildElement(el)
+      ) || null;
     }
   }
 }

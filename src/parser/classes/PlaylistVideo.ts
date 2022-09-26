@@ -1,9 +1,9 @@
-import Text from './misc/Text';
-import Parser from '../index';
-import Thumbnail from './misc/Thumbnail';
-import PlaylistAuthor from './misc/PlaylistAuthor';
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import Text from './misc/Text.ts';
+import Parser from '../index.ts';
+import Thumbnail from './misc/Thumbnail.ts';
+import PlaylistAuthor from './misc/PlaylistAuthor.ts';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode } from '../helpers.ts';
 
 class PlaylistVideo extends YTNode {
   static type = 'PlaylistVideo';
@@ -38,7 +38,7 @@ class PlaylistVideo extends YTNode {
     this.menu = Parser.parse(data.menu);
     this.duration = {
       text: new Text(data.lengthText).text,
-      seconds: parseInt(data.lengthSeconds)
+      seconds: parseInt(data.lengthSeconds),
     };
   }
 }

@@ -13,15 +13,25 @@ await Promise.all([
 ]);
 
 await build({
-  entryPoints: ['./index.ts'],
+  entryPoints: ['./mod.ts'],
   outDir,
+  compilerOptions: {
+    lib: [
+      'dom',
+      'esnext',
+    ],
+  },
   shims: {
-    deno: true,
+    deno: false,
   },
   package: {
     name: 'youtubei.js',
     version: '3.0.0',
     license: 'MIT',
+    browser: './browser.js',
+    dependencies: {
+      undici: '^5.10.0',
+    },
     author: 'LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)',
     homepage: 'https://github.com/LuanRT/YouTube.js#readme',
     repository: {

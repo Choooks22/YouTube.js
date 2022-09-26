@@ -1,4 +1,4 @@
-import NavigationEndpoint from '../NavigationEndpoint';
+import NavigationEndpoint from '../NavigationEndpoint.ts';
 
 class TextRun {
   text: string;
@@ -6,7 +6,9 @@ class TextRun {
 
   constructor(data: any) {
     this.text = data.text;
-    this.endpoint = data.navigationEndpoint ? new NavigationEndpoint(data.navigationEndpoint) : undefined;
+    this.endpoint = data.navigationEndpoint
+      ? new NavigationEndpoint(data.navigationEndpoint)
+      : undefined;
   }
 }
 

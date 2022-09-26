@@ -1,7 +1,7 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import CompactLink from './CompactLink';
-import { ObservedArray, YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import CompactLink from './CompactLink.ts';
+import { ObservedArray, YTNode } from '../helpers.ts';
 
 class SettingsSidebar extends YTNode {
   static type = 'SettingsSidebar';

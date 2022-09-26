@@ -1,8 +1,8 @@
-import NavigationEndpoint from './NavigationEndpoint';
-import Text from './misc/Text';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import Text from './misc/Text.ts';
 
-import { timeToSeconds } from '../../utils/Utils';
-import { YTNode } from '../helpers';
+import { timeToSeconds } from '../../utils/Utils.ts';
+import { YTNode } from '../helpers.ts';
 
 class ChildVideo extends YTNode {
   static type = 'ChildVideo';
@@ -24,7 +24,7 @@ class ChildVideo extends YTNode {
 
     this.duration = {
       text: data.lengthText.simpleText,
-      seconds: timeToSeconds(data.lengthText.simpleText)
+      seconds: timeToSeconds(data.lengthText.simpleText),
     };
 
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);

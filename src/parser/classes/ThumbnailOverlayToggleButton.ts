@@ -1,5 +1,5 @@
-import NavigationEndpoint from './NavigationEndpoint';
-import { YTNode } from '../helpers';
+import NavigationEndpoint from './NavigationEndpoint.ts';
+import { YTNode } from '../helpers.ts';
 
 class ThumbnailOverlayToggleButton extends YTNode {
   static type = 'ThumbnailOverlayToggleButton';
@@ -25,16 +25,18 @@ class ThumbnailOverlayToggleButton extends YTNode {
 
     this.icon_type = {
       toggled: data.toggledIcon.iconType,
-      untoggled: data.untoggledIcon.iconType
+      untoggled: data.untoggledIcon.iconType,
     };
 
     this.tooltip = {
       toggled: data.toggledTooltip,
-      untoggled: data.untoggledTooltip
+      untoggled: data.untoggledTooltip,
     };
 
     this.toggled_endpoint = new NavigationEndpoint(data.toggledServiceEndpoint);
-    this.untoggled_endpoint = new NavigationEndpoint(data.untoggledServiceEndpoint);
+    this.untoggled_endpoint = new NavigationEndpoint(
+      data.untoggledServiceEndpoint,
+    );
   }
 }
 

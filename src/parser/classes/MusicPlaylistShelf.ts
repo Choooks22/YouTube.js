@@ -1,7 +1,7 @@
-import Parser from '../index';
-import MusicResponsiveListItem from './MusicResponsiveListItem';
+import Parser from '../index.ts';
+import MusicResponsiveListItem from './MusicResponsiveListItem.ts';
 
-import { YTNode } from '../helpers';
+import { YTNode } from '../helpers.ts';
 
 class MusicPlaylistShelf extends YTNode {
   static type = 'MusicPlaylistShelf';
@@ -15,9 +15,13 @@ class MusicPlaylistShelf extends YTNode {
     super();
 
     this.playlist_id = data.playlistId;
-    this.contents = Parser.parseArray<MusicResponsiveListItem>(data.contents, MusicResponsiveListItem);
+    this.contents = Parser.parseArray<MusicResponsiveListItem>(
+      data.contents,
+      MusicResponsiveListItem,
+    );
     this.collapsed_item_count = data.collapsedItemCount;
-    this.continuation = data.continuations?.[0]?.nextContinuationData?.continuation || null;
+    this.continuation =
+      data.continuations?.[0]?.nextContinuationData?.continuation || null;
   }
 }
 

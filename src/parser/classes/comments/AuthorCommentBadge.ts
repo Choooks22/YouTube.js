@@ -1,4 +1,4 @@
-import { YTNode } from '../../helpers';
+import { YTNode } from '../../helpers.ts';
 
 class AuthorCommentBadge extends YTNode {
   static type = 'AuthorCommentBadge';

@@ -1,8 +1,8 @@
-import Parser from '../index';
-import Text from './misc/Text';
-import EndScreenVideo from './EndScreenVideo';
-import EndScreenPlaylist from './EndScreenPlaylist';
-import { YTNode } from '../helpers';
+import Parser from '../index.ts';
+import Text from './misc/Text.ts';
+import EndScreenVideo from './EndScreenVideo.ts';
+import EndScreenPlaylist from './EndScreenPlaylist.ts';
+import { YTNode } from '../helpers.ts';
 
 class WatchNextEndScreen extends YTNode {
   static type = 'WatchNextEndScreen';
@@ -12,7 +12,10 @@ class WatchNextEndScreen extends YTNode {
 
   constructor(data: any) {
     super();
-    this.results = Parser.parseArray<EndScreenVideo | EndScreenPlaylist>(data.results, [ EndScreenVideo, EndScreenPlaylist ]);
+    this.results = Parser.parseArray<EndScreenVideo | EndScreenPlaylist>(
+      data.results,
+      [EndScreenVideo, EndScreenPlaylist],
+    );
     this.title = new Text(data.title).toString();
   }
 }
