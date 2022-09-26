@@ -23,6 +23,8 @@ import {
 import { MusicMultiSelectMenuItem } from './classes/menus/MusicMultiSelectMenuItem.ts';
 import { AudioOnlyPlayability } from './classes/AudioOnlyPlayability.ts';
 
+const bugsUrl = 'https://github.com/Choooks22/YouTube.js/issues';
+
 export class AppendContinuationItemsAction extends YTNode {
   static readonly type = 'appendContinuationItemsAction';
 
@@ -506,7 +508,7 @@ export class Parser {
       console.warn(
         new InnertubeError(
           'Mutation data required for processing MusicMultiSelectMenuItems, but none found.\n' +
-            `This is a bug, please report it at ${null}`,
+            `This is a bug, please report it at ${bugsUrl}`,
         ),
       );
     } else {
@@ -535,7 +537,7 @@ export class Parser {
               `The titles of the failed items are: ${
                 missingOrInvalidMutations.join(', ')
               }.\n` +
-              `This is a bug, please report it at ${null}`,
+              `This is a bug, please report it at ${bugsUrl}`,
           ),
         );
       }
@@ -553,7 +555,7 @@ export class Parser {
       return console.warn(
         new InnertubeError(
           `${classname} not found!\n` +
-            `This is a bug, please report it at ${null}`,
+            `This is a bug, please report it at ${bugsUrl}`,
           classdata,
         ),
       );
@@ -562,7 +564,7 @@ export class Parser {
     console.warn(
       new InnertubeError(
         `Something went wrong at ${classname}!\n` +
-          `This is a bug, please report it at ${null}`,
+          `This is a bug, please report it at ${bugsUrl}`,
         { stack: err.stack },
       ),
     );

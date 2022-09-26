@@ -45,18 +45,18 @@ await build({
     deno: false,
   },
   package: {
-    name: 'youtubei.js',
+    name: '@chooks22/youtubei.js',
     version: '3.0.0',
     license: 'MIT',
     browser: './browser.js',
     dependencies: {
       undici: '^5.10.0',
     },
-    author: 'LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)',
-    homepage: 'https://github.com/LuanRT/YouTube.js#readme',
+    author: 'Chooks22 <chooksdev@gmail.com> (https://github.com/Choooks22)',
+    homepage: 'https://github.com/Choooks22/YouTube.js#readme',
     repository: {
       'type': 'git',
-      'url': 'git+https://github.com/LuanRT/YouTube.js.git',
+      'url': 'git+https://github.com/Choooks22/YouTube.js.git',
     },
     contributors: [
       'Wykerd (https://github.com/wykerd/)',
@@ -64,7 +64,7 @@ await build({
       'patrickkfkan (https://github.com/patrickkfkan)',
     ],
     bugs: {
-      'url': 'https://github.com/LuanRT/YouTube.js/issues',
+      'url': 'https://github.com/Choooks22/YouTube.js/issues',
     },
     funding: [
       'https://github.com/sponsors/LuanRT',
