@@ -1,9 +1,9 @@
-import Parser from '../../index.ts';
-import Thumbnail from '../misc/Thumbnail.ts';
-import Text from '../misc/Text.ts';
+import { Parser } from '../../index.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
 
-class CommentSimplebox extends YTNode {
+export class CommentSimplebox extends YTNode {
   static type = 'CommentSimplebox';
 
   submit_button;
@@ -21,5 +21,3 @@ class CommentSimplebox extends YTNode {
     this.avatar_size = data.avatarSize;
   }
 }
-
-export default CommentSimplebox;

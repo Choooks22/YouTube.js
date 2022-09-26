@@ -1,7 +1,7 @@
-import Thumbnail from './misc/Thumbnail.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class MovingThumbnail extends YTNode {
+export class MovingThumbnail extends YTNode {
   static type = 'MovingThumbnail';
 
   constructor(data: any) {
@@ -11,5 +11,3 @@ class MovingThumbnail extends YTNode {
     ).sort((a: any, b: any) => b.width - a.width);
   }
 }
-
-export default MovingThumbnail;

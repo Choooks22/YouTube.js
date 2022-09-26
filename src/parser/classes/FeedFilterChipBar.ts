@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class FeedFilterChipBar extends YTNode {
+export class FeedFilterChipBar extends YTNode {
   static type = 'FeedFilterChipBar';
 
   contents;
@@ -11,5 +11,3 @@ class FeedFilterChipBar extends YTNode {
     this.contents = Parser.parse(data.contents);
   }
 }
-
-export default FeedFilterChipBar;

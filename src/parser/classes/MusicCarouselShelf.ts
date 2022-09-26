@@ -1,13 +1,13 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 
-import MusicTwoRowItem from './MusicTwoRowItem.ts';
-import MusicResponsiveListItem from './MusicResponsiveListItem.ts';
-import MusicCarouselShelfBasicHeader from './MusicCarouselShelfBasicHeader.ts';
-import MusicNavigationButton from './MusicNavigationButton.ts';
+import { MusicTwoRowItem } from './MusicTwoRowItem.ts';
+import { MusicResponsiveListItem } from './MusicResponsiveListItem.ts';
+import { MusicCarouselShelfBasicHeader } from './MusicCarouselShelfBasicHeader.ts';
+import { MusicNavigationButton } from './MusicNavigationButton.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class MusicCarouselShelf extends YTNode {
+export class MusicCarouselShelf extends YTNode {
   static type = 'MusicCarouselShelf';
 
   header: MusicCarouselShelfBasicHeader | null;
@@ -34,5 +34,3 @@ class MusicCarouselShelf extends YTNode {
       : null;
   }
 }
-
-export default MusicCarouselShelf;

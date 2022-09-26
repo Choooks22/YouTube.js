@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class SettingsCheckbox extends YTNode {
+export class SettingsCheckbox extends YTNode {
   static type = 'SettingsCheckbox';
 
   title: Text;
@@ -19,5 +19,3 @@ class SettingsCheckbox extends YTNode {
     this.id = data.id;
   }
 }
-
-export default SettingsCheckbox;

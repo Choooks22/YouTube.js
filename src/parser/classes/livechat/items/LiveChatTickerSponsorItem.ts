@@ -1,8 +1,8 @@
-import Text from '../../misc/Text.ts';
-import Thumbnail from '../../misc/Thumbnail.ts';
+import { Text } from '../../misc/Text.ts';
+import { Thumbnail } from '../../misc/Thumbnail.ts';
 import { YTNode } from '../../../helpers.ts';
 
-class LiveChatTickerSponsorItem extends YTNode {
+export class LiveChatTickerSponsorItem extends YTNode {
   static type = 'LiveChatTickerSponsorItem';
 
   id: string;
@@ -30,5 +30,3 @@ class LiveChatTickerSponsorItem extends YTNode {
     // TODO: finish this
   }
 }
-
-export default LiveChatTickerSponsorItem;

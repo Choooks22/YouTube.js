@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class SectionList extends YTNode {
+export class SectionList extends YTNode {
   static type = 'SectionList';
 
   target_id;
@@ -32,5 +32,3 @@ class SectionList extends YTNode {
     }
   }
 }
-
-export default SectionList;

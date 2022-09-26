@@ -1,16 +1,17 @@
-import Parser, {
+import {
   GridContinuation,
   MusicShelfContinuation,
   ParsedResponse,
+  Parser,
   PlaylistPanelContinuation,
   SectionListContinuation,
 } from '../index.ts';
-import Actions from '../../core/Actions.ts';
+import { Actions } from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
-import DropdownItem from '../classes/DropdownItem.ts';
-import NavigationEndpoint from '../classes/NavigationEndpoint.ts';
-import PlaylistPanel from '../classes/PlaylistPanel.ts';
-import SectionList from '../classes/SectionList.ts';
+import { DropdownItem } from '../classes/DropdownItem.ts';
+import { NavigationEndpoint } from '../classes/NavigationEndpoint.ts';
+import { PlaylistPanel } from '../classes/PlaylistPanel.ts';
+import { SectionList } from '../classes/SectionList.ts';
 
 type ContentType =
   | 'history'
@@ -47,7 +48,7 @@ for (const [key, value] of Object.entries(SORT_BY_TEXTS)) {
   SORT_BY_TEXTS_R[value] = key;
 }
 
-class Library {
+export class Library {
   #actions;
 
   constructor(actions: Actions) {
@@ -458,5 +459,3 @@ class LibrarySectionList extends LibraryResultsBase {
     );
   }
 }
-
-export default Library;

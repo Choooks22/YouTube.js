@@ -1,9 +1,9 @@
-import Parser from '../index.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Text from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class RichShelf extends YTNode {
+export class RichShelf extends YTNode {
   static type = 'RichShelf';
 
   title: Text;
@@ -19,5 +19,3 @@ class RichShelf extends YTNode {
       : null;
   }
 }
-
-export default RichShelf;

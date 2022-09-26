@@ -1,6 +1,6 @@
-import NavigationEndpoint from '../NavigationEndpoint.ts';
+import { NavigationEndpoint } from '../NavigationEndpoint.ts';
 
-class TextRun {
+export class TextRun {
   text: string;
   endpoint: NavigationEndpoint | undefined;
 
@@ -11,5 +11,3 @@ class TextRun {
       : undefined;
   }
 }
-
-export default TextRun;

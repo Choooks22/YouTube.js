@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class LiveChatHeader extends YTNode {
+export class LiveChatHeader extends YTNode {
   static type = 'LiveChatHeader';
 
   overflow_menu;
@@ -15,5 +15,3 @@ class LiveChatHeader extends YTNode {
     this.view_selector = Parser.parse(data.viewSelector);
   }
 }
-
-export default LiveChatHeader;

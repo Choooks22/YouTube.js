@@ -1,12 +1,12 @@
-import Actions from '../../core/Actions.ts';
-import TabbedFeed from '../../core/TabbedFeed.ts';
-import C4TabbedHeader from '../classes/C4TabbedHeader.ts';
-import ChannelAboutFullMetadata from '../classes/ChannelAboutFullMetadata.ts';
-import ChannelMetadata from '../classes/ChannelMetadata.ts';
-import MicroformatData from '../classes/MicroformatData.ts';
-import Tab from '../classes/Tab.ts';
+import { Actions } from '../../core/Actions.ts';
+import { TabbedFeed } from '../../core/TabbedFeed.ts';
+import { C4TabbedHeader } from '../classes/C4TabbedHeader.ts';
+import { ChannelAboutFullMetadata } from '../classes/ChannelAboutFullMetadata.ts';
+import { ChannelMetadata } from '../classes/ChannelMetadata.ts';
+import { MicroformatData } from '../classes/MicroformatData.ts';
+import { Tab } from '../classes/Tab.ts';
 
-class Channel extends TabbedFeed {
+export class Channel extends TabbedFeed {
   header;
   metadata;
   sponsor_button;
@@ -64,5 +64,3 @@ class Channel extends TabbedFeed {
     return tab.memo.getType(ChannelAboutFullMetadata)?.[0];
   }
 }
-
-export default Channel;

@@ -1,9 +1,9 @@
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import Text from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class SearchRefinementCard extends YTNode {
+export class SearchRefinementCard extends YTNode {
   static type = 'SearchRefinementCard';
 
   thumbnails: Thumbnail[];
@@ -17,5 +17,3 @@ class SearchRefinementCard extends YTNode {
     this.query = new Text(data.query).toString();
   }
 }
-
-export default SearchRefinementCard;

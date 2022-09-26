@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class ThumbnailOverlayNowPlaying extends YTNode {
+export class ThumbnailOverlayNowPlaying extends YTNode {
   static type = 'ThumbnailOverlayNowPlaying';
 
   text: string;
@@ -11,5 +11,3 @@ class ThumbnailOverlayNowPlaying extends YTNode {
     this.text = new Text(data.text).toString();
   }
 }
-
-export default ThumbnailOverlayNowPlaying;

@@ -5,13 +5,13 @@ import {
   PlayerError,
 } from '../utils/Utils.ts';
 
-import Constants from '../utils/Constants.ts';
-import UniversalCache from '../utils/Cache.ts';
+import * as Constants from '../utils/Constants.ts';
+import { UniversalCache } from '../utils/Cache.ts';
 
 // See https://github.com/LuanRT/Jinter
 import Jinter from 'https://esm.sh/jintr@0.3.1';
 
-export default class Player {
+export class Player {
   #nsig_sc;
   #sig_sc;
   #sig_sc_timestamp;

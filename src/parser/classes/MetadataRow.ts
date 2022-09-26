@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class MetadataRow extends YTNode {
+export class MetadataRow extends YTNode {
   static type = 'MetadataRow';
 
   title;
@@ -15,5 +15,3 @@ class MetadataRow extends YTNode {
     );
   }
 }
-
-export default MetadataRow;

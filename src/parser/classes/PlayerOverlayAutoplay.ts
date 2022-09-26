@@ -1,11 +1,11 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import Author from './misc/Author.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import Button from './Button.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { Author } from './misc/Author.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { Button } from './Button.ts';
 import { YTNode } from '../helpers.ts';
 
-class PlayerOverlayAutoplay extends YTNode {
+export class PlayerOverlayAutoplay extends YTNode {
   static type = 'PlayerOverlayAutoplay';
 
   title: Text;
@@ -39,5 +39,3 @@ class PlayerOverlayAutoplay extends YTNode {
     this.close_button = Parser.parseItem<Button>(data.closeButton, Button);
   }
 }
-
-export default PlayerOverlayAutoplay;

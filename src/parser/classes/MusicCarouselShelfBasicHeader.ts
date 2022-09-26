@@ -1,11 +1,11 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
-import MusicThumbnail from './MusicThumbnail.ts';
-import Parser from '../index.ts';
-import Button from './Button.ts';
-import IconLink from './IconLink.ts';
+import { MusicThumbnail } from './MusicThumbnail.ts';
+import { Parser } from '../index.ts';
+import { Button } from './Button.ts';
+import { IconLink } from './IconLink.ts';
 
-class MusicCarouselShelfBasicHeader extends YTNode {
+export class MusicCarouselShelfBasicHeader extends YTNode {
   static type = 'MusicCarouselShelfBasicHeader';
 
   strapline?: Text;
@@ -43,5 +43,3 @@ class MusicCarouselShelfBasicHeader extends YTNode {
     }
   }
 }
-
-export default MusicCarouselShelfBasicHeader;

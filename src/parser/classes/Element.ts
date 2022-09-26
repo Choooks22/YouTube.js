@@ -1,9 +1,9 @@
-import Parser from '../index.ts';
-import ChildElement from './misc/ChildElement.ts';
+import { Parser } from '../index.ts';
+import { ChildElement } from './misc/ChildElement.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class Element extends YTNode {
+export class Element extends YTNode {
   static type = 'Element';
 
   model;
@@ -26,5 +26,3 @@ class Element extends YTNode {
     }
   }
 }
-
-export default Element;

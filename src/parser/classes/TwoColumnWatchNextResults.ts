@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class TwoColumnWatchNextResults extends YTNode {
+export class TwoColumnWatchNextResults extends YTNode {
   static type = 'TwoColumnWatchNextResults';
 
   results;
@@ -18,5 +18,3 @@ class TwoColumnWatchNextResults extends YTNode {
     this.conversation_bar = Parser.parse(data?.conversationBar);
   }
 }
-
-export default TwoColumnWatchNextResults;

@@ -1,7 +1,7 @@
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class ThumbnailOverlayToggleButton extends YTNode {
+export class ThumbnailOverlayToggleButton extends YTNode {
   static type = 'ThumbnailOverlayToggleButton';
 
   is_toggled: boolean | null;
@@ -39,5 +39,3 @@ class ThumbnailOverlayToggleButton extends YTNode {
     );
   }
 }
-
-export default ThumbnailOverlayToggleButton;

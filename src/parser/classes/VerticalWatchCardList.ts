@@ -1,9 +1,9 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class VerticalWatchCardList extends YTNode {
+export class VerticalWatchCardList extends YTNode {
   static type = 'VerticalWatchCardList';
 
   items;
@@ -19,5 +19,3 @@ class VerticalWatchCardList extends YTNode {
     this.view_all_endpoint = new NavigationEndpoint(data.viewAllEndpoint);
   }
 }
-
-export default VerticalWatchCardList;

@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class ThumbnailOverlaySidePanel extends YTNode {
+export class ThumbnailOverlaySidePanel extends YTNode {
   static type = 'ThumbnailOverlaySidePanel';
 
   text: Text;
@@ -13,5 +13,3 @@ class ThumbnailOverlaySidePanel extends YTNode {
     this.icon_type = data.icon.iconType;
   }
 }
-
-export default ThumbnailOverlaySidePanel;

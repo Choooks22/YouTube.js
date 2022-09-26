@@ -1,7 +1,7 @@
-import Parser from '../../../index.ts';
+import { Parser } from '../../../index.ts';
 import { YTNode } from '../../../helpers.ts';
 
-class LiveChatBanner extends YTNode {
+export class LiveChatBanner extends YTNode {
   static type = 'LiveChatBanner';
 
   header;
@@ -24,5 +24,3 @@ class LiveChatBanner extends YTNode {
     this.background_type = data.backgroundType;
   }
 }
-
-export default LiveChatBanner;

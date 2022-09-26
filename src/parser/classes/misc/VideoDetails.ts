@@ -1,6 +1,6 @@
-import Thumbnail from './Thumbnail.ts';
+import { Thumbnail } from './Thumbnail.ts';
 
-class VideoDetails {
+export class VideoDetails {
   id: string;
   channel_id: string;
   title: string;
@@ -33,5 +33,3 @@ class VideoDetails {
     this.is_crawlable = !!data.isCrawlable;
   }
 }
-
-export default VideoDetails;

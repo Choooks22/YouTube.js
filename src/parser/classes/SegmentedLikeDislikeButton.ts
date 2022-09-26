@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
-import ToggleButton from './ToggleButton.ts';
+import { Parser } from '../index.ts';
+import { ToggleButton } from './ToggleButton.ts';
 import { YTNode } from '../helpers.ts';
 
-class SegmentedLikeDislikeButton extends YTNode {
+export class SegmentedLikeDislikeButton extends YTNode {
   static type = 'SegmentedLikeDislikeButton';
 
   like_button: ToggleButton | null;
@@ -20,5 +20,3 @@ class SegmentedLikeDislikeButton extends YTNode {
     );
   }
 }
-
-export default SegmentedLikeDislikeButton;

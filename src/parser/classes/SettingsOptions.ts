@@ -1,15 +1,15 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 
-import Text from './misc/Text.ts';
-import Dropdown from './Dropdown.ts';
-import SettingsSwitch from './SettingsSwitch.ts';
-import SettingsCheckbox from './SettingsCheckbox.ts';
-import ChannelOptions from './ChannelOptions.ts';
-import CopyLink from './CopyLink.ts';
+import { Text } from './misc/Text.ts';
+import { Dropdown } from './Dropdown.ts';
+import { SettingsSwitch } from './SettingsSwitch.ts';
+import { SettingsCheckbox } from './SettingsCheckbox.ts';
+import { ChannelOptions } from './ChannelOptions.ts';
+import { CopyLink } from './CopyLink.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class SettingsOptions extends YTNode {
+export class SettingsOptions extends YTNode {
   static type = 'SettingsOptions';
 
   title: Text;
@@ -37,5 +37,3 @@ class SettingsOptions extends YTNode {
     }
   }
 }
-
-export default SettingsOptions;

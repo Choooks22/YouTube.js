@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class MultiPageMenuNotificationSection extends YTNode {
+export class MultiPageMenuNotificationSection extends YTNode {
   static type = 'MultiPageMenuNotificationSection';
 
   items;
@@ -15,5 +15,3 @@ class MultiPageMenuNotificationSection extends YTNode {
     return this.items;
   }
 }
-
-export default MultiPageMenuNotificationSection;

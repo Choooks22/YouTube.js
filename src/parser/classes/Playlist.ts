@@ -1,11 +1,11 @@
-import Text from './misc/Text.ts';
-import Parser from '../index.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import PlaylistAuthor from './misc/PlaylistAuthor.ts';
+import { Text } from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { PlaylistAuthor } from './misc/PlaylistAuthor.ts';
 import { YTNode } from '../helpers.ts';
 
-class Playlist extends YTNode {
+export class Playlist extends YTNode {
   static type = 'Playlist';
 
   id: string;
@@ -45,5 +45,3 @@ class Playlist extends YTNode {
     this.thumbnail_overlays = Parser.parse(data.thumbnailOverlays) || [];
   }
 }
-
-export default Playlist;

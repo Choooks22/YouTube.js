@@ -1,11 +1,9 @@
-import Button from '../Button.ts';
+import { Button } from '../Button.ts';
 
-class MenuNavigationItem extends Button {
+export class MenuNavigationItem extends Button {
   static type = 'MenuNavigationItem';
 
   constructor(data: any) {
     super(data);
   }
 }
-
-export default MenuNavigationItem;

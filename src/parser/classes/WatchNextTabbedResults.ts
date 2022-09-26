@@ -1,11 +1,9 @@
-import TwoColumnBrowseResults from './TwoColumnBrowseResults.ts';
+import { TwoColumnBrowseResults } from './TwoColumnBrowseResults.ts';
 
-class WatchNextTabbedResults extends TwoColumnBrowseResults {
+export class WatchNextTabbedResults extends TwoColumnBrowseResults {
   static type = 'WatchNextTabbedResults';
 
   constructor(data: any) {
     super(data);
   }
 }
-
-export default WatchNextTabbedResults;

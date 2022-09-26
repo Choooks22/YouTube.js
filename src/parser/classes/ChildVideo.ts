@@ -1,10 +1,10 @@
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Text from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
 
 import { timeToSeconds } from '../../utils/Utils.ts';
 import { YTNode } from '../helpers.ts';
 
-class ChildVideo extends YTNode {
+export class ChildVideo extends YTNode {
   static type = 'ChildVideo';
 
   id: string;
@@ -30,5 +30,3 @@ class ChildVideo extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default ChildVideo;

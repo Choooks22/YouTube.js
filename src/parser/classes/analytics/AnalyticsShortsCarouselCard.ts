@@ -1,7 +1,7 @@
 import { YTNode } from '../../helpers.ts';
-import NavigationEndpoint from '../NavigationEndpoint.ts';
+import { NavigationEndpoint } from '../NavigationEndpoint.ts';
 
-class AnalyticsShortsCarouselCard extends YTNode {
+export class AnalyticsShortsCarouselCard extends YTNode {
   static type = 'AnalyticsShortsCarouselCard';
 
   title: string;
@@ -21,5 +21,3 @@ class AnalyticsShortsCarouselCard extends YTNode {
     }));
   }
 }
-
-export default AnalyticsShortsCarouselCard;

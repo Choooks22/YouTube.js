@@ -1,13 +1,13 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import AccountItemSectionHeader from './AccountItemSectionHeader.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { AccountItemSectionHeader } from './AccountItemSectionHeader.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class AccountItem {
+export class AccountItem {
   static type = 'AccountItem';
 
   account_name: Text;
@@ -29,7 +29,7 @@ class AccountItem {
   }
 }
 
-class AccountItemSection extends YTNode {
+export class AccountItemSection extends YTNode {
   static type = 'AccountItemSection';
 
   contents;
@@ -46,5 +46,3 @@ class AccountItemSection extends YTNode {
     );
   }
 }
-
-export default AccountItemSection;

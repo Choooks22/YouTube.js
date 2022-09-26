@@ -1,10 +1,10 @@
 // TODO: refactor this
 import { YTNode } from '../helpers.ts';
-import Parser, { ParsedResponse } from '../index.ts';
-import Actions, { ActionsResponse } from '../../core/Actions.ts';
-import CreatePlaylistDialog from './CreatePlaylistDialog.ts';
+import { ParsedResponse, Parser } from '../index.ts';
+import { Actions, ActionsResponse } from '../../core/Actions.ts';
+import { CreatePlaylistDialog } from './CreatePlaylistDialog.ts';
 
-class NavigationEndpoint extends YTNode {
+export class NavigationEndpoint extends YTNode {
   static type = 'NavigationEndpoint';
 
   payload;
@@ -361,5 +361,3 @@ class NavigationEndpoint extends YTNode {
     return this.#call(actions, client);
   }
 }
-
-export default NavigationEndpoint;

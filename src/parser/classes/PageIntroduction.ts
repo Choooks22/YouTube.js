@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class PageIntroduction extends YTNode {
+export class PageIntroduction extends YTNode {
   static type = 'PageIntroduction';
 
   header_text: string;
@@ -17,5 +17,3 @@ class PageIntroduction extends YTNode {
     this.header_icon_type = data.headerIcon.iconType;
   }
 }
-
-export default PageIntroduction;

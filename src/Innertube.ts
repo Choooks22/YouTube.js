@@ -1,31 +1,32 @@
-import Session, { SessionOptions } from './core/Session.ts';
+import { Session, SessionOptions } from './core/Session.ts';
 
-import Search from './parser/youtube/Search.ts';
-import Channel from './parser/youtube/Channel.ts';
-import Playlist from './parser/youtube/Playlist.ts';
-import Library from './parser/youtube/Library.ts';
-import History from './parser/youtube/History.ts';
-import Comments from './parser/youtube/Comments.ts';
-import NotificationsMenu from './parser/youtube/NotificationsMenu.ts';
-import VideoInfo, {
+import { Search } from './parser/youtube/Search.ts';
+import { Channel } from './parser/youtube/Channel.ts';
+import { Playlist } from './parser/youtube/Playlist.ts';
+import { Library } from './parser/youtube/Library.ts';
+import { History } from './parser/youtube/History.ts';
+import { Comments } from './parser/youtube/Comments.ts';
+import { NotificationsMenu } from './parser/youtube/NotificationsMenu.ts';
+import {
   DownloadOptions,
   FormatOptions,
+  VideoInfo,
 } from './parser/youtube/VideoInfo.ts';
-import NavigationEndpoint from './parser/classes/NavigationEndpoint.ts';
+import { NavigationEndpoint } from './parser/classes/NavigationEndpoint.ts';
 
 import { ParsedResponse } from './parser/index.ts';
 import { ActionsResponse } from './core/Actions.ts';
 
-import Feed from './core/Feed.ts';
-import YTMusic from './core/Music.ts';
-import Studio from './core/Studio.ts';
-import AccountManager from './core/AccountManager.ts';
-import PlaylistManager from './core/PlaylistManager.ts';
-import InteractionManager from './core/InteractionManager.ts';
-import FilterableFeed from './core/FilterableFeed.ts';
-import TabbedFeed from './core/TabbedFeed.ts';
-import Constants from './utils/Constants.ts';
-import Proto from './proto/proto.ts';
+import { Feed } from './core/Feed.ts';
+import { Music } from './core/Music.ts';
+import { Studio } from './core/Studio.ts';
+import { AccountManager } from './core/AccountManager.ts';
+import { PlaylistManager } from './core/PlaylistManager.ts';
+import { InteractionManager } from './core/InteractionManager.ts';
+import { FilterableFeed } from './core/FilterableFeed.ts';
+import { TabbedFeed } from './core/TabbedFeed.ts';
+import * as Constants from './utils/Constants.ts';
+import { Proto } from './proto/proto.ts';
 
 import { generateRandomString, throwIfMissing } from './utils/Utils.ts';
 
@@ -63,7 +64,7 @@ export type InnerTubeClient =
   | 'YTMUSIC'
   | 'TV_EMBEDDED';
 
-class Innertube {
+export class Innertube {
   session;
   account;
   playlist;
@@ -77,7 +78,7 @@ class Innertube {
     this.account = new AccountManager(this.session.actions);
     this.playlist = new PlaylistManager(this.session.actions);
     this.interact = new InteractionManager(this.session.actions);
-    this.music = new YTMusic(this.session);
+    this.music = new Music(this.session);
     this.studio = new Studio(this.session);
     this.actions = this.session.actions;
   }
@@ -276,5 +277,3 @@ class Innertube {
     return endpoint.callTest(this.actions, args);
   }
 }
-
-export default Innertube;

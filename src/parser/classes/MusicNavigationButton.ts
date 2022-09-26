@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class MusicNavigationButton extends YTNode {
+export class MusicNavigationButton extends YTNode {
   static type = 'MusicNavigationButton';
 
   button_text: string;
@@ -14,5 +14,3 @@ class MusicNavigationButton extends YTNode {
     this.endpoint = new NavigationEndpoint(data.clickCommand);
   }
 }
-
-export default MusicNavigationButton;

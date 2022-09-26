@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class ExpandedShelfContents extends YTNode {
+export class ExpandedShelfContents extends YTNode {
   static type = 'ExpandedShelfContents';
 
   items;
@@ -16,5 +16,3 @@ class ExpandedShelfContents extends YTNode {
     return this.items;
   }
 }
-
-export default ExpandedShelfContents;

@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class ExpandableTab extends YTNode {
+export class ExpandableTab extends YTNode {
   static type = 'ExpandableTab';
 
   title: string;
@@ -18,5 +18,3 @@ class ExpandableTab extends YTNode {
     this.content = data.content ? Parser.parse(data.content) : null;
   }
 }
-
-export default ExpandableTab;

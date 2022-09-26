@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class TextHeader extends YTNode {
+export class TextHeader extends YTNode {
   static type = 'TextHeader';
 
   title: Text;
@@ -13,5 +13,3 @@ class TextHeader extends YTNode {
     this.style = data.style;
   }
 }
-
-export default TextHeader;

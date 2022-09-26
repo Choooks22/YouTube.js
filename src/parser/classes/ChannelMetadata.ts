@@ -1,7 +1,7 @@
-import Thumbnail from './misc/Thumbnail.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class ChannelMetadata extends YTNode {
+export class ChannelMetadata extends YTNode {
   static type = 'ChannelMetadata';
 
   title: string;
@@ -35,5 +35,3 @@ class ChannelMetadata extends YTNode {
     this.ios_appindexing_link = data.iosAppindexingLink;
   }
 }
-
-export default ChannelMetadata;

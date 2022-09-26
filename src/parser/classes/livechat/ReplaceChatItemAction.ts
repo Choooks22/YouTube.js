@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class ReplaceChatItemAction extends YTNode {
+export class ReplaceChatItemAction extends YTNode {
   static type = 'ReplaceChatItemAction';
 
   target_item_id: string;
@@ -13,5 +13,3 @@ class ReplaceChatItemAction extends YTNode {
     this.replacement_item = Parser.parse(data.replacementItem);
   }
 }
-
-export default ReplaceChatItemAction;

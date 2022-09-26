@@ -1,8 +1,8 @@
-import Text from '../../misc/Text.ts';
-import Parser from '../../../index.ts';
+import { Text } from '../../misc/Text.ts';
+import { Parser } from '../../../index.ts';
 import { YTNode } from '../../../helpers.ts';
 
-class LiveChatAutoModMessage extends YTNode {
+export class LiveChatAutoModMessage extends YTNode {
   static type = 'LiveChatAutoModMessage';
 
   auto_moderated_item;
@@ -20,5 +20,3 @@ class LiveChatAutoModMessage extends YTNode {
     this.id = data.id;
   }
 }
-
-export default LiveChatAutoModMessage;

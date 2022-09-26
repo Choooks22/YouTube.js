@@ -1,22 +1,23 @@
-import Parser, {
+import {
   MusicPlaylistShelfContinuation,
   MusicShelfContinuation,
   ParsedResponse,
+  Parser,
   SectionListContinuation,
 } from '../index.ts';
-import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
+import { Actions, AxioslikeResponse } from '../../core/Actions.ts';
 
-import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
-import MusicPlaylistShelf from '../classes/MusicPlaylistShelf.ts';
-import MusicEditablePlaylistDetailHeader from '../classes/MusicEditablePlaylistDetailHeader.ts';
-import MusicDetailHeader from '../classes/MusicDetailHeader.ts';
-import MusicShelf from '../classes/MusicShelf.ts';
+import { MusicCarouselShelf } from '../classes/MusicCarouselShelf.ts';
+import { MusicPlaylistShelf } from '../classes/MusicPlaylistShelf.ts';
+import { MusicEditablePlaylistDetailHeader } from '../classes/MusicEditablePlaylistDetailHeader.ts';
+import { MusicDetailHeader } from '../classes/MusicDetailHeader.ts';
+import { MusicShelf } from '../classes/MusicShelf.ts';
 
-import SectionList from '../classes/SectionList.ts';
+import { SectionList } from '../classes/SectionList.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
 
-class Playlist {
+export class Playlist {
   #page;
   #actions;
   #continuation;
@@ -149,5 +150,3 @@ class Playlist {
     };
   }
 }
-
-export default Playlist;

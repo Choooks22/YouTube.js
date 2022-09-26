@@ -1,12 +1,12 @@
-import Parser, { ParsedResponse, SectionListContinuation } from '../index.ts';
-import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
+import { ParsedResponse, Parser, SectionListContinuation } from '../index.ts';
+import { Actions, AxioslikeResponse } from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 
-import SectionList from '../classes/SectionList.ts';
-import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.ts';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
+import { SectionList } from '../classes/SectionList.ts';
+import { SingleColumnBrowseResults } from '../classes/SingleColumnBrowseResults.ts';
+import { MusicCarouselShelf } from '../classes/MusicCarouselShelf.ts';
 
-class HomeFeed {
+export class HomeFeed {
   #page;
   #actions;
   #continuation;
@@ -68,5 +68,3 @@ class HomeFeed {
     return this.#page;
   }
 }
-
-export default HomeFeed;

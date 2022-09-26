@@ -1,10 +1,10 @@
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Text from './misc/Text.ts';
-import Parser from '../index.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class ChannelAboutFullMetadata extends YTNode {
+export class ChannelAboutFullMetadata extends YTNode {
   static type = 'ChannelAboutFullMetadata';
 
   id: string;
@@ -36,5 +36,3 @@ class ChannelAboutFullMetadata extends YTNode {
     this.buttons = Parser.parse(data.actionButtons);
   }
 }
-
-export default ChannelAboutFullMetadata;

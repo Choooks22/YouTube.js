@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
-import MusicPlayButton from './MusicPlayButton.ts';
+import { Parser } from '../index.ts';
+import { MusicPlayButton } from './MusicPlayButton.ts';
 import { YTNode } from '../helpers.ts';
 
-class MusicItemThumbnailOverlay extends YTNode {
+export class MusicItemThumbnailOverlay extends YTNode {
   static type = 'MusicItemThumbnailOverlay';
 
   content;
@@ -19,5 +19,3 @@ class MusicItemThumbnailOverlay extends YTNode {
     this.display_style = data.displayStyle;
   }
 }
-
-export default MusicItemThumbnailOverlay;

@@ -1,15 +1,15 @@
-import Parser, { ParsedResponse } from '../index.ts';
+import { ParsedResponse, Parser } from '../index.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
 import { AxioslikeResponse } from '../../core/Actions.ts';
 
-import Grid from '../classes/Grid.ts';
-import SectionList from '../classes/SectionList.ts';
-import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.ts';
-import MusicNavigationButton from '../classes/MusicNavigationButton.ts';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
+import { Grid } from '../classes/Grid.ts';
+import { SectionList } from '../classes/SectionList.ts';
+import { SingleColumnBrowseResults } from '../classes/SingleColumnBrowseResults.ts';
+import { MusicNavigationButton } from '../classes/MusicNavigationButton.ts';
+import { MusicCarouselShelf } from '../classes/MusicCarouselShelf.ts';
 
-class Explore {
+export class Explore {
   #page;
 
   top_buttons;
@@ -44,5 +44,3 @@ class Explore {
     return this.#page;
   }
 }
-
-export default Explore;

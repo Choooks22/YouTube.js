@@ -1,11 +1,9 @@
-import BackstagePost from './BackstagePost.ts';
+import { BackstagePost } from './BackstagePost.ts';
 
-class Post extends BackstagePost {
+export class Post extends BackstagePost {
   static type = 'Post';
 
   constructor(data: any) {
     super(data);
   }
 }
-
-export default Post;

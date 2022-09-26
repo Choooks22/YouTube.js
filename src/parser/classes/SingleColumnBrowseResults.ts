@@ -1,9 +1,9 @@
-import Parser from '../index.ts';
-import Tab from './Tab.ts';
+import { Parser } from '../index.ts';
+import { Tab } from './Tab.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class SingleColumnBrowseResults extends YTNode {
+export class SingleColumnBrowseResults extends YTNode {
   static type = 'SingleColumnBrowseResults';
 
   tabs;
@@ -13,5 +13,3 @@ class SingleColumnBrowseResults extends YTNode {
     this.tabs = Parser.parseArray<Tab>(data.tabs, Tab);
   }
 }
-
-export default SingleColumnBrowseResults;

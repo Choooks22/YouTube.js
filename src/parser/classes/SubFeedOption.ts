@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class SubFeedOption extends YTNode {
+export class SubFeedOption extends YTNode {
   static type = 'SubFeedOption';
 
   name: Text;
@@ -16,5 +16,3 @@ class SubFeedOption extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default SubFeedOption;

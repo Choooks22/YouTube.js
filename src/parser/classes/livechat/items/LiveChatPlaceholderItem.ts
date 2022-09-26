@@ -1,6 +1,6 @@
 import { YTNode } from '../../../helpers.ts';
 
-class LiveChatPlaceholderItem extends YTNode {
+export class LiveChatPlaceholderItem extends YTNode {
   static type = 'LiveChatPlaceholderItem';
 
   id: string;
@@ -12,5 +12,3 @@ class LiveChatPlaceholderItem extends YTNode {
     this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1000);
   }
 }
-
-export default LiveChatPlaceholderItem;

@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class AddBannerToLiveChatCommand extends YTNode {
+export class AddBannerToLiveChatCommand extends YTNode {
   static type = 'AddBannerToLiveChatCommand';
 
   banner;
@@ -11,5 +11,3 @@ class AddBannerToLiveChatCommand extends YTNode {
     this.banner = Parser.parse(data.bannerRenderer);
   }
 }
-
-export default AddBannerToLiveChatCommand;

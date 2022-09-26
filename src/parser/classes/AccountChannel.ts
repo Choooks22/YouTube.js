@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class AccountChannel extends YTNode {
+export class AccountChannel extends YTNode {
   static type = 'AccountChannel';
 
   title: Text;
@@ -14,5 +14,3 @@ class AccountChannel extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default AccountChannel;

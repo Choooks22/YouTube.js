@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class LiveChatParticipantsList extends YTNode {
+export class LiveChatParticipantsList extends YTNode {
   static type = 'LiveChatParticipantsList';
 
   title: Text;
@@ -14,5 +14,3 @@ class LiveChatParticipantsList extends YTNode {
     this.participants = Parser.parse(data.participants);
   }
 }
-
-export default LiveChatParticipantsList;

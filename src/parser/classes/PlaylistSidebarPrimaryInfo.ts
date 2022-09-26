@@ -1,10 +1,10 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class PlaylistSidebarPrimaryInfo extends YTNode {
+export class PlaylistSidebarPrimaryInfo extends YTNode {
   static type = 'PlaylistSidebarPrimaryInfo';
 
   stats: Text[];
@@ -24,5 +24,3 @@ class PlaylistSidebarPrimaryInfo extends YTNode {
     this.description = new Text(data.description);
   }
 }
-
-export default PlaylistSidebarPrimaryInfo;

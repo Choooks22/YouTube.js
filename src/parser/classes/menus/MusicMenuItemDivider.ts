@@ -1,6 +1,6 @@
 import { YTNode } from '../../helpers.ts';
 
-class MusicMenuItemDivider extends YTNode {
+export class MusicMenuItemDivider extends YTNode {
   static type = 'MusicMenuItemDivider';
 
   // eslint-disable-next-line
@@ -8,5 +8,3 @@ class MusicMenuItemDivider extends YTNode {
     super();
   }
 }
-
-export default MusicMenuItemDivider;

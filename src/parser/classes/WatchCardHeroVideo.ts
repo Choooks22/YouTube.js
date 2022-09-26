@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class WatchCardHeroVideo extends YTNode {
+export class WatchCardHeroVideo extends YTNode {
   static type = 'WatchCardHeroVideo';
 
   endpoint: NavigationEndpoint;
@@ -18,5 +18,3 @@ class WatchCardHeroVideo extends YTNode {
     this.label = data.accessibility.accessibilityData.label;
   }
 }
-
-export default WatchCardHeroVideo;

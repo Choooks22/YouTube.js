@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 
-class PlaylistMetadata extends YTNode {
+export class PlaylistMetadata extends YTNode {
   static type = 'PlaylistMetadata';
 
   title: string;
@@ -13,5 +13,3 @@ class PlaylistMetadata extends YTNode {
     // XXX: Appindexing should be in microformat
   }
 }
-
-export default PlaylistMetadata;

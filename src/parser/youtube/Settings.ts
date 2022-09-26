@@ -1,18 +1,18 @@
-import Parser from '../index.ts';
-import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
+import { Parser } from '../index.ts';
+import { Actions, AxioslikeResponse } from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 
-import Tab from '../classes/Tab.ts';
-import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.ts';
-import SectionList from '../classes/SectionList.ts';
-import ItemSection from '../classes/ItemSection.ts';
+import { Tab } from '../classes/Tab.ts';
+import { TwoColumnBrowseResults } from '../classes/TwoColumnBrowseResults.ts';
+import { SectionList } from '../classes/SectionList.ts';
+import { ItemSection } from '../classes/ItemSection.ts';
 
-import PageIntroduction from '../classes/PageIntroduction.ts';
-import SettingsOptions from '../classes/SettingsOptions.ts';
-import SettingsSwitch from '../classes/SettingsSwitch.ts';
-import SettingsSidebar from '../classes/SettingsSidebar.ts';
+import { PageIntroduction } from '../classes/PageIntroduction.ts';
+import { SettingsOptions } from '../classes/SettingsOptions.ts';
+import { SettingsSwitch } from '../classes/SettingsSwitch.ts';
+import { SettingsSidebar } from '../classes/SettingsSidebar.ts';
 
-class Settings {
+export class Settings {
   #page;
   #actions;
 
@@ -133,5 +133,3 @@ class Settings {
     return this.sidebar.items.map((item) => item.title.toString());
   }
 }
-
-export default Settings;

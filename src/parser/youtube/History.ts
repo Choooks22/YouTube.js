@@ -1,11 +1,11 @@
-import Actions from '../../core/Actions.ts';
+import { Actions } from '../../core/Actions.ts';
+import { Feed } from '../../core/Feed.ts';
 
-import Feed from '../../core/Feed.ts';
-import ItemSection from '../classes/ItemSection.ts';
-import BrowseFeedActions from '../classes/BrowseFeedActions.ts';
+import { ItemSection } from '../classes/ItemSection.ts';
+import { BrowseFeedActions } from '../classes/BrowseFeedActions.ts';
 
 // TODO: make feed actions usable
-class History extends Feed {
+export class History extends Feed {
   sections;
   feed_actions;
 
@@ -25,5 +25,3 @@ class History extends Feed {
     return new History(this.actions, continuation, true);
   }
 }
-
-export default History;

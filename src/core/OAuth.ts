@@ -1,5 +1,5 @@
-import Session from './Session.ts';
-import Constants from '../utils/Constants.ts';
+import { Session } from './Session.ts';
+import * as Constants from '../utils/Constants.ts';
 import { OAuthError, uuidv4 } from '../utils/Utils.ts';
 
 export interface Credentials {
@@ -28,7 +28,7 @@ export type OAuthAuthEventHandler = (data: {
 export type OAuthAuthPendingEventHandler = (data: OAuthAuthPendingData) => any;
 export type OAuthAuthErrorEventHandler = (err: OAuthError) => any;
 
-class OAuth {
+export class OAuth {
   #identity?: Record<string, string>;
   #session: Session;
   #credentials?: Credentials;
@@ -319,5 +319,3 @@ class OAuth {
         Reflect.has(this.#credentials, 'expires') || false;
   }
 }
-
-export default OAuth;

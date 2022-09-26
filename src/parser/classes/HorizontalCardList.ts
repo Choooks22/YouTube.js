@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class HorizontalCardList extends YTNode {
+export class HorizontalCardList extends YTNode {
   static type = 'HorizontalCardList';
 
   cards;
@@ -17,5 +17,3 @@ class HorizontalCardList extends YTNode {
     this.next_button = Parser.parse(data.nextButton);
   }
 }
-
-export default HorizontalCardList;

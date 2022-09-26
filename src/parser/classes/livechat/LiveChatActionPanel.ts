@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class LiveChatActionPanel extends YTNode {
+export class LiveChatActionPanel extends YTNode {
   static type = 'LiveChatActionPanel';
 
   id: string;
@@ -15,5 +15,3 @@ class LiveChatActionPanel extends YTNode {
     this.target_id = data.targetId;
   }
 }
-
-export default LiveChatActionPanel;

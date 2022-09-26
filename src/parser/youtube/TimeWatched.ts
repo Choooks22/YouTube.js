@@ -1,13 +1,13 @@
-import Parser, { ParsedResponse } from '../index.ts';
+import { ParsedResponse, Parser } from '../index.ts';
 import { AxioslikeResponse } from '../../core/Actions.ts';
 
-import ItemSection from '../classes/ItemSection.ts';
-import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.ts';
-import SectionList from '../classes/SectionList.ts';
+import { ItemSection } from '../classes/ItemSection.ts';
+import { SingleColumnBrowseResults } from '../classes/SingleColumnBrowseResults.ts';
+import { SectionList } from '../classes/SectionList.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
 
-class TimeWatched {
+export class TimeWatched {
   #page;
   contents;
 
@@ -30,5 +30,3 @@ class TimeWatched {
     return this.#page;
   }
 }
-
-export default TimeWatched;

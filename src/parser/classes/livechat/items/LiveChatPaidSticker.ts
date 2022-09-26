@@ -1,10 +1,10 @@
-import Parser from '../../../index.ts';
-import NavigationEndpoint from '../../NavigationEndpoint.ts';
-import Thumbnail from '../../misc/Thumbnail.ts';
-import Text from '../../misc/Text.ts';
+import { Parser } from '../../../index.ts';
+import { NavigationEndpoint } from '../../NavigationEndpoint.ts';
+import { Thumbnail } from '../../misc/Thumbnail.ts';
+import { Text } from '../../misc/Text.ts';
 import { YTNode } from '../../../helpers.ts';
 
-class LiveChatPaidSticker extends YTNode {
+export class LiveChatPaidSticker extends YTNode {
   static type = 'LiveChatPaidSticker';
 
   id: string;
@@ -46,5 +46,3 @@ class LiveChatPaidSticker extends YTNode {
     this.timestamp = Math.floor(parseInt(data.timestampUsec) / 1000);
   }
 }
-
-export default LiveChatPaidSticker;

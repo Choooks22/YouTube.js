@@ -1,10 +1,10 @@
-import Author from './misc/Author.ts';
-import Parser from '../index.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Text from './misc/Text.ts';
+import { Author } from './misc/Author.ts';
+import { Parser } from '../index.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class GridChannel extends YTNode {
+export class GridChannel extends YTNode {
   static type = 'GridChannel';
 
   id: string;
@@ -33,5 +33,3 @@ class GridChannel extends YTNode {
     this.subscribe_button = Parser.parse(data.subscribeButton);
   }
 }
-
-export default GridChannel;

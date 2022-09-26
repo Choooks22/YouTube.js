@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class PlayerCaptionsTracklist extends YTNode {
+export class PlayerCaptionsTracklist extends YTNode {
   static type = 'PlayerCaptionsTracklist';
 
   caption_tracks: {
@@ -43,5 +43,3 @@ class PlayerCaptionsTracklist extends YTNode {
     }));
   }
 }
-
-export default PlayerCaptionsTracklist;

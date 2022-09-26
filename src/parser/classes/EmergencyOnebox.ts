@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import Parser from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class EmergencyOnebox extends YTNode {
+export class EmergencyOnebox extends YTNode {
   static type = 'EmergencyOnebox';
 
   title: Text;
@@ -16,5 +16,3 @@ class EmergencyOnebox extends YTNode {
     this.menu = Parser.parse(data.menu);
   }
 }
-
-export default EmergencyOnebox;

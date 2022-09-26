@@ -1,7 +1,7 @@
-import DataModelSection from './DataModelSection.ts';
+import { DataModelSection } from './DataModelSection.ts';
 import { YTNode } from '../../helpers.ts';
 
-class AnalyticsMainAppKeyMetrics extends YTNode {
+export class AnalyticsMainAppKeyMetrics extends YTNode {
   static type = 'AnalyticsMainAppKeyMetrics';
 
   period: string;
@@ -16,5 +16,3 @@ class AnalyticsMainAppKeyMetrics extends YTNode {
     );
   }
 }
-
-export default AnalyticsMainAppKeyMetrics;

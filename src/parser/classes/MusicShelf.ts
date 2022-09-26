@@ -1,12 +1,12 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import MusicResponsiveListItem from './MusicResponsiveListItem.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { MusicResponsiveListItem } from './MusicResponsiveListItem.ts';
 
 import { YTNode } from '../helpers.ts';
-import Button from './Button.ts';
+import { Button } from './Button.ts';
 
-class MusicShelf extends YTNode {
+export class MusicShelf extends YTNode {
   static type = 'MusicShelf';
 
   title: Text;
@@ -40,5 +40,3 @@ class MusicShelf extends YTNode {
     }
   }
 }
-
-export default MusicShelf;

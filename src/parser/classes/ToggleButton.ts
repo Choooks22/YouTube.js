@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class ToggleButton extends YTNode {
+export class ToggleButton extends YTNode {
   static type = 'ToggleButton';
 
   text: Text;
@@ -54,5 +54,3 @@ class ToggleButton extends YTNode {
     this.target_id = data.targetId || null;
   }
 }
-
-export default ToggleButton;

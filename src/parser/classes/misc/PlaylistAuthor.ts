@@ -1,6 +1,6 @@
-import Author from './Author.ts';
+import { Author } from './Author.ts';
 
-class PlaylistAuthor extends Author {
+export class PlaylistAuthor extends Author {
   constructor(item: any, badges?: any, thumbs?: any) {
     super(item, badges, thumbs);
     delete this.badges;
@@ -8,5 +8,3 @@ class PlaylistAuthor extends Author {
     delete this.is_verified_artist;
   }
 }
-
-export default PlaylistAuthor;

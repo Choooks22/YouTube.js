@@ -1,9 +1,9 @@
-import Text from './misc/Text.ts';
-import PlaylistAuthor from './misc/PlaylistAuthor.ts';
-import Parser from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { PlaylistAuthor } from './misc/PlaylistAuthor.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class PlaylistHeader extends YTNode {
+export class PlaylistHeader extends YTNode {
   static type = 'PlaylistHeader';
 
   id: string;
@@ -45,5 +45,3 @@ class PlaylistHeader extends YTNode {
     this.menu = Parser.parse(data.moreActionsMenu);
   }
 }
-
-export default PlaylistHeader;

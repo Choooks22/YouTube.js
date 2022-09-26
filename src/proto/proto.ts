@@ -13,7 +13,7 @@ import * as SearchFilter from './messages/youtube/SearchFilter.ts';
 import * as SoundInfoParams from './messages/youtube/SoundInfoParams.ts';
 import * as VisitorData from './messages/youtube/VisitorData.ts';
 
-class Proto {
+export class Proto {
   /**
    * Encodes visitor data.
    */
@@ -335,5 +335,3 @@ class Proto {
     return encodeURIComponent(u8ToBase64(buf));
   }
 }
-
-export default Proto;

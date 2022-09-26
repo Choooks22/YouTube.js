@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class HorizontalList extends YTNode {
+export class HorizontalList extends YTNode {
   static type = 'HorizontalList';
 
   visible_item_count: string;
@@ -18,5 +18,3 @@ class HorizontalList extends YTNode {
     return this.items;
   }
 }
-
-export default HorizontalList;

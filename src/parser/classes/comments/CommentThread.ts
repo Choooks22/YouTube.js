@@ -1,13 +1,13 @@
-import Parser from '../../index.ts';
-import Comment from './Comment.ts';
-import ContinuationItem from '../ContinuationItem.ts';
-import Actions from '../../../core/Actions.ts';
-import NavigationEndpoint from '../NavigationEndpoint.ts';
+import { Parser } from '../../index.ts';
+import { Comment } from './Comment.ts';
+import { ContinuationItem } from '../ContinuationItem.ts';
+import { Actions } from '../../../core/Actions.ts';
+import { NavigationEndpoint } from '../NavigationEndpoint.ts';
 
 import { InnertubeError } from '../../../utils/Utils.ts';
 import { YTNode } from '../../helpers.ts';
 
-class CommentThread extends YTNode {
+export class CommentThread extends YTNode {
   static type = 'CommentThread';
 
   #replies;
@@ -96,5 +96,3 @@ class CommentThread extends YTNode {
     this.#actions = actions;
   }
 }
-
-export default CommentThread;

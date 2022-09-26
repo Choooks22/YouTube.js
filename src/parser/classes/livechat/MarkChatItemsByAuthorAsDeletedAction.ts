@@ -1,7 +1,7 @@
-import Text from '../misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
 
-class MarkChatItemsByAuthorAsDeletedAction extends YTNode {
+export class MarkChatItemsByAuthorAsDeletedAction extends YTNode {
   static type = 'MarkChatItemsByAuthorAsDeletedAction';
 
   deleted_state_message: Text;
@@ -13,5 +13,3 @@ class MarkChatItemsByAuthorAsDeletedAction extends YTNode {
     this.channel_id = data.externalChannelId;
   }
 }
-
-export default MarkChatItemsByAuthorAsDeletedAction;

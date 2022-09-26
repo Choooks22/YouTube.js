@@ -1,9 +1,9 @@
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class VideoInfoCardContent extends YTNode {
+export class VideoInfoCardContent extends YTNode {
   static type = 'VideoInfoCardContent';
 
   title: Text;
@@ -23,5 +23,3 @@ class VideoInfoCardContent extends YTNode {
     this.endpoint = new NavigationEndpoint(data.action);
   }
 }
-
-export default VideoInfoCardContent;

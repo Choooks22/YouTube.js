@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class LiveChat extends YTNode {
+export class LiveChat extends YTNode {
   static type = 'LiveChat';
 
   header;
@@ -39,5 +39,3 @@ class LiveChat extends YTNode {
     this.is_replay = data.isReplay || false;
   }
 }
-
-export default LiveChat;

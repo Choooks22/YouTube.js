@@ -1,10 +1,10 @@
-import Parser from '../index.ts';
-import Button from './Button.ts';
-import ChipCloudChip from './ChipCloudChip.ts';
+import { Parser } from '../index.ts';
+import { Button } from './Button.ts';
+import { ChipCloudChip } from './ChipCloudChip.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class ChipCloud extends YTNode {
+export class ChipCloud extends YTNode {
   static type = 'ChipCloud';
 
   chips;
@@ -24,5 +24,3 @@ class ChipCloud extends YTNode {
     this.horizontal_scrollable = data.horizontalScrollable;
   }
 }
-
-export default ChipCloud;

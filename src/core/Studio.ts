@@ -1,8 +1,8 @@
-import Proto from '../proto/proto.ts';
-import Session from './Session.ts';
+import { Proto } from '../proto/proto.ts';
+import { Session } from './Session.ts';
 import { AxioslikeResponse } from './Actions.ts';
 import { InnertubeError, MissingParamError, uuidv4 } from '../utils/Utils.ts';
-import { Constants } from '../utils/index.ts';
+import * as Constants from '../utils/Constants.ts';
 
 export interface UploadResult {
   status: string;
@@ -24,7 +24,7 @@ export interface VideoMetadata {
   is_draft?: boolean;
 }
 
-class Studio {
+export class Studio {
   #session;
 
   constructor(session: Session) {
@@ -196,5 +196,3 @@ class Studio {
     return response;
   }
 }
-
-export default Studio;

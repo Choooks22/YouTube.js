@@ -1,8 +1,8 @@
-import Parser, { ParsedResponse } from '../index.ts';
+import { ParsedResponse, Parser } from '../index.ts';
 import { AxioslikeResponse } from '../../core/Actions.ts';
-import Element from '../classes/Element.ts';
+import { Element } from '../classes/Element.ts';
 
-class Analytics {
+export class Analytics {
   #page;
   sections;
 
@@ -16,5 +16,3 @@ class Analytics {
     return this.#page;
   }
 }
-
-export default Analytics;

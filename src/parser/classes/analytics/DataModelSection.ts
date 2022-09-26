@@ -1,6 +1,6 @@
 import { YTNode } from '../../helpers.ts';
 
-class DataModelSection extends YTNode {
+export class DataModelSection extends YTNode {
   static type = 'DataModelSection';
 
   title: string;
@@ -68,5 +68,3 @@ class DataModelSection extends YTNode {
     };
   }
 }
-
-export default DataModelSection;

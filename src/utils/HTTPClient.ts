@@ -1,5 +1,5 @@
-import Session, { Context } from '../core/Session.ts';
-import Constants from './Constants.ts';
+import { Context, Session } from '../core/Session.ts';
+import * as Constants from './Constants.ts';
 import {
   generateSidAuth,
   getRandomUserAgent,
@@ -14,7 +14,7 @@ export interface HTTPClientInit {
   baseURL?: string;
 }
 
-export default class HTTPClient {
+export class HTTPClient {
   #session: Session;
   #cookie?: string;
   #fetch: FetchFunction;

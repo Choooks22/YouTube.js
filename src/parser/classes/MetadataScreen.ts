@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class MetadataScreen extends YTNode {
+export class MetadataScreen extends YTNode {
   static type = 'MetadataScreen';
 
   section_list;
@@ -11,5 +11,3 @@ class MetadataScreen extends YTNode {
     this.section_list = Parser.parseItem(data);
   }
 }
-
-export default MetadataScreen;

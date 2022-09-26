@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 
-class IconLink extends YTNode {
+export class IconLink extends YTNode {
   static type = 'IconLink';
 
   icon_type: string;
@@ -21,5 +21,3 @@ class IconLink extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default IconLink;

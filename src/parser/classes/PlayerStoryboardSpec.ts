@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 
-class PlayerStoryboardSpec extends YTNode {
+export class PlayerStoryboardSpec extends YTNode {
   static type = 'PlayerStoryboardSpec';
 
   boards: {
@@ -52,5 +52,3 @@ class PlayerStoryboardSpec extends YTNode {
     });
   }
 }
-
-export default PlayerStoryboardSpec;

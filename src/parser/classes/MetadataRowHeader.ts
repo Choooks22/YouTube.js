@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class MetadataRowHeader extends YTNode {
+export class MetadataRowHeader extends YTNode {
   static type = 'MetadataRowHeader';
 
   content: Text;
@@ -13,5 +13,3 @@ class MetadataRowHeader extends YTNode {
     this.has_divider_line = data.hasDividerLine;
   }
 }
-
-export default MetadataRowHeader;

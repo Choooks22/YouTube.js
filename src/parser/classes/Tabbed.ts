@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class Tabbed extends YTNode {
+export class Tabbed extends YTNode {
   static type = 'Tabbed';
 
   contents;
@@ -12,5 +12,3 @@ class Tabbed extends YTNode {
     this.contents = Parser.parse(data);
   }
 }
-
-export default Tabbed;

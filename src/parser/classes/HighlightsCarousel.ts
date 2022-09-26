@@ -1,7 +1,7 @@
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class Panel {
+export class Panel {
   static type = 'Panel';
 
   thumbnail: {
@@ -74,7 +74,7 @@ class Panel {
   }
 }
 
-class HighlightsCarousel extends YTNode {
+export class HighlightsCarousel extends YTNode {
   static type = 'HighlightsCarousel';
 
   panels: Panel[];
@@ -86,5 +86,3 @@ class HighlightsCarousel extends YTNode {
     );
   }
 }
-
-export default HighlightsCarousel;

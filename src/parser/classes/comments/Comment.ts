@@ -1,19 +1,19 @@
-import Parser from '../../index.ts';
-import Text from '../misc/Text.ts';
-import Thumbnail from '../misc/Thumbnail.ts';
-import Author from '../misc/Author.ts';
-import ToggleButton from '../ToggleButton.ts';
-import CommentReplyDialog from './CommentReplyDialog.ts';
-import CommentActionButtons from './CommentActionButtons.ts';
-import AuthorCommentBadge from './AuthorCommentBadge.ts';
+import { Parser } from '../../index.ts';
+import { Text } from '../misc/Text.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
+import { Author } from '../misc/Author.ts';
+import { ToggleButton } from '../ToggleButton.ts';
+import { CommentReplyDialog } from './CommentReplyDialog.ts';
+import { CommentActionButtons } from './CommentActionButtons.ts';
+import { AuthorCommentBadge } from './AuthorCommentBadge.ts';
 
-import Proto from '../../../proto/proto.ts';
-import Actions from '../../../core/Actions.ts';
+import { Proto } from '../../../proto/proto.ts';
+import { Actions } from '../../../core/Actions.ts';
 import { InnertubeError } from '../../../utils/Utils.ts';
 
 import { SuperParsedResult, YTNode } from '../../helpers.ts';
 
-class Comment extends YTNode {
+export class Comment extends YTNode {
   static type = 'Comment';
 
   #actions?: Actions;
@@ -224,5 +224,3 @@ class Comment extends YTNode {
     this.#actions = actions;
   }
 }
-
-export default Comment;

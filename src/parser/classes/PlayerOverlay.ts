@@ -1,12 +1,12 @@
-import Parser from '../index.ts';
-import Menu from './menus/Menu.ts';
-import Button from './Button.ts';
-import WatchNextEndScreen from './WatchNextEndScreen.ts';
-import PlayerOverlayAutoplay from './PlayerOverlayAutoplay.ts';
+import { Parser } from '../index.ts';
+import { Menu } from './menus/Menu.ts';
+import { Button } from './Button.ts';
+import { WatchNextEndScreen } from './WatchNextEndScreen.ts';
+import { PlayerOverlayAutoplay } from './PlayerOverlayAutoplay.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class PlayerOverlay extends YTNode {
+export class PlayerOverlay extends YTNode {
   static type = 'PlayerOverlay';
 
   end_screen;
@@ -34,5 +34,3 @@ class PlayerOverlay extends YTNode {
     this.browser_media_session = Parser.parseItem(data.browserMediaSession);
   }
 }
-
-export default PlayerOverlay;

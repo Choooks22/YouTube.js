@@ -1,10 +1,10 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import SubscriptionNotificationToggleButton from './SubscriptionNotificationToggleButton.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { SubscriptionNotificationToggleButton } from './SubscriptionNotificationToggleButton.ts';
 import { YTNode } from '../helpers.ts';
 
-class SubscribeButton extends YTNode {
+export class SubscribeButton extends YTNode {
   static type = 'SubscribeButton';
 
   title: Text;
@@ -36,5 +36,3 @@ class SubscribeButton extends YTNode {
     );
   }
 }
-
-export default SubscribeButton;

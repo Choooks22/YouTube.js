@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class ThumbnailOverlayEndorsement extends YTNode {
+export class ThumbnailOverlayEndorsement extends YTNode {
   static type = 'ThumbnailOverlayEndorsement';
 
   text: string;
@@ -11,5 +11,3 @@ class ThumbnailOverlayEndorsement extends YTNode {
     this.text = new Text(data.text).toString();
   }
 }
-
-export default ThumbnailOverlayEndorsement;

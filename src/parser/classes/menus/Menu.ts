@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class Menu extends YTNode {
+export class Menu extends YTNode {
   static type = 'Menu';
 
   items;
@@ -20,5 +20,3 @@ class Menu extends YTNode {
     return this.items;
   }
 }
-
-export default Menu;

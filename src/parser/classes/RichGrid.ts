@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class RichGrid extends YTNode {
+export class RichGrid extends YTNode {
   static type = 'RichGrid';
 
   header;
@@ -16,5 +16,3 @@ class RichGrid extends YTNode {
     this.contents = Parser.parse(data.contents);
   }
 }
-
-export default RichGrid;

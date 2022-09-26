@@ -1,9 +1,9 @@
-import Parser from '../index.ts';
-import Element from './Element.ts';
+import { Parser } from '../index.ts';
+import { Element } from './Element.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class MusicElementHeader extends YTNode {
+export class MusicElementHeader extends YTNode {
   static type = 'MusicElementHeader';
 
   element: Element | null;
@@ -15,5 +15,3 @@ class MusicElementHeader extends YTNode {
       : null;
   }
 }
-
-export default MusicElementHeader;

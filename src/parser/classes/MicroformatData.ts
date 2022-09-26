@@ -1,7 +1,7 @@
-import Thumbnail from './misc/Thumbnail.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class MicroformatData extends YTNode {
+export class MicroformatData extends YTNode {
   static type = 'MicroformatData';
 
   url_canonical: string;
@@ -58,5 +58,3 @@ class MicroformatData extends YTNode {
     // XXX: linkAlternatives?
   }
 }
-
-export default MicroformatData;

@@ -1,10 +1,10 @@
-import Parser from '../index.ts';
-import AccountChannel from './AccountChannel.ts';
-import AccountItemSection from './AccountItemSection.ts';
+import { Parser } from '../index.ts';
+import { AccountChannel } from './AccountChannel.ts';
+import { AccountItemSection } from './AccountItemSection.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class AccountSectionList extends YTNode {
+export class AccountSectionList extends YTNode {
   static type = 'AccountSectionList';
 
   contents;
@@ -22,5 +22,3 @@ class AccountSectionList extends YTNode {
     );
   }
 }
-
-export default AccountSectionList;

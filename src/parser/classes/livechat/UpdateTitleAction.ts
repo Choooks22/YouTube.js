@@ -1,7 +1,7 @@
-import Text from '../misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
 
-class UpdateTitleAction extends YTNode {
+export class UpdateTitleAction extends YTNode {
   static type = 'UpdateTitleAction';
 
   title: Text;
@@ -11,5 +11,3 @@ class UpdateTitleAction extends YTNode {
     this.title = new Text(data.title);
   }
 }
-
-export default UpdateTitleAction;

@@ -1,7 +1,7 @@
-import LiveChatTextMessage from './LiveChatTextMessage.ts';
-import Parser from '../../../index.ts';
+import { LiveChatTextMessage } from './LiveChatTextMessage.ts';
+import { Parser } from '../../../index.ts';
 
-class LiveChatViewerEngagementMessage extends LiveChatTextMessage {
+export class LiveChatViewerEngagementMessage extends LiveChatTextMessage {
   static type = 'LiveChatViewerEngagementMessage';
 
   icon_type: string;
@@ -15,5 +15,3 @@ class LiveChatViewerEngagementMessage extends LiveChatTextMessage {
     this.action_button = Parser.parse(data.actionButton);
   }
 }
-
-export default LiveChatViewerEngagementMessage;

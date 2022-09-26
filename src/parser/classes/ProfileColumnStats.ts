@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class ProfileColumnStats extends YTNode {
+export class ProfileColumnStats extends YTNode {
   static type = 'ProfileColumnStats';
 
   items;
@@ -16,5 +16,3 @@ class ProfileColumnStats extends YTNode {
     return this.items;
   }
 }
-
-export default ProfileColumnStats;

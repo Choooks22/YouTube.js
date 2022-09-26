@@ -1,14 +1,14 @@
-import Format from './classes/misc/Format.ts';
-import VideoDetails from './classes/misc/VideoDetails.ts';
-import GetParserByName from './map.ts';
-import Endscreen from './classes/Endscreen.ts';
-import CardCollection from './classes/CardCollection.ts';
-import NavigationEndpoint from './classes/NavigationEndpoint.ts';
+import { Format } from './classes/misc/Format.ts';
+import { VideoDetails } from './classes/misc/VideoDetails.ts';
+import { GetParserByName } from './map.ts';
+import { Endscreen } from './classes/Endscreen.ts';
+import { CardCollection } from './classes/CardCollection.ts';
+import { NavigationEndpoint } from './classes/NavigationEndpoint.ts';
 
-import PlayerStoryboardSpec from './classes/PlayerStoryboardSpec.ts';
-import PlayerCaptionsTracklist from './classes/PlayerCaptionsTracklist.ts';
-import PlayerLiveStoryboardSpec from './classes/PlayerLiveStoryboardSpec.ts';
-import PlayerAnnotationsExpanded from './classes/PlayerAnnotationsExpanded.ts';
+import { PlayerStoryboardSpec } from './classes/PlayerStoryboardSpec.ts';
+import { PlayerCaptionsTracklist } from './classes/PlayerCaptionsTracklist.ts';
+import { PlayerLiveStoryboardSpec } from './classes/PlayerLiveStoryboardSpec.ts';
+import { PlayerAnnotationsExpanded } from './classes/PlayerAnnotationsExpanded.ts';
 
 import { InnertubeError, ParsingError } from '../utils/Utils.ts';
 import {
@@ -20,9 +20,8 @@ import {
   YTNodeConstructor,
 } from './helpers.ts';
 
-import package_json from '../../package.json' assert { type: 'json' };
-import MusicMultiSelectMenuItem from './classes/menus/MusicMultiSelectMenuItem.ts';
-import AudioOnlyPlayability from './classes/AudioOnlyPlayability.ts';
+import { MusicMultiSelectMenuItem } from './classes/menus/MusicMultiSelectMenuItem.ts';
+import { AudioOnlyPlayability } from './classes/AudioOnlyPlayability.ts';
 
 export class AppendContinuationItemsAction extends YTNode {
   static readonly type = 'appendContinuationItemsAction';
@@ -184,7 +183,7 @@ export class LiveChatContinuation extends YTNode {
   }
 }
 
-export default class Parser {
+export class Parser {
   static #memo: Memo | null = null;
 
   static #clearMemo() {
@@ -507,7 +506,7 @@ export default class Parser {
       console.warn(
         new InnertubeError(
           'Mutation data required for processing MusicMultiSelectMenuItems, but none found.\n' +
-            `This is a bug, please report it at ${package_json.bugs.url}`,
+            `This is a bug, please report it at ${null}`,
         ),
       );
     } else {
@@ -536,7 +535,7 @@ export default class Parser {
               `The titles of the failed items are: ${
                 missingOrInvalidMutations.join(', ')
               }.\n` +
-              `This is a bug, please report it at ${package_json.bugs.url}`,
+              `This is a bug, please report it at ${null}`,
           ),
         );
       }
@@ -554,7 +553,7 @@ export default class Parser {
       return console.warn(
         new InnertubeError(
           `${classname} not found!\n` +
-            `This is a bug, please report it at ${package_json.bugs.url}`,
+            `This is a bug, please report it at ${null}`,
           classdata,
         ),
       );
@@ -563,7 +562,7 @@ export default class Parser {
     console.warn(
       new InnertubeError(
         `Something went wrong at ${classname}!\n` +
-          `This is a bug, please report it at ${package_json.bugs.url}`,
+          `This is a bug, please report it at ${null}`,
         { stack: err.stack },
       ),
     );

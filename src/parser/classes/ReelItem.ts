@@ -1,9 +1,9 @@
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class ReelItem extends YTNode {
+export class ReelItem extends YTNode {
   static type = 'ReelItem';
 
   id: string;
@@ -21,5 +21,3 @@ class ReelItem extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default ReelItem;

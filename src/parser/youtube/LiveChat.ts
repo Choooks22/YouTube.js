@@ -1,24 +1,24 @@
-import Parser, { LiveChatContinuation } from '../index.ts';
-import EventEmitter from '../../utils/EventEmitterLike.ts';
-import VideoInfo from './VideoInfo.ts';
+import { LiveChatContinuation, Parser } from '../index.ts';
+import { EventEmitterLike } from '../../utils/EventEmitterLike.ts';
+import type { VideoInfo } from './VideoInfo.ts';
 
-import AddChatItemAction from '../classes/livechat/AddChatItemAction.ts';
-import AddLiveChatTickerItemAction from '../classes/livechat/AddLiveChatTickerItemAction.ts';
-import MarkChatItemAsDeletedAction from '../classes/livechat/MarkChatItemAsDeletedAction.ts';
-import MarkChatItemsByAuthorAsDeletedAction from '../classes/livechat/MarkChatItemsByAuthorAsDeletedAction.ts';
-import ReplaceChatItemAction from '../classes/livechat/ReplaceChatItemAction.ts';
-import ReplayChatItemAction from '../classes/livechat/ReplayChatItemAction.ts';
-import ShowLiveChatActionPanelAction from '../classes/livechat/ShowLiveChatActionPanelAction.ts';
+import { AddChatItemAction } from '../classes/livechat/AddChatItemAction.ts';
+import { AddLiveChatTickerItemAction } from '../classes/livechat/AddLiveChatTickerItemAction.ts';
+import { MarkChatItemAsDeletedAction } from '../classes/livechat/MarkChatItemAsDeletedAction.ts';
+import { MarkChatItemsByAuthorAsDeletedAction } from '../classes/livechat/MarkChatItemsByAuthorAsDeletedAction.ts';
+import { ReplaceChatItemAction } from '../classes/livechat/ReplaceChatItemAction.ts';
+import { ReplayChatItemAction } from '../classes/livechat/ReplayChatItemAction.ts';
+import { ShowLiveChatActionPanelAction } from '../classes/livechat/ShowLiveChatActionPanelAction.ts';
 
-import UpdateTitleAction from '../classes/livechat/UpdateTitleAction.ts';
-import UpdateDescriptionAction from '../classes/livechat/UpdateDescriptionAction.ts';
-import UpdateViewershipAction from '../classes/livechat/UpdateViewershipAction.ts';
-import UpdateDateTextAction from '../classes/livechat/UpdateDateTextAction.ts';
-import UpdateToggleButtonTextAction from '../classes/livechat/UpdateToggleButtonTextAction.ts';
+import { UpdateTitleAction } from '../classes/livechat/UpdateTitleAction.ts';
+import { UpdateDescriptionAction } from '../classes/livechat/UpdateDescriptionAction.ts';
+import { UpdateViewershipAction } from '../classes/livechat/UpdateViewershipAction.ts';
+import { UpdateDateTextAction } from '../classes/livechat/UpdateDateTextAction.ts';
+import { UpdateToggleButtonTextAction } from '../classes/livechat/UpdateToggleButtonTextAction.ts';
 
-import AddBannerToLiveChatCommand from '../classes/livechat/AddBannerToLiveChatCommand.ts';
-import RemoveBannerForLiveChatCommand from '../classes/livechat/RemoveBannerForLiveChatCommand.ts';
-import ShowLiveChatTooltipCommand from '../classes/livechat/ShowLiveChatTooltipCommand.ts';
+import { AddBannerToLiveChatCommand } from '../classes/livechat/AddBannerToLiveChatCommand.ts';
+import { RemoveBannerForLiveChatCommand } from '../classes/livechat/RemoveBannerForLiveChatCommand.ts';
+import { ShowLiveChatTooltipCommand } from '../classes/livechat/ShowLiveChatTooltipCommand.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
 import { ObservedArray, YTNode } from '../helpers.ts';
@@ -43,7 +43,7 @@ export interface LiveMetadata {
   date: UpdateDateTextAction | undefined;
 }
 
-class LiveChat extends EventEmitter {
+export class LiveChat extends EventEmitterLike {
   #actions;
   #video_info;
   #continuation;
@@ -213,5 +213,3 @@ class LiveChat extends EventEmitter {
     return new Promise<void>((resolve) => setTimeout(() => resolve(), ms));
   }
 }
-
-export default LiveChat;

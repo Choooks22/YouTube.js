@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class CommentReplies extends YTNode {
+export class CommentReplies extends YTNode {
   static type = 'CommentReplies';
 
   contents;
@@ -15,5 +15,3 @@ class CommentReplies extends YTNode {
     this.hide_replies = Parser.parse(data.hideReplies);
   }
 }
-
-export default CommentReplies;

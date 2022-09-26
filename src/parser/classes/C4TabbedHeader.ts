@@ -1,10 +1,10 @@
-import Parser from '../index.ts';
-import Author from './misc/Author.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import Text from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { Author } from './misc/Author.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class C4TabbedHeader extends YTNode {
+export class C4TabbedHeader extends YTNode {
   static type = 'C4TabbedHeader';
 
   author;
@@ -44,5 +44,3 @@ class C4TabbedHeader extends YTNode {
       : undefined;
   }
 }
-
-export default C4TabbedHeader;

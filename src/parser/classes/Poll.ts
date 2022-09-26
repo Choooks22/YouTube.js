@@ -1,9 +1,9 @@
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class Poll extends YTNode {
+export class Poll extends YTNode {
   static type = 'Poll';
 
   choices: {
@@ -54,5 +54,3 @@ class Poll extends YTNode {
     }
   }
 }
-
-export default Poll;

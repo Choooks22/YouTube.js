@@ -1,12 +1,12 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import PlaylistPanelVideo from './PlaylistPanelVideo.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { PlaylistPanelVideo } from './PlaylistPanelVideo.ts';
 
 import { YTNode } from '../helpers.ts';
-import AutomixPreviewVideo from './AutomixPreviewVideo.ts';
-import PlaylistPanelVideoWrapper from './PlaylistPanelVideoWrapper.ts';
+import { AutomixPreviewVideo } from './AutomixPreviewVideo.ts';
+import { PlaylistPanelVideoWrapper } from './PlaylistPanelVideoWrapper.ts';
 
-class PlaylistPanel extends YTNode {
+export class PlaylistPanel extends YTNode {
   static type = 'PlaylistPanel';
 
   title: string;
@@ -36,5 +36,3 @@ class PlaylistPanel extends YTNode {
     this.num_items_to_show = data.numItemsToShow;
   }
 }
-
-export default PlaylistPanel;

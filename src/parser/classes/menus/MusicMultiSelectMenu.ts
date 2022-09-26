@@ -1,10 +1,10 @@
-import MusicMultiSelectMenuItem from './MusicMultiSelectMenuItem.ts';
-import MusicMenuItemDivider from './MusicMenuItemDivider.ts';
+import { MusicMultiSelectMenuItem } from './MusicMultiSelectMenuItem.ts';
+import { MusicMenuItemDivider } from './MusicMenuItemDivider.ts';
 import { YTNode } from '../../helpers.ts';
-import Text from '../misc/Text.ts';
-import Parser from '../../index.ts';
+import { Text } from '../misc/Text.ts';
+import { Parser } from '../../index.ts';
 
-class MusicMultiSelectMenu extends YTNode {
+export class MusicMultiSelectMenu extends YTNode {
   static type = 'MusicMultiSelectMenu';
 
   title: string;
@@ -20,5 +20,3 @@ class MusicMultiSelectMenu extends YTNode {
     ]);
   }
 }
-
-export default MusicMultiSelectMenu;

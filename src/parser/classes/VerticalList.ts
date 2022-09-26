@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class VerticalList extends YTNode {
+export class VerticalList extends YTNode {
   static type = 'VerticalList';
 
   items;
@@ -21,5 +21,3 @@ class VerticalList extends YTNode {
     return this.items;
   }
 }
-
-export default VerticalList;

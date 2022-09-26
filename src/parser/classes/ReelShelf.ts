@@ -1,9 +1,9 @@
-import Parser from '../index.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Text from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class ReelShelf extends YTNode {
+export class ReelShelf extends YTNode {
   static type = 'ReelShelf';
 
   title: Text;
@@ -24,5 +24,3 @@ class ReelShelf extends YTNode {
     return this.items;
   }
 }
-
-export default ReelShelf;

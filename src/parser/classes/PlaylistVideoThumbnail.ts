@@ -1,7 +1,7 @@
-import Thumbnail from './misc/Thumbnail.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class PlaylistVideoThumbnail extends YTNode {
+export class PlaylistVideoThumbnail extends YTNode {
   static type = 'PlaylistVideoThumbnail';
 
   thumbnail: Thumbnail[];
@@ -11,5 +11,3 @@ class PlaylistVideoThumbnail extends YTNode {
     this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
   }
 }
-
-export default PlaylistVideoThumbnail;

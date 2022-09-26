@@ -1,4 +1,4 @@
-class Thumbnail {
+export class Thumbnail {
   url: string;
   width: number;
   height: number;
@@ -20,5 +20,3 @@ class Thumbnail {
     ) => b.width - a.width);
   }
 }
-
-export default Thumbnail;

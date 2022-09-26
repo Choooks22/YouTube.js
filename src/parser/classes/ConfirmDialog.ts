@@ -1,10 +1,10 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import Button from './Button.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { Button } from './Button.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class ConfirmDialog extends YTNode {
+export class ConfirmDialog extends YTNode {
   static type = 'ConfirmDialog';
 
   title: Text;
@@ -20,5 +20,3 @@ class ConfirmDialog extends YTNode {
     this.dialog_messages = data.dialogMessages.map((txt: any) => new Text(txt));
   }
 }
-
-export default ConfirmDialog;

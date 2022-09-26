@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class LiveChatItemList extends YTNode {
+export class LiveChatItemList extends YTNode {
   static type = 'LiveChatItemList';
 
   max_items_to_display: string;
@@ -15,5 +15,3 @@ class LiveChatItemList extends YTNode {
     );
   }
 }
-
-export default LiveChatItemList;

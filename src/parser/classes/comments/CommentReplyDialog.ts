@@ -1,9 +1,9 @@
-import Parser from '../../index.ts';
-import Thumbnail from '../misc/Thumbnail.ts';
-import Text from '../misc/Text.ts';
+import { Parser } from '../../index.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
 
-class CommentReplyDialog extends YTNode {
+export class CommentReplyDialog extends YTNode {
   static type = 'CommentReplyDialog';
 
   reply_button;
@@ -21,5 +21,3 @@ class CommentReplyDialog extends YTNode {
     this.error_message = new Text(data.errorMessage);
   }
 }
-
-export default CommentReplyDialog;

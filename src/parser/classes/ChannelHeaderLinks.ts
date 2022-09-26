@@ -1,9 +1,9 @@
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class HeaderLink {
+export class HeaderLink {
   endpoint: NavigationEndpoint;
   icon: Thumbnail[];
   title: Text;
@@ -15,7 +15,7 @@ class HeaderLink {
   }
 }
 
-class ChannelHeaderLinks extends YTNode {
+export class ChannelHeaderLinks extends YTNode {
   static type = 'ChannelHeaderLinks';
 
   primary: HeaderLink[];
@@ -29,5 +29,3 @@ class ChannelHeaderLinks extends YTNode {
       data.secondaryLinks?.map((link: any) => new HeaderLink(link)) || [];
   }
 }
-
-export default ChannelHeaderLinks;

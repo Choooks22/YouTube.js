@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
-import Tab from './Tab.ts';
+import { Tab } from './Tab.ts';
 
-class TabbedSearchResults extends YTNode {
+export class TabbedSearchResults extends YTNode {
   static type = 'TabbedSearchResults';
 
   tabs;
@@ -12,5 +12,3 @@ class TabbedSearchResults extends YTNode {
     this.tabs = Parser.parseArray<Tab>(data.tabs, Tab);
   }
 }
-
-export default TabbedSearchResults;

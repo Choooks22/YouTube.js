@@ -1,9 +1,9 @@
-import Parser from '../../../index.ts';
-import Text from '../../misc/Text.ts';
-import Thumbnail from '../../misc/Thumbnail.ts';
+import { Parser } from '../../../index.ts';
+import { Text } from '../../misc/Text.ts';
+import { Thumbnail } from '../../misc/Thumbnail.ts';
 import { YTNode } from '../../../helpers.ts';
 
-class LiveChatBannerPoll extends YTNode {
+export class LiveChatBannerPoll extends YTNode {
   static type = 'LiveChatBannerPoll';
 
   poll_question: Text;
@@ -32,5 +32,3 @@ class LiveChatBannerPoll extends YTNode {
     this.context_menu_button = Parser.parse(data.contextMenuButton);
   }
 }
-
-export default LiveChatBannerPoll;

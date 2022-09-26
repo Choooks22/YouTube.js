@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class RichListHeader extends YTNode {
+export class RichListHeader extends YTNode {
   static type = 'RichListHeader';
 
   title: Text;
@@ -13,5 +13,3 @@ class RichListHeader extends YTNode {
     this.icon_type = data.icon.iconType;
   }
 }
-
-export default RichListHeader;

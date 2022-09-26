@@ -1,7 +1,7 @@
-import MetadataBadge from './MetadataBadge.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { MetadataBadge } from './MetadataBadge.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 
-class LiveChatAuthorBadge extends MetadataBadge {
+export class LiveChatAuthorBadge extends MetadataBadge {
   static type = 'LiveChatAuthorBadge';
 
   custom_thumbnail: Thumbnail[] | null;
@@ -13,5 +13,3 @@ class LiveChatAuthorBadge extends MetadataBadge {
       : null;
   }
 }
-
-export default LiveChatAuthorBadge;

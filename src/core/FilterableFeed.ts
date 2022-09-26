@@ -1,11 +1,11 @@
-import ChipCloudChip from '../parser/classes/ChipCloudChip.ts';
-import FeedFilterChipBar from '../parser/classes/FeedFilterChipBar.ts';
+import { ChipCloudChip } from '../parser/classes/ChipCloudChip.ts';
+import { FeedFilterChipBar } from '../parser/classes/FeedFilterChipBar.ts';
 import { ObservedArray } from '../parser/helpers.ts';
 import { InnertubeError } from '../utils/Utils.ts';
-import Actions from './Actions.ts';
-import Feed from './Feed.ts';
+import { Actions } from './Actions.ts';
+import { Feed } from './Feed.ts';
 
-class FilterableFeed extends Feed {
+export class FilterableFeed extends Feed {
   #chips?: ObservedArray<ChipCloudChip>;
 
   constructor(actions: Actions, data: any, already_parsed = false) {
@@ -75,5 +75,3 @@ class FilterableFeed extends Feed {
     return new Feed(this.actions, response, true);
   }
 }
-
-export default FilterableFeed;

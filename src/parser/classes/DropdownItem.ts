@@ -1,8 +1,8 @@
 import { YTNode } from '../helpers.ts';
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 
-class DropdownItem extends YTNode {
+export class DropdownItem extends YTNode {
   static type = 'DropdownItem';
 
   label: string;
@@ -37,5 +37,3 @@ class DropdownItem extends YTNode {
     }
   }
 }
-
-export default DropdownItem;

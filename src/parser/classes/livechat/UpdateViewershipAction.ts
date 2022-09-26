@@ -1,7 +1,7 @@
-import Text from '../misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
 
-class UpdateViewershipAction extends YTNode {
+export class UpdateViewershipAction extends YTNode {
   static type = 'UpdateViewershipAction';
 
   view_count: Text;
@@ -18,5 +18,3 @@ class UpdateViewershipAction extends YTNode {
     this.is_live = view_count_renderer.isLive;
   }
 }
-
-export default UpdateViewershipAction;

@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class TitleAndButtonListHeader extends YTNode {
+export class TitleAndButtonListHeader extends YTNode {
   static type = 'TitleAndButtonListHeader';
 
   title: Text;
@@ -11,5 +11,3 @@ class TitleAndButtonListHeader extends YTNode {
     this.title = new Text(data.title);
   }
 }
-
-export default TitleAndButtonListHeader;

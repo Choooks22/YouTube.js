@@ -1,9 +1,9 @@
-import Text from './misc/Text.ts';
-import Parser from '../index.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { Text } from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class LiveChatMessageInput extends YTNode {
+export class LiveChatMessageInput extends YTNode {
   static type = 'LiveChatMessageInput';
 
   author_name: Text;
@@ -19,5 +19,3 @@ class LiveChatMessageInput extends YTNode {
     this.target_id = data.targetId;
   }
 }
-
-export default LiveChatMessageInput;

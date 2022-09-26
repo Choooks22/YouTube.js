@@ -1,11 +1,11 @@
-import Video from './AnalyticsVideo.ts';
+import { AnalyticsVideo } from './AnalyticsVideo.ts';
 import { YTNode } from '../../helpers.ts';
 
-class AnalyticsVodCarouselCard extends YTNode {
+export class AnalyticsVodCarouselCard extends YTNode {
   static type = 'AnalyticsVodCarouselCard';
 
   title: string;
-  videos: Video[] | null;
+  videos: AnalyticsVideo[] | null;
   no_data_message?: string;
 
   constructor(data: any) {
@@ -17,9 +17,9 @@ class AnalyticsVodCarouselCard extends YTNode {
     }
 
     this.videos =
-      data.videoCarouselData?.videos.map((video: any) => new Video(video)) ||
+      data.videoCarouselData?.videos.map((video: any) =>
+        new AnalyticsVideo(video)
+      ) ||
       null;
   }
 }
-
-export default AnalyticsVodCarouselCard;

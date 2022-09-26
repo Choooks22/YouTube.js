@@ -1,6 +1,6 @@
-import Player from '../../../core/Player.ts';
+import { Player } from '../../../core/Player.ts';
 
-class Format {
+export class Format {
   itag: string;
   mime_type: string;
   bitrate;
@@ -83,5 +83,3 @@ class Format {
     return player.decipher(this.url, this.signature_cipher, this.cipher);
   }
 }
-
-export default Format;

@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class MusicDescriptionShelf extends YTNode {
+export class MusicDescriptionShelf extends YTNode {
   static type = 'MusicDescriptionShelf';
 
   description: Text;
@@ -24,5 +24,3 @@ class MusicDescriptionShelf extends YTNode {
     this.footer = new Text(data.footer);
   }
 }
-
-export default MusicDescriptionShelf;

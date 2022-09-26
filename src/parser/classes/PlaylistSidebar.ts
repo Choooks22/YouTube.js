@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class PlaylistSidebar extends YTNode {
+export class PlaylistSidebar extends YTNode {
   static type = 'PlaylistSidebar';
 
   items;
@@ -16,5 +16,3 @@ class PlaylistSidebar extends YTNode {
     return this.items;
   }
 }
-
-export default PlaylistSidebar;

@@ -1,12 +1,12 @@
-import Parser from '../index.ts';
-import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
+import { Parser } from '../index.ts';
+import { Actions, AxioslikeResponse } from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 
-import Notification from '../classes/Notification.ts';
-import SimpleMenuHeader from '../classes/menus/SimpleMenuHeader.ts';
-import ContinuationItem from '../classes/ContinuationItem.ts';
+import { Notification } from '../classes/Notification.ts';
+import { SimpleMenuHeader } from '../classes/menus/SimpleMenuHeader.ts';
+import { ContinuationItem } from '../classes/ContinuationItem.ts';
 
-class NotificationsMenu {
+export class NotificationsMenu {
   #page;
   #actions;
 
@@ -39,5 +39,3 @@ class NotificationsMenu {
     return new NotificationsMenu(this.#actions, response);
   }
 }
-
-export default NotificationsMenu;

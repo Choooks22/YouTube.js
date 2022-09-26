@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 
-class MusicInlineBadge extends YTNode {
+export class MusicInlineBadge extends YTNode {
   static type = 'MusicInlineBadge';
 
   icon_type: string;
@@ -12,5 +12,3 @@ class MusicInlineBadge extends YTNode {
     this.label = data.accessibilityData.accessibilityData.label;
   }
 }
-
-export default MusicInlineBadge;

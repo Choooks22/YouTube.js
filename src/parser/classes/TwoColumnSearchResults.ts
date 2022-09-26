@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class TwoColumnSearchResults extends YTNode {
+export class TwoColumnSearchResults extends YTNode {
   static type = 'TwoColumnSearchResults';
 
   primary_contents;
@@ -13,5 +13,3 @@ class TwoColumnSearchResults extends YTNode {
     this.secondary_contents = Parser.parse(data.secondaryContents);
   }
 }
-
-export default TwoColumnSearchResults;

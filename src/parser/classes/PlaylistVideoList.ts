@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class PlaylistVideoList extends YTNode {
+export class PlaylistVideoList extends YTNode {
   static type = 'PlaylistVideoList';
 
   id: string;
@@ -17,5 +17,3 @@ class PlaylistVideoList extends YTNode {
     this.videos = Parser.parse(data.contents);
   }
 }
-
-export default PlaylistVideoList;

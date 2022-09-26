@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 
-class SortFilterSubMenu extends YTNode {
+export class SortFilterSubMenu extends YTNode {
   static type = 'SortFilterSubMenu';
 
   sub_menu_items: {
@@ -25,5 +25,3 @@ class SortFilterSubMenu extends YTNode {
     this.label = data.accessibility.accessibilityData.label;
   }
 }
-
-export default SortFilterSubMenu;

@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class UniversalWatchCard extends YTNode {
+export class UniversalWatchCard extends YTNode {
   static type = 'UniversalWatchCard';
 
   header;
@@ -16,5 +16,3 @@ class UniversalWatchCard extends YTNode {
     this.sections = Parser.parse(data.sections);
   }
 }
-
-export default UniversalWatchCard;

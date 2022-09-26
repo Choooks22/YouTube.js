@@ -1,9 +1,9 @@
-import Author from './misc/Author.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Text from './misc/Text.ts';
+import { Author } from './misc/Author.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class Channel extends YTNode {
+export class Channel extends YTNode {
   static type = 'Channel';
 
   id: string;
@@ -32,5 +32,3 @@ class Channel extends YTNode {
     this.description_snippet = new Text(data.descriptionSnippet);
   }
 }
-
-export default Channel;

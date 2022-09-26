@@ -1,10 +1,10 @@
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class SimpleCardContent extends YTNode {
+export class SimpleCardContent extends YTNode {
   static type = 'SimpleCardContent';
 
   image: Thumbnail[];
@@ -25,5 +25,3 @@ class SimpleCardContent extends YTNode {
     this.endpoint = new NavigationEndpoint(data.command);
   }
 }
-
-export default SimpleCardContent;

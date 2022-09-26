@@ -1,9 +1,9 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class Button extends YTNode {
+export class Button extends YTNode {
   static type = 'Button';
 
   text: string;
@@ -35,5 +35,3 @@ class Button extends YTNode {
     );
   }
 }
-
-export default Button;

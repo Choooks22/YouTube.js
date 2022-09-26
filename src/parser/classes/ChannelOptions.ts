@@ -1,10 +1,10 @@
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class ChannelOptions extends YTNode {
+export class ChannelOptions extends YTNode {
   static type = 'ChannelOptions';
 
   avatar: Thumbnail[];
@@ -20,5 +20,3 @@ class ChannelOptions extends YTNode {
     this.links = data.links.map((link: any) => new Text(link));
   }
 }
-
-export default ChannelOptions;

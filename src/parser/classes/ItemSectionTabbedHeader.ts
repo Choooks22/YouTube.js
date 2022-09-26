@@ -1,9 +1,9 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { ObservedArray, YTNode } from '../helpers.ts';
-import ItemSectionTab from './ItemSectionTab.ts';
-import Parser from '../index.ts';
+import { ItemSectionTab } from './ItemSectionTab.ts';
+import { Parser } from '../index.ts';
 
-class ItemSectionTabbedHeader extends YTNode {
+export class ItemSectionTabbedHeader extends YTNode {
   static type = 'ItemSectionTabbedHeader';
 
   title: Text;
@@ -19,5 +19,3 @@ class ItemSectionTabbedHeader extends YTNode {
     }
   }
 }
-
-export default ItemSectionTabbedHeader;

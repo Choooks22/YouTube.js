@@ -1,9 +1,9 @@
-import Parser from '../index.ts';
-import MusicResponsiveListItem from './MusicResponsiveListItem.ts';
+import { Parser } from '../index.ts';
+import { MusicResponsiveListItem } from './MusicResponsiveListItem.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class MusicPlaylistShelf extends YTNode {
+export class MusicPlaylistShelf extends YTNode {
   static type = 'MusicPlaylistShelf';
 
   playlist_id: string;
@@ -24,5 +24,3 @@ class MusicPlaylistShelf extends YTNode {
       data.continuations?.[0]?.nextContinuationData?.continuation || null;
   }
 }
-
-export default MusicPlaylistShelf;

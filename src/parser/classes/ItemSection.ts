@@ -1,10 +1,10 @@
-import Parser from '../index.ts';
-import ItemSectionHeader from './ItemSectionHeader.ts';
+import { Parser } from '../index.ts';
+import { ItemSectionHeader } from './ItemSectionHeader.ts';
 
 import { YTNode } from '../helpers.ts';
-import ItemSectionTabbedHeader from './ItemSectionTabbedHeader.ts';
+import { ItemSectionTabbedHeader } from './ItemSectionTabbedHeader.ts';
 
-class ItemSection extends YTNode {
+export class ItemSection extends YTNode {
   static type = 'ItemSection';
 
   header: ItemSectionHeader | ItemSectionTabbedHeader | null;
@@ -24,5 +24,3 @@ class ItemSection extends YTNode {
     }
   }
 }
-
-export default ItemSection;

@@ -1,8 +1,8 @@
-import Parser from '../../index.ts';
-import Text from '../misc/Text.ts';
+import { Parser } from '../../index.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
 
-class SimpleMenuHeader extends YTNode {
+export class SimpleMenuHeader extends YTNode {
   static type = 'SimpleMenuHeader';
 
   title: Text;
@@ -14,5 +14,3 @@ class SimpleMenuHeader extends YTNode {
     this.buttons = Parser.parse(data.buttons);
   }
 }
-
-export default SimpleMenuHeader;

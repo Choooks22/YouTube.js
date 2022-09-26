@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class ChannelMobileHeader extends YTNode {
+export class ChannelMobileHeader extends YTNode {
   static type = 'ChannelMobileHeader';
 
   title: Text;
@@ -11,5 +11,3 @@ class ChannelMobileHeader extends YTNode {
     this.title = new Text(data.title);
   }
 }
-
-export default ChannelMobileHeader;

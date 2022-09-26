@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class Grid extends YTNode {
+export class Grid extends YTNode {
   static type = 'Grid';
 
   items;
@@ -30,5 +30,3 @@ class Grid extends YTNode {
     return this.items;
   }
 }
-
-export default Grid;

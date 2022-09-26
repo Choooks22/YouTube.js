@@ -1,7 +1,7 @@
-import TextRun from './TextRun.ts';
-import EmojiRun from './EmojiRun.ts';
+import { TextRun } from './TextRun.ts';
+import { EmojiRun } from './EmojiRun.ts';
 
-class Text {
+export class Text {
   text: string;
   runs;
 
@@ -20,5 +20,3 @@ class Text {
     return this.text;
   }
 }
-
-export default Text;

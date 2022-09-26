@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class ShowLiveChatTooltipCommand extends YTNode {
+export class ShowLiveChatTooltipCommand extends YTNode {
   static type = 'ShowLiveChatTooltipCommand';
 
   tooltip;
@@ -11,5 +11,3 @@ class ShowLiveChatTooltipCommand extends YTNode {
     this.tooltip = Parser.parse(data.tooltip);
   }
 }
-
-export default ShowLiveChatTooltipCommand;

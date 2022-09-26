@@ -1,7 +1,7 @@
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class MusicPlayButton extends YTNode {
+export class MusicPlayButton extends YTNode {
   static type = 'MusicPlayButton';
 
   endpoint: NavigationEndpoint;
@@ -28,5 +28,3 @@ class MusicPlayButton extends YTNode {
     this.icon_color = data.iconColor;
   }
 }
-
-export default MusicPlayButton;

@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class ContinuationItem extends YTNode {
+export class ContinuationItem extends YTNode {
   static type = 'ContinuationItem';
 
   trigger: string;
@@ -20,5 +20,3 @@ class ContinuationItem extends YTNode {
     this.endpoint = new NavigationEndpoint(data.continuationEndpoint);
   }
 }
-
-export default ContinuationItem;

@@ -1,11 +1,11 @@
-import Player from './Player.ts';
-import Proto from '../proto/proto.ts';
-import Actions from './Actions.ts';
-import Constants from '../utils/Constants.ts';
-import UniversalCache from '../utils/Cache.ts';
-import EventEmitterLike from '../utils/EventEmitterLike.ts';
+import { Player } from './Player.ts';
+import { Proto } from '../proto/proto.ts';
+import { Actions } from './Actions.ts';
+import * as Constants from '../utils/Constants.ts';
+import { UniversalCache } from '../utils/Cache.ts';
+import { EventEmitterLike } from '../utils/EventEmitterLike.ts';
 
-import HTTPClient, { FetchFunction } from '../utils/HTTPClient.ts';
+import { FetchFunction, HTTPClient } from '../utils/HTTPClient.ts';
 import {
   DeviceCategory,
   generateRandomString,
@@ -13,8 +13,9 @@ import {
   InnertubeError,
   SessionError,
 } from '../utils/Utils.ts';
-import OAuth, {
+import {
   Credentials,
+  OAuth,
   OAuthAuthErrorEventHandler,
   OAuthAuthEventHandler,
   OAuthAuthPendingEventHandler,
@@ -72,7 +73,7 @@ export interface SessionOptions {
   fetch?: FetchFunction;
 }
 
-export default class Session extends EventEmitterLike {
+export class Session extends EventEmitterLike {
   #api_version;
   #key;
   #context;

@@ -1,22 +1,22 @@
-import Parser, { ParsedResponse } from '../index.ts';
-import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
+import { ParsedResponse, Parser } from '../index.ts';
+import { Actions, AxioslikeResponse } from '../../core/Actions.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
 
-import SectionList from '../classes/SectionList.ts';
-import TabbedSearchResults from '../classes/TabbedSearchResults.ts';
+import { SectionList } from '../classes/SectionList.ts';
+import { TabbedSearchResults } from '../classes/TabbedSearchResults.ts';
 
-import DidYouMean from '../classes/DidYouMean.ts';
-import ShowingResultsFor from '../classes/ShowingResultsFor.ts';
-import MusicShelf from '../classes/MusicShelf.ts';
-import MusicResponsiveListItem from '../classes/MusicResponsiveListItem.ts';
+import { DidYouMean } from '../classes/DidYouMean.ts';
+import { ShowingResultsFor } from '../classes/ShowingResultsFor.ts';
+import { MusicShelf } from '../classes/MusicShelf.ts';
+import { MusicResponsiveListItem } from '../classes/MusicResponsiveListItem.ts';
 
-import ChipCloud from '../classes/ChipCloud.ts';
-import ChipCloudChip from '../classes/ChipCloudChip.ts';
-import ItemSection from '../classes/ItemSection.ts';
-import Message from '../classes/Message.ts';
+import { ChipCloud } from '../classes/ChipCloud.ts';
+import { ChipCloudChip } from '../classes/ChipCloudChip.ts';
+import { ItemSection } from '../classes/ItemSection.ts';
+import { Message } from '../classes/Message.ts';
 
-class Search {
+export class Search {
   #page;
   #actions;
   #continuation;
@@ -187,5 +187,3 @@ class Search {
     return this.#page;
   }
 }
-
-export default Search;

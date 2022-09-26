@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class AddLiveChatTickerItemAction extends YTNode {
+export class AddLiveChatTickerItemAction extends YTNode {
   static type = 'AddLiveChatTickerItemAction';
 
   item;
@@ -13,5 +13,3 @@ class AddLiveChatTickerItemAction extends YTNode {
     this.duration_sec = data.durationSec;
   }
 }
-
-export default AddLiveChatTickerItemAction;

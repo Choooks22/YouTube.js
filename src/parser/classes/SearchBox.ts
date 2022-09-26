@@ -1,9 +1,9 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class SearchBox extends YTNode {
+export class SearchBox extends YTNode {
   static type = 'SearchBox';
 
   endpoint: NavigationEndpoint;
@@ -19,5 +19,3 @@ class SearchBox extends YTNode {
     this.placeholder_text = new Text(data.placeholderText);
   }
 }
-
-export default SearchBox;

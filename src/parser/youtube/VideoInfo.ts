@@ -1,38 +1,34 @@
-import Parser, { ParsedResponse } from '../index.ts';
-import Constants from '../../utils/Constants.ts';
-import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
-import Player from '../../core/Player.ts';
+import { ParsedResponse, Parser } from '../index.ts';
+import * as Constants from '../../utils/Constants.ts';
+import { Actions, AxioslikeResponse } from '../../core/Actions.ts';
+import { Player } from '../../core/Player.ts';
 
-import TwoColumnWatchNextResults from '../classes/TwoColumnWatchNextResults.ts';
-import VideoPrimaryInfo from '../classes/VideoPrimaryInfo.ts';
-import VideoSecondaryInfo from '../classes/VideoSecondaryInfo.ts';
-import Format from '../classes/misc/Format.ts';
+import { TwoColumnWatchNextResults } from '../classes/TwoColumnWatchNextResults.ts';
+import { VideoPrimaryInfo } from '../classes/VideoPrimaryInfo.ts';
+import { VideoSecondaryInfo } from '../classes/VideoSecondaryInfo.ts';
+import { Format } from '../classes/misc/Format.ts';
 
-import MerchandiseShelf from '../classes/MerchandiseShelf.ts';
-import RelatedChipCloud from '../classes/RelatedChipCloud.ts';
+import { MerchandiseShelf } from '../classes/MerchandiseShelf.ts';
+import { RelatedChipCloud } from '../classes/RelatedChipCloud.ts';
 
-import ChipCloud from '../classes/ChipCloud.ts';
-import ItemSection from '../classes/ItemSection.ts';
-import PlayerOverlay from '../classes/PlayerOverlay.ts';
-import ToggleButton from '../classes/ToggleButton.ts';
-import CommentsEntryPointHeader from '../classes/comments/CommentsEntryPointHeader.ts';
-import SegmentedLikeDislikeButton from '../classes/SegmentedLikeDislikeButton.ts';
-import ContinuationItem from '../classes/ContinuationItem.ts';
-import PlayerMicroformat from '../classes/PlayerMicroformat.ts';
-import MicroformatData from '../classes/MicroformatData.ts';
+import { ChipCloud } from '../classes/ChipCloud.ts';
+import { ItemSection } from '../classes/ItemSection.ts';
+import { PlayerOverlay } from '../classes/PlayerOverlay.ts';
+import { ToggleButton } from '../classes/ToggleButton.ts';
+import { CommentsEntryPointHeader } from '../classes/comments/CommentsEntryPointHeader.ts';
+import { SegmentedLikeDislikeButton } from '../classes/SegmentedLikeDislikeButton.ts';
+import { ContinuationItem } from '../classes/ContinuationItem.ts';
+import { PlayerMicroformat } from '../classes/PlayerMicroformat.ts';
+import { MicroformatData } from '../classes/MicroformatData.ts';
 
-import LiveChat from '../classes/LiveChat.ts';
-import LiveChatWrap from './LiveChat.ts';
+import { LiveChat } from '../classes/LiveChat.ts';
+import { LiveChat as LiveChatWrap } from './LiveChat.ts';
 
-// import { DOMParser } from 'linkedom';
-// import type { XMLDocument } from 'linkedom/types/xml/document.ts';
-// import type { Element } from 'linkedom/types/interface/element.ts';
 import {
   getStringBetweenStrings,
   InnertubeError,
   streamToIterable,
 } from '../../utils/Utils.ts';
-// import type { Node } from 'linkedom/types/interface/node.ts';
 
 export type URLTransformer = (url: URL) => URL;
 
@@ -65,7 +61,7 @@ export interface DownloadOptions extends FormatOptions {
   };
 }
 
-class VideoInfo {
+export class VideoInfo {
   #page: [ParsedResponse, ParsedResponse?];
   #actions;
   #player;
@@ -844,5 +840,3 @@ class VideoInfo {
     return readable_stream;
   }
 }
-
-export default VideoInfo;

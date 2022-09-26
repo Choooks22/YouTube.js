@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class SearchSuggestionsSection extends YTNode {
+export class SearchSuggestionsSection extends YTNode {
   static type = 'SearchSuggestionsSection';
 
   contents;
@@ -11,5 +11,3 @@ class SearchSuggestionsSection extends YTNode {
     this.contents = Parser.parse(data.contents);
   }
 }
-
-export default SearchSuggestionsSection;

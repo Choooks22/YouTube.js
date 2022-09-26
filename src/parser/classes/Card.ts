@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class Card extends YTNode {
+export class Card extends YTNode {
   static type = 'Card';
 
   teaser;
@@ -31,5 +31,3 @@ class Card extends YTNode {
     }));
   }
 }
-
-export default Card;

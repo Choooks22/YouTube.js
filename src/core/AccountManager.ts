@@ -1,12 +1,12 @@
-import Proto from '../proto/proto.ts';
-import Actions from './Actions.ts';
+import { Proto } from '../proto/proto.ts';
+import { Actions } from './Actions.ts';
 
-import Analytics from '../parser/youtube/Analytics.ts';
-import TimeWatched from '../parser/youtube/TimeWatched.ts';
-import AccountInfo from '../parser/youtube/AccountInfo.ts';
-import Settings from '../parser/youtube/Settings.ts';
+import { Analytics } from '../parser/youtube/Analytics.ts';
+import { TimeWatched } from '../parser/youtube/TimeWatched.ts';
+import { AccountInfo } from '../parser/youtube/AccountInfo.ts';
+import { Settings } from '../parser/youtube/Settings.ts';
 
-class AccountManager {
+export class AccountManager {
   #actions;
   channel;
 
@@ -81,5 +81,3 @@ class AccountManager {
     return new Analytics(response);
   }
 }
-
-export default AccountManager;

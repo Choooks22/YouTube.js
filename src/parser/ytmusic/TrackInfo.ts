@@ -1,25 +1,25 @@
-import Parser, { ParsedResponse } from '../index.ts';
-import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
-import Constants from '../../utils/Constants.ts';
+import { ParsedResponse, Parser } from '../index.ts';
+import { Actions, AxioslikeResponse } from '../../core/Actions.ts';
+import * as Constants from '../../utils/Constants.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 
-import Tab from '../classes/Tab.ts';
-import Tabbed from '../classes/Tabbed.ts';
-import WatchNextTabbedResults from '../classes/WatchNextTabbedResults.ts';
-import SingleColumnMusicWatchNextResults from '../classes/SingleColumnMusicWatchNextResults.ts';
-import MicroformatData from '../classes/MicroformatData.ts';
-import PlayerOverlay from '../classes/PlayerOverlay.ts';
-import PlaylistPanel from '../classes/PlaylistPanel.ts';
-import SectionList from '../classes/SectionList.ts';
-import MusicQueue from '../classes/MusicQueue.ts';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
-import MusicDescriptionShelf from '../classes/MusicDescriptionShelf.ts';
-import AutomixPreviewVideo from '../classes/AutomixPreviewVideo.ts';
-import Message from '../classes/Message.ts';
+import { Tab } from '../classes/Tab.ts';
+import { Tabbed } from '../classes/Tabbed.ts';
+import { WatchNextTabbedResults } from '../classes/WatchNextTabbedResults.ts';
+import { SingleColumnMusicWatchNextResults } from '../classes/SingleColumnMusicWatchNextResults.ts';
+import { MicroformatData } from '../classes/MicroformatData.ts';
+import { PlayerOverlay } from '../classes/PlayerOverlay.ts';
+import { PlaylistPanel } from '../classes/PlaylistPanel.ts';
+import { SectionList } from '../classes/SectionList.ts';
+import { MusicQueue } from '../classes/MusicQueue.ts';
+import { MusicCarouselShelf } from '../classes/MusicCarouselShelf.ts';
+import { MusicDescriptionShelf } from '../classes/MusicDescriptionShelf.ts';
+import { AutomixPreviewVideo } from '../classes/AutomixPreviewVideo.ts';
+import { Message } from '../classes/Message.ts';
 
 import { ObservedArray } from '../helpers.ts';
 
-class TrackInfo {
+export class TrackInfo {
   #page: [ParsedResponse, ParsedResponse?];
   #actions: Actions;
   #cpn;
@@ -226,5 +226,3 @@ class TrackInfo {
     return this.#page;
   }
 }
-
-export default TrackInfo;

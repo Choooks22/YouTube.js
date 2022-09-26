@@ -1,7 +1,7 @@
-import NavigationEndpoint from '../NavigationEndpoint.ts';
+import { NavigationEndpoint } from '../NavigationEndpoint.ts';
 import { YTNode } from '../../helpers.ts';
 
-class MenuServiceItemDownload extends YTNode {
+export class MenuServiceItemDownload extends YTNode {
   static type = 'MenuServiceItemDownload';
 
   has_separator: boolean;
@@ -15,5 +15,3 @@ class MenuServiceItemDownload extends YTNode {
     );
   }
 }
-
-export default MenuServiceItemDownload;

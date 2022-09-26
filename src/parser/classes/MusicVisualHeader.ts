@@ -1,10 +1,10 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import Menu from './menus/Menu.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { Menu } from './menus/Menu.ts';
 
-class MusicVisualHeader extends YTNode {
+export class MusicVisualHeader extends YTNode {
   static type = 'MusicVisualHeader';
 
   title;
@@ -27,5 +27,3 @@ class MusicVisualHeader extends YTNode {
       : [];
   }
 }
-
-export default MusicVisualHeader;

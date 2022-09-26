@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class ProfileColumnStatsEntry extends YTNode {
+export class ProfileColumnStatsEntry extends YTNode {
   static type = 'ProfileColumnStatsEntry';
 
   label: Text;
@@ -13,5 +13,3 @@ class ProfileColumnStatsEntry extends YTNode {
     this.value = new Text(data.value);
   }
 }
-
-export default ProfileColumnStatsEntry;

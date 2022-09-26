@@ -1,14 +1,14 @@
-import Parser, { ParsedResponse } from '../index.ts';
-import Actions, { ActionsResponse } from '../../core/Actions.ts';
+import { ParsedResponse, Parser } from '../index.ts';
+import { Actions, ActionsResponse } from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 
-import Button from '../classes/Button.ts';
-import CommentsHeader from '../classes/comments/CommentsHeader.ts';
-import CommentSimplebox from '../classes/comments/CommentSimplebox.ts';
-import CommentThread from '../classes/comments/CommentThread.ts';
-import ContinuationItem from '../classes/ContinuationItem.ts';
+import { Button } from '../classes/Button.ts';
+import { CommentsHeader } from '../classes/comments/CommentsHeader.ts';
+import { CommentSimplebox } from '../classes/comments/CommentSimplebox.ts';
+import { CommentThread } from '../classes/comments/CommentThread.ts';
+import { ContinuationItem } from '../classes/ContinuationItem.ts';
 
-class Comments {
+export class Comments {
   #page: ParsedResponse;
   #actions: Actions;
   #continuation: ContinuationItem | undefined;
@@ -102,5 +102,3 @@ class Comments {
     return this.#page;
   }
 }
-
-export default Comments;

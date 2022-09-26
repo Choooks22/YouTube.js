@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class MusicResponsiveListItemFixedColumn extends YTNode {
+export class MusicResponsiveListItemFixedColumn extends YTNode {
   static type = 'musicResponsiveListItemFlexColumnRenderer';
 
   title: Text;
@@ -13,5 +13,3 @@ class MusicResponsiveListItemFixedColumn extends YTNode {
     this.display_priority = data.displayPriority;
   }
 }
-
-export default MusicResponsiveListItemFixedColumn;

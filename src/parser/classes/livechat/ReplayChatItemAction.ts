@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class ReplayChatItemAction extends YTNode {
+export class ReplayChatItemAction extends YTNode {
   static type = 'ReplayChatItemAction';
 
   actions;
@@ -16,5 +16,3 @@ class ReplayChatItemAction extends YTNode {
     this.video_offset_time_msec = data.videoOffsetTimeMsec;
   }
 }
-
-export default ReplayChatItemAction;

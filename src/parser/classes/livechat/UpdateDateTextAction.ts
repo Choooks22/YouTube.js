@@ -1,7 +1,7 @@
-import Text from '../misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
 
-class UpdateDateTextAction extends YTNode {
+export class UpdateDateTextAction extends YTNode {
   static type = 'UpdateDateTextAction';
 
   date_text: string;
@@ -11,5 +11,3 @@ class UpdateDateTextAction extends YTNode {
     this.date_text = new Text(data.dateText).toString();
   }
 }
-
-export default UpdateDateTextAction;

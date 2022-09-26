@@ -1,40 +1,41 @@
-import Parser, {
+import {
   ParsedResponse,
+  Parser,
   ReloadContinuationItemsCommand,
 } from '../parser/index.ts';
 import { Memo, ObservedArray } from '../parser/helpers.ts';
 import { InnertubeError } from '../utils/Utils.ts';
-import Actions from './Actions.ts';
+import { Actions } from './Actions.ts';
 
-import Post from '../parser/classes/Post.ts';
-import BackstagePost from '../parser/classes/BackstagePost.ts';
+import { Post } from '../parser/classes/Post.ts';
+import { BackstagePost } from '../parser/classes/BackstagePost.ts';
 
-import Channel from '../parser/classes/Channel.ts';
-import CompactVideo from '../parser/classes/CompactVideo.ts';
+import { Channel } from '../parser/classes/Channel.ts';
+import { CompactVideo } from '../parser/classes/CompactVideo.ts';
 
-import GridChannel from '../parser/classes/GridChannel.ts';
-import GridPlaylist from '../parser/classes/GridPlaylist.ts';
-import GridVideo from '../parser/classes/GridVideo.ts';
+import { GridChannel } from '../parser/classes/GridChannel.ts';
+import { GridPlaylist } from '../parser/classes/GridPlaylist.ts';
+import { GridVideo } from '../parser/classes/GridVideo.ts';
 
-import Playlist from '../parser/classes/Playlist.ts';
-import PlaylistPanelVideo from '../parser/classes/PlaylistPanelVideo.ts';
-import PlaylistVideo from '../parser/classes/PlaylistVideo.ts';
+import { Playlist } from '../parser/classes/Playlist.ts';
+import { PlaylistPanelVideo } from '../parser/classes/PlaylistPanelVideo.ts';
+import { PlaylistVideo } from '../parser/classes/PlaylistVideo.ts';
 
-import Tab from '../parser/classes/Tab.ts';
-import ReelShelf from '../parser/classes/ReelShelf.ts';
-import RichShelf from '../parser/classes/RichShelf.ts';
-import Shelf from '../parser/classes/Shelf.ts';
+import { Tab } from '../parser/classes/Tab.ts';
+import { ReelShelf } from '../parser/classes/ReelShelf.ts';
+import { RichShelf } from '../parser/classes/RichShelf.ts';
+import { Shelf } from '../parser/classes/Shelf.ts';
 
-import TwoColumnBrowseResults from '../parser/classes/TwoColumnBrowseResults.ts';
-import TwoColumnSearchResults from '../parser/classes/TwoColumnSearchResults.ts';
-import WatchCardCompactVideo from '../parser/classes/WatchCardCompactVideo.ts';
-import AppendContinuationItemsAction from '../parser/classes/actions/AppendContinuationItemsAction.ts';
-import ContinuationItem from '../parser/classes/ContinuationItem.ts';
+import { TwoColumnBrowseResults } from '../parser/classes/TwoColumnBrowseResults.ts';
+import { TwoColumnSearchResults } from '../parser/classes/TwoColumnSearchResults.ts';
+import { WatchCardCompactVideo } from '../parser/classes/WatchCardCompactVideo.ts';
+import { AppendContinuationItemsAction } from '../parser/classes/actions/AppendContinuationItemsAction.ts';
+import { ContinuationItem } from '../parser/classes/ContinuationItem.ts';
 
-import Video from '../parser/classes/Video.ts';
+import { Video } from '../parser/classes/Video.ts';
 
 // TODO: add a way subdivide into sections and return subfeeds?
-class Feed {
+export class Feed {
   #page: ParsedResponse;
   #continuation?: ObservedArray<ContinuationItem>;
   #actions;
@@ -236,5 +237,3 @@ class Feed {
     return new Feed(this.actions, continuation_data, true);
   }
 }
-
-export default Feed;

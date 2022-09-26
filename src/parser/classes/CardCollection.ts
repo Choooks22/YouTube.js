@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class CardCollection extends YTNode {
+export class CardCollection extends YTNode {
   static type = 'CardCollection';
 
   cards;
@@ -16,5 +16,3 @@ class CardCollection extends YTNode {
     this.allow_teaser_dismiss = data.allowTeaserDismiss;
   }
 }
-
-export default CardCollection;

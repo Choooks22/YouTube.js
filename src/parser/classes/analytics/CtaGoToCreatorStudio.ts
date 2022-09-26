@@ -1,6 +1,6 @@
 import { YTNode } from '../../helpers.ts';
 
-class CtaGoToCreatorStudio extends YTNode {
+export class CtaGoToCreatorStudio extends YTNode {
   static type = 'CtaGoToCreatorStudio';
 
   title: string;
@@ -13,5 +13,3 @@ class CtaGoToCreatorStudio extends YTNode {
     // Is this even useful?
   }
 }
-
-export default CtaGoToCreatorStudio;

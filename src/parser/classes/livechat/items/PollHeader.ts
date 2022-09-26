@@ -1,9 +1,9 @@
-import Text from '../../misc/Text.ts';
-import Thumbnail from '../../misc/Thumbnail.ts';
-import Parser from '../../../index.ts';
+import { Text } from '../../misc/Text.ts';
+import { Thumbnail } from '../../misc/Thumbnail.ts';
+import { Parser } from '../../../index.ts';
 import { YTNode } from '../../../helpers.ts';
 
-class PollHeader extends YTNode {
+export class PollHeader extends YTNode {
   static type = 'PollHeader';
 
   poll_question: Text;
@@ -21,5 +21,3 @@ class PollHeader extends YTNode {
     this.context_menu_button = Parser.parse(data.contextMenuButton);
   }
 }
-
-export default PollHeader;

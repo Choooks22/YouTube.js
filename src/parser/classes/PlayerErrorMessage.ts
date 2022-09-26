@@ -1,11 +1,11 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import Button from './Button.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { Button } from './Button.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class PlayerErrorMessage extends YTNode {
+export class PlayerErrorMessage extends YTNode {
   static type = 'PlayerErrorMessage';
 
   subreason: Text;
@@ -23,5 +23,3 @@ class PlayerErrorMessage extends YTNode {
     this.icon_type = data.icon?.iconType || null;
   }
 }
-
-export default PlayerErrorMessage;

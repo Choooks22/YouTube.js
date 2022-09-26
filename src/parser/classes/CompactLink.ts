@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class CompactLink extends YTNode {
+export class CompactLink extends YTNode {
   static type = 'CompactLink';
 
   title: string;
@@ -16,5 +16,3 @@ class CompactLink extends YTNode {
     this.style = data.style;
   }
 }
-
-export default CompactLink;

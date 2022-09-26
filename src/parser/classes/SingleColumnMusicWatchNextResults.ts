@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class SingleColumnMusicWatchNextResults extends YTNode {
+export class SingleColumnMusicWatchNextResults extends YTNode {
   static type = 'SingleColumnMusicWatchNextResults';
 
   contents;
@@ -11,5 +11,3 @@ class SingleColumnMusicWatchNextResults extends YTNode {
     this.contents = Parser.parse(data);
   }
 }
-
-export default SingleColumnMusicWatchNextResults;

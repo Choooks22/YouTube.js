@@ -1,17 +1,17 @@
-import Actions from '../../core/Actions.ts';
-import Feed from '../../core/Feed.ts';
+import { Actions } from '../../core/Actions.ts';
+import { Feed } from '../../core/Feed.ts';
 
-import Thumbnail from '../classes/misc/Thumbnail.ts';
-import VideoOwner from '../classes/VideoOwner.ts';
+import { Thumbnail } from '../classes/misc/Thumbnail.ts';
+import { VideoOwner } from '../classes/VideoOwner.ts';
 
-import PlaylistSidebar from '../classes/PlaylistSidebar.ts';
-import PlaylistMetadata from '../classes/PlaylistMetadata.ts';
-import PlaylistSidebarPrimaryInfo from '../classes/PlaylistSidebarPrimaryInfo.ts';
-import PlaylistSidebarSecondaryInfo from '../classes/PlaylistSidebarSecondaryInfo.ts';
-import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.ts';
-import PlaylistHeader from '../classes/PlaylistHeader.ts';
+import { PlaylistSidebar } from '../classes/PlaylistSidebar.ts';
+import { PlaylistMetadata } from '../classes/PlaylistMetadata.ts';
+import { PlaylistSidebarPrimaryInfo } from '../classes/PlaylistSidebarPrimaryInfo.ts';
+import { PlaylistSidebarSecondaryInfo } from '../classes/PlaylistSidebarSecondaryInfo.ts';
+import { PlaylistVideoThumbnail } from '../classes/PlaylistVideoThumbnail.ts';
+import { PlaylistHeader } from '../classes/PlaylistHeader.ts';
 
-class Playlist extends Feed {
+export class Playlist extends Feed {
   info;
   menu;
   endpoint;
@@ -55,5 +55,3 @@ class Playlist extends Feed {
     return this.videos;
   }
 }
-
-export default Playlist;

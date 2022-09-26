@@ -1,10 +1,10 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class Notification extends YTNode {
+export class Notification extends YTNode {
   static type = 'Notification';
 
   thumbnails: Thumbnail[];
@@ -32,5 +32,3 @@ class Notification extends YTNode {
     this.read = data.read;
   }
 }
-
-export default Notification;

@@ -3,7 +3,7 @@ import { getRuntime } from './Utils.ts';
 // Browser Cache is based off:
 // https://github.com/elias551/simple-kvs/blob/master/src/index.ts
 
-export default class UniversalCache {
+export class UniversalCache {
   #persistent_directory: string;
   #persistent: boolean;
 

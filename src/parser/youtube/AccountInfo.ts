@@ -1,11 +1,11 @@
-import Parser, { ParsedResponse } from '../index.ts';
+import { ParsedResponse, Parser } from '../index.ts';
 import { AxioslikeResponse } from '../../core/Actions.ts';
 
-import AccountSectionList from '../classes/AccountSectionList.ts';
-import AccountItemSection from '../classes/AccountItemSection.ts';
-import AccountChannel from '../classes/AccountChannel.ts';
+import { AccountSectionList } from '../classes/AccountSectionList.ts';
+import { AccountItemSection } from '../classes/AccountItemSection.ts';
+import { AccountChannel } from '../classes/AccountChannel.ts';
 
-class AccountInfo {
+export class AccountInfo {
   #page;
 
   contents: AccountItemSection | null;
@@ -25,5 +25,3 @@ class AccountInfo {
     return this.#page;
   }
 }
-
-export default AccountInfo;

@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class ThumbnailOverlayHoverText extends YTNode {
+export class ThumbnailOverlayHoverText extends YTNode {
   static type = 'ThumbnailOverlayHoverText';
 
   text: Text;
@@ -13,5 +13,3 @@ class ThumbnailOverlayHoverText extends YTNode {
     this.icon_type = data.icon.iconType;
   }
 }
-
-export default ThumbnailOverlayHoverText;

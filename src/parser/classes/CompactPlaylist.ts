@@ -1,11 +1,9 @@
-import Playlist from './Playlist.ts';
+import { Playlist } from './Playlist.ts';
 
-class CompactPlaylist extends Playlist {
+export class CompactPlaylist extends Playlist {
   static type = 'CompactPlaylist';
 
   constructor(data: any) {
     super(data);
   }
 }
-
-export default CompactPlaylist;

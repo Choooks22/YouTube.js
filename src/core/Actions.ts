@@ -1,7 +1,7 @@
-import Proto from '../proto/proto.ts';
-import Session from './Session.ts';
+import { Proto } from '../proto/proto.ts';
+import { Session } from './Session.ts';
 
-import Parser, { ParsedResponse } from '../parser/index.ts';
+import { ParsedResponse, Parser } from '../parser/index.ts';
 
 import {
   hasKeys,
@@ -55,7 +55,7 @@ export interface AxioslikeResponse {
 
 export type ActionsResponse = Promise<AxioslikeResponse>;
 
-class Actions {
+export class Actions {
   #session;
 
   constructor(session: Session) {
@@ -887,6 +887,3 @@ class Actions {
     ].includes(id);
   }
 }
-
-// TODO: maybe do this inferrance in a more elegant way
-export default Actions;

@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class SecondarySearchContainer extends YTNode {
+export class SecondarySearchContainer extends YTNode {
   static type = 'SecondarySearchContainer';
 
   contents;
@@ -11,5 +11,3 @@ class SecondarySearchContainer extends YTNode {
     this.contents = Parser.parse(data.contents);
   }
 }
-
-export default SecondarySearchContainer;

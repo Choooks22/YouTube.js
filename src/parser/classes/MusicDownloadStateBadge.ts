@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 
-class MusicDownloadStateBadge extends YTNode {
+export class MusicDownloadStateBadge extends YTNode {
   static type = 'MusicDownloadStateBadge';
 
   playlist_id: string;
@@ -12,5 +12,3 @@ class MusicDownloadStateBadge extends YTNode {
     this.supported_download_states = data.supportedDownloadStates;
   }
 }
-
-export default MusicDownloadStateBadge;

@@ -1,24 +1,24 @@
-import Parser, { ParsedResponse } from '../index.ts';
-import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
+import { ParsedResponse, Parser } from '../index.ts';
+import { Actions, AxioslikeResponse } from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 
-import Feed from '../../core/Feed.ts';
-import History from './History.ts';
-import Playlist from './Playlist.ts';
+import { Feed } from '../../core/Feed.ts';
+import { History } from './History.ts';
+import { Playlist } from './Playlist.ts';
 
-import Tab from '../classes/Tab.ts';
-import Menu from '../classes/menus/Menu.ts';
-import Shelf from '../classes/Shelf.ts';
-import Button from '../classes/Button.ts';
-import SectionList from '../classes/SectionList.ts';
-import ItemSection from '../classes/ItemSection.ts';
-import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.ts';
+import { Tab } from '../classes/Tab.ts';
+import { Menu } from '../classes/menus/Menu.ts';
+import { Shelf } from '../classes/Shelf.ts';
+import { Button } from '../classes/Button.ts';
+import { SectionList } from '../classes/SectionList.ts';
+import { ItemSection } from '../classes/ItemSection.ts';
+import { TwoColumnBrowseResults } from '../classes/TwoColumnBrowseResults.ts';
 
-import ProfileColumn from '../classes/ProfileColumn.ts';
-import ProfileColumnStats from '../classes/ProfileColumnStats.ts';
-import ProfileColumnUserInfo from '../classes/ProfileColumnUserInfo.ts';
+import { ProfileColumn } from '../classes/ProfileColumn.ts';
+import { ProfileColumnStats } from '../classes/ProfileColumnStats.ts';
+import { ProfileColumnUserInfo } from '../classes/ProfileColumnUserInfo.ts';
 
-class Library {
+export class Library {
   #actions;
   #page;
 
@@ -125,5 +125,3 @@ class Library {
     return this.#page;
   }
 }
-
-export default Library;

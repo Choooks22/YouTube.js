@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class RichSection extends YTNode {
+export class RichSection extends YTNode {
   static type = 'RichSection';
 
   contents;
@@ -11,5 +11,3 @@ class RichSection extends YTNode {
     this.contents = Parser.parse(data.content);
   }
 }
-
-export default RichSection;

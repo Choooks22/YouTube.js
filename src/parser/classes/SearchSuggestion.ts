@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class SearchSuggestion extends YTNode {
+export class SearchSuggestion extends YTNode {
   static type = 'SearchSuggestion';
 
   suggestion: Text;
@@ -21,5 +21,3 @@ class SearchSuggestion extends YTNode {
     }
   }
 }
-
-export default SearchSuggestion;

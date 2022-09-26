@@ -1,5 +1,7 @@
-import { build, emptyDir } from 'https://deno.land/x/dnt@0.30.0/mod.ts';
 import { join } from 'https://deno.land/std@0.148.0/path/mod.ts';
+import { build, emptyDir } from 'https://deno.land/x/dnt@0.30.0/mod.ts';
+import commonjs from 'https://esm.sh/@rollup/plugin-commonjs@22.0.2';
+import { nodeResolve } from 'https://esm.sh/@rollup/plugin-node-resolve@14.1.0';
 import { rollup } from 'https://esm.sh/rollup@2.79.1';
 
 const outDir = './npm';
@@ -13,7 +15,25 @@ await Promise.all([
 ]);
 
 await build({
-  entryPoints: ['./mod.ts'],
+  entryPoints: [
+    './src/mod.ts',
+    {
+      name: './core',
+      path: './src/core/mod.ts',
+    },
+    {
+      name: './classes',
+      path: './src/parser/classes/mod.ts',
+    },
+    {
+      name: './youtube',
+      path: './src/parser/youtube/mod.ts',
+    },
+    {
+      name: './ytmusic',
+      path: './src/parser/ytmusic/mod.ts',
+    },
+  ],
   outDir,
   compilerOptions: {
     lib: [
@@ -76,12 +96,17 @@ await build({
 
 console.info('[rollup] Bundling for web...');
 const bun = await rollup({
-  input: './npm/esm/mod.js',
+  input: './npm/esm/Innertube.js',
+  plugins: [
+    nodeResolve(),
+    commonjs(),
+  ],
 });
 
 console.info('[rollup] Emitting web bundle...');
 await bun.write({
   file: './npm/browser.js',
+  exports: 'auto',
 });
 
 console.info('[rollup] Complete!');

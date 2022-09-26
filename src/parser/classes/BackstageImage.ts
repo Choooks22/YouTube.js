@@ -1,7 +1,7 @@
-import Thumbnail from './misc/Thumbnail.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class BackstageImage extends YTNode {
+export class BackstageImage extends YTNode {
   static type = 'BackstageImage';
 
   image: Thumbnail[];
@@ -11,5 +11,3 @@ class BackstageImage extends YTNode {
     this.image = Thumbnail.fromResponse(data.image);
   }
 }
-
-export default BackstageImage;

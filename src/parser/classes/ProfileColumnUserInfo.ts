@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class ProfileColumnUserInfo extends YTNode {
+export class ProfileColumnUserInfo extends YTNode {
   static type = 'ProfileColumnUserInfo';
 
   title: Text;
@@ -14,5 +14,3 @@ class ProfileColumnUserInfo extends YTNode {
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
   }
 }
-
-export default ProfileColumnUserInfo;

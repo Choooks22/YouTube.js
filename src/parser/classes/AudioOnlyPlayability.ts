@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 
-class AudioOnlyPlayability extends YTNode {
+export class AudioOnlyPlayability extends YTNode {
   static type = 'AudioOnlyPlayability';
 
   audio_only_availability: string;
@@ -10,5 +10,3 @@ class AudioOnlyPlayability extends YTNode {
     this.audio_only_availability = data.audioOnlyAvailability;
   }
 }
-
-export default AudioOnlyPlayability;

@@ -1,10 +1,10 @@
-import Playlist from '../parser/youtube/Playlist.ts';
-import Actions from './Actions.ts';
-import Feed from './Feed.ts';
+import { Playlist } from '../parser/youtube/Playlist.ts';
+import { Actions } from './Actions.ts';
+import { Feed } from './Feed.ts';
 
 import { InnertubeError, throwIfMissing } from '../utils/Utils.ts';
 
-class PlaylistManager {
+export class PlaylistManager {
   #actions;
 
   constructor(actions: Actions) {
@@ -199,5 +199,3 @@ class PlaylistManager {
     };
   }
 }
-
-export default PlaylistManager;

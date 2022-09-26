@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class DidYouMean extends YTNode {
+export class DidYouMean extends YTNode {
   static type = 'DidYouMean';
 
   text: string;
@@ -18,5 +18,3 @@ class DidYouMean extends YTNode {
     );
   }
 }
-
-export default DidYouMean;

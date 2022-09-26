@@ -1,20 +1,20 @@
 // TODO: this needs a refactor
 // Seems like a mess to use
 
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import TextRun from './misc/TextRun.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay.ts';
-import MusicResponsiveListItemFlexColumn from './MusicResponsiveListItemFlexColumn.ts';
-import MusicResponsiveListItemFixedColumn from './MusicResponsiveListItemFixedColumn.ts';
-import Menu from './menus/Menu.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { TextRun } from './misc/TextRun.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { MusicItemThumbnailOverlay } from './MusicItemThumbnailOverlay.ts';
+import { MusicResponsiveListItemFlexColumn } from './MusicResponsiveListItemFlexColumn.ts';
+import { MusicResponsiveListItemFixedColumn } from './MusicResponsiveListItemFixedColumn.ts';
+import { Menu } from './menus/Menu.ts';
 
 import { timeToSeconds } from '../../utils/Utils.ts';
 import { YTNode } from '../helpers.ts';
 
-class MusicResponsiveListItem extends YTNode {
+export class MusicResponsiveListItem extends YTNode {
   static type = 'MusicResponsiveListItem';
 
   #flex_columns;
@@ -289,5 +289,3 @@ class MusicResponsiveListItem extends YTNode {
     }
   }
 }
-
-export default MusicResponsiveListItem;

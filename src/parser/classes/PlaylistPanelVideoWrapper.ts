@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
-import PlaylistPanelVideo from './PlaylistPanelVideo.ts';
+import { PlaylistPanelVideo } from './PlaylistPanelVideo.ts';
 
-class PlaylistPanelVideoWrapper extends YTNode {
+export class PlaylistPanelVideoWrapper extends YTNode {
   static type = 'PlaylistPanelVideoWrapper';
 
   primary: PlaylistPanelVideo | null;
@@ -17,5 +17,3 @@ class PlaylistPanelVideoWrapper extends YTNode {
       ) || [];
   }
 }
-
-export default PlaylistPanelVideoWrapper;

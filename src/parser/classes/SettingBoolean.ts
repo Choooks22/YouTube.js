@@ -1,9 +1,9 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class SettingBoolean extends YTNode {
+export class SettingBoolean extends YTNode {
   static type = 'SettingBoolean';
 
   title?: Text;
@@ -36,5 +36,3 @@ class SettingBoolean extends YTNode {
     this.item_id = data.itemId;
   }
 }
-
-export default SettingBoolean;

@@ -1,11 +1,11 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Author from './misc/Author.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Author } from './misc/Author.ts';
 import { YTNode } from '../helpers.ts';
 
-class GridVideo extends YTNode {
+export class GridVideo extends YTNode {
   static type = 'GridVideo';
 
   id: string;
@@ -46,5 +46,3 @@ class GridVideo extends YTNode {
     this.menu = Parser.parse(data.menu);
   }
 }
-
-export default GridVideo;

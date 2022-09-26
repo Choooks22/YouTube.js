@@ -1,12 +1,12 @@
-import Parser from '../index.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import SectionList from './SectionList.ts';
-import MusicQueue from './MusicQueue.ts';
-import RichGrid from './RichGrid.ts';
+import { Parser } from '../index.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { SectionList } from './SectionList.ts';
+import { MusicQueue } from './MusicQueue.ts';
+import { RichGrid } from './RichGrid.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class Tab extends YTNode {
+export class Tab extends YTNode {
   static type = 'Tab';
 
   title: string;
@@ -25,5 +25,3 @@ class Tab extends YTNode {
     );
   }
 }
-
-export default Tab;

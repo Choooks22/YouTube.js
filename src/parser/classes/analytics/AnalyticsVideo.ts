@@ -1,7 +1,7 @@
-import Thumbnail from '../misc/Thumbnail.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { YTNode } from '../../helpers.ts';
 
-class AnalyticsVideo extends YTNode {
+export class AnalyticsVideo extends YTNode {
   static type = 'AnalyticsVideo';
 
   title: string;
@@ -26,5 +26,3 @@ class AnalyticsVideo extends YTNode {
     };
   }
 }
-
-export default AnalyticsVideo;

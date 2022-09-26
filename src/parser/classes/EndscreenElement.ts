@@ -1,10 +1,10 @@
-import Parser from '../index.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Text from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class EndscreenElement extends YTNode {
+export class EndscreenElement extends YTNode {
   static type = 'EndscreenElement';
 
   style;
@@ -72,5 +72,3 @@ class EndscreenElement extends YTNode {
     this.id = data.id;
   }
 }
-
-export default EndscreenElement;

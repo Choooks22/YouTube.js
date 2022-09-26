@@ -1,9 +1,9 @@
-import Text from './misc/Text.ts';
-import Parser from '../index.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class Shelf extends YTNode {
+export class Shelf extends YTNode {
   static type = 'Shelf';
 
   title: Text;
@@ -31,5 +31,3 @@ class Shelf extends YTNode {
     }
   }
 }
-
-export default Shelf;

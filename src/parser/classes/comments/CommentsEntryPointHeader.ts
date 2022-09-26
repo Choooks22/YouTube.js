@@ -1,8 +1,8 @@
-import Text from '../misc/Text.ts';
-import Thumbnail from '../misc/Thumbnail.ts';
+import { Text } from '../misc/Text.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { YTNode } from '../../helpers.ts';
 
-class CommentsEntryPointHeader extends YTNode {
+export class CommentsEntryPointHeader extends YTNode {
   static type = 'CommentsEntryPointHeader';
 
   header;
@@ -22,5 +22,3 @@ class CommentsEntryPointHeader extends YTNode {
     this.simplebox_placeholder = new Text(data.simpleboxPlaceholder);
   }
 }
-
-export default CommentsEntryPointHeader;

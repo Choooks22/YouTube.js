@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { timeToSeconds } from '../../utils/Utils.ts';
 import { YTNode } from '../helpers.ts';
 
-class WatchCardCompactVideo extends YTNode {
+export class WatchCardCompactVideo extends YTNode {
   static type = 'WatchCardCompactVideo';
 
   title: Text;
@@ -28,5 +28,3 @@ class WatchCardCompactVideo extends YTNode {
     this.style = data.style;
   }
 }
-
-export default WatchCardCompactVideo;

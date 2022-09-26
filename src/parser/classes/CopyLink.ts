@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
-import Button from './Button.ts';
+import { Parser } from '../index.ts';
+import { Button } from './Button.ts';
 import { YTNode } from '../helpers.ts';
 
-class CopyLink extends YTNode {
+export class CopyLink extends YTNode {
   static type = 'CopyLink';
 
   copy_button: Button | null;
@@ -16,5 +16,3 @@ class CopyLink extends YTNode {
     this.style = data.style;
   }
 }
-
-export default CopyLink;

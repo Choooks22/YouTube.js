@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class AppendContinuationItemsAction extends YTNode {
+export class AppendContinuationItemsAction extends YTNode {
   static type = 'AppendContinuationItemsAction';
 
   items;
@@ -13,5 +13,3 @@ class AppendContinuationItemsAction extends YTNode {
     this.target = data.target;
   }
 }
-
-export default AppendContinuationItemsAction;

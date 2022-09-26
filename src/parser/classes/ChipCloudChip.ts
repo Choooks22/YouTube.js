@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class ChipCloudChip extends YTNode {
+export class ChipCloudChip extends YTNode {
   static type = 'ChipCloudChip';
 
   is_selected: boolean;
@@ -19,5 +19,3 @@ class ChipCloudChip extends YTNode {
     this.text = new Text(data.text).toString();
   }
 }
-
-export default ChipCloudChip;

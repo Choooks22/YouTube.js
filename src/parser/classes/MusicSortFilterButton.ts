@@ -1,10 +1,10 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 
 import { YTNode } from '../helpers.ts';
-import MusicMultiSelectMenu from './menus/MusicMultiSelectMenu.ts';
-import Text from './misc/Text.ts';
+import { MusicMultiSelectMenu } from './menus/MusicMultiSelectMenu.ts';
+import { Text } from './misc/Text.ts';
 
-class MusicSortFilterButton extends YTNode {
+export class MusicSortFilterButton extends YTNode {
   static type = 'MusicSortFilterButton';
 
   title: string;
@@ -19,5 +19,3 @@ class MusicSortFilterButton extends YTNode {
     this.menu = Parser.parseItem(data.menu, MusicMultiSelectMenu);
   }
 }
-
-export default MusicSortFilterButton;

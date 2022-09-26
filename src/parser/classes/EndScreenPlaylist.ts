@@ -1,9 +1,9 @@
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class EndScreenPlaylist extends YTNode {
+export class EndScreenPlaylist extends YTNode {
   static type = 'EndScreenPlaylist';
 
   id: string;
@@ -23,5 +23,3 @@ class EndScreenPlaylist extends YTNode {
     this.video_count = new Text(data.videoCountText);
   }
 }
-
-export default EndScreenPlaylist;

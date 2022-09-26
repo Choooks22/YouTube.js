@@ -1,9 +1,9 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
-import Menu from './menus/Menu.ts';
+import { Menu } from './menus/Menu.ts';
 
-class VideoPrimaryInfo extends YTNode {
+export class VideoPrimaryInfo extends YTNode {
   static type = 'VideoPrimaryInfo';
 
   title: Text;
@@ -25,5 +25,3 @@ class VideoPrimaryInfo extends YTNode {
     this.menu = Parser.parseItem(data.videoActions, Menu);
   }
 }
-
-export default VideoPrimaryInfo;

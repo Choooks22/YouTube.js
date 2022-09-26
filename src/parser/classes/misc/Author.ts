@@ -1,11 +1,11 @@
-import Parser from '../../index.ts';
-import NavigatableText from './NavigatableText.ts';
-import NavigationEndpoint from '../NavigationEndpoint.ts';
-import TextRun from './TextRun.ts';
-import Thumbnail from './Thumbnail.ts';
-import Constants from '../../../utils/Constants.ts';
+import { Parser } from '../../index.ts';
+import { NavigatableText } from './NavigatableText.ts';
+import { NavigationEndpoint } from '../NavigationEndpoint.ts';
+import { TextRun } from './TextRun.ts';
+import { Thumbnail } from './Thumbnail.ts';
+import * as Constants from '../../../utils/Constants.ts';
 
-class Author {
+export class Author {
   #nav_text;
 
   id: string;
@@ -54,5 +54,3 @@ class Author {
     return this.thumbnails[0];
   }
 }
-
-export default Author;

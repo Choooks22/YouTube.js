@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class CommentActionButtons extends YTNode {
+export class CommentActionButtons extends YTNode {
   static type = 'CommentActionButtons';
 
   like_button;
@@ -15,5 +15,3 @@ class CommentActionButtons extends YTNode {
     this.reply_button = Parser.parse(data.replyButton);
   }
 }
-
-export default CommentActionButtons;

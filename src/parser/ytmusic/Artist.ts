@@ -1,15 +1,15 @@
-import Parser, { ParsedResponse } from '../index.ts';
-import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
+import { ParsedResponse, Parser } from '../index.ts';
+import { Actions, AxioslikeResponse } from '../../core/Actions.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 
-import MusicShelf from '../classes/MusicShelf.ts';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
-import MusicPlaylistShelf from '../classes/MusicPlaylistShelf.ts';
-import MusicImmersiveHeader from '../classes/MusicImmersiveHeader.ts';
-import MusicVisualHeader from '../classes/MusicVisualHeader.ts';
-import MusicHeader from '../classes/MusicHeader.ts';
+import { MusicShelf } from '../classes/MusicShelf.ts';
+import { MusicCarouselShelf } from '../classes/MusicCarouselShelf.ts';
+import { MusicPlaylistShelf } from '../classes/MusicPlaylistShelf.ts';
+import { MusicImmersiveHeader } from '../classes/MusicImmersiveHeader.ts';
+import { MusicVisualHeader } from '../classes/MusicVisualHeader.ts';
+import { MusicHeader } from '../classes/MusicHeader.ts';
 
-class Artist {
+export class Artist {
   #page;
   #actions;
 
@@ -74,5 +74,3 @@ class Artist {
     return this.#page;
   }
 }
-
-export default Artist;

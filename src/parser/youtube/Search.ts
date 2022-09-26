@@ -1,19 +1,19 @@
-import Actions from '../../core/Actions.ts';
+import { Actions } from '../../core/Actions.ts';
 import { observe, ObservedArray, YTNode } from '../helpers.ts';
 import { InnertubeError } from '../../utils/Utils.ts';
 
-import Feed from '../../core/Feed.ts';
-import SectionList from '../classes/SectionList.ts';
-import ItemSection from '../classes/ItemSection.ts';
-import HorizontalCardList from '../classes/HorizontalCardList.ts';
-import RichListHeader from '../classes/RichListHeader.ts';
-import SearchRefinementCard from '../classes/SearchRefinementCard.ts';
-import TwoColumnSearchResults from '../classes/TwoColumnSearchResults.ts';
-import UniversalWatchCard from '../classes/UniversalWatchCard.ts';
-import WatchCardHeroVideo from '../classes/WatchCardHeroVideo.ts';
-import WatchCardSectionSequence from '../classes/WatchCardSectionSequence.ts';
+import { Feed } from '../../core/Feed.ts';
+import { SectionList } from '../classes/SectionList.ts';
+import { ItemSection } from '../classes/ItemSection.ts';
+import { HorizontalCardList } from '../classes/HorizontalCardList.ts';
+import { RichListHeader } from '../classes/RichListHeader.ts';
+import { SearchRefinementCard } from '../classes/SearchRefinementCard.ts';
+import { TwoColumnSearchResults } from '../classes/TwoColumnSearchResults.ts';
+import { UniversalWatchCard } from '../classes/UniversalWatchCard.ts';
+import { WatchCardHeroVideo } from '../classes/WatchCardHeroVideo.ts';
+import { WatchCardSectionSequence } from '../classes/WatchCardSectionSequence.ts';
 
-class Search extends Feed {
+export class Search extends Feed {
   results: ObservedArray<YTNode> | null | undefined;
   refinements;
   estimated_results;
@@ -100,5 +100,3 @@ class Search extends Feed {
     return new Search(this.actions, continuation, true);
   }
 }
-
-export default Search;

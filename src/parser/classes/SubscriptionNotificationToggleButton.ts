@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class SubscriptionNotificationToggleButton extends YTNode {
+export class SubscriptionNotificationToggleButton extends YTNode {
   static type = 'SubscriptionNotificationToggleButton';
 
   states: {
@@ -25,5 +25,3 @@ class SubscriptionNotificationToggleButton extends YTNode {
     this.target_id = data.targetId;
   }
 }
-
-export default SubscriptionNotificationToggleButton;

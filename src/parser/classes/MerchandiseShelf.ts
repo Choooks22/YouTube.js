@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class MerchandiseShelf extends YTNode {
+export class MerchandiseShelf extends YTNode {
   static type = 'MerchandiseShelf';
 
   title: string;
@@ -20,5 +20,3 @@ class MerchandiseShelf extends YTNode {
     return this.items;
   }
 }
-
-export default MerchandiseShelf;

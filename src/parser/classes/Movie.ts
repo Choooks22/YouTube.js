@@ -1,12 +1,12 @@
-import Parser from '../index.ts';
-import Author from './misc/Author.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
+import { Author } from './misc/Author.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { timeToSeconds } from '../../utils/Utils.ts';
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class Movie extends YTNode {
+export class Movie extends YTNode {
   static type = 'Movie';
 
   id: string;
@@ -67,5 +67,3 @@ class Movie extends YTNode {
     this.menu = Parser.parse(data.menu);
   }
 }
-
-export default Movie;

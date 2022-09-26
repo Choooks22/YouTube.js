@@ -1,4 +1,3 @@
-import package_json from '../../package.json' assert { type: 'json' };
 import { FetchFunction } from './HTTPClient.ts';
 import userAgents from './user-agents.json' assert { type: 'json' };
 
@@ -15,7 +14,7 @@ export class InnertubeError extends Error {
     }
 
     this.date = new Date();
-    this.version = package_json.version;
+    this.version = '2.2.3';
   }
 }
 

@@ -1,12 +1,12 @@
-import Text from './misc/Text.ts';
-import Parser from '../index.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import PlaylistAuthor from './misc/PlaylistAuthor.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import NavigatableText from './misc/NavigatableText.ts';
+import { Text } from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { PlaylistAuthor } from './misc/PlaylistAuthor.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { NavigatableText } from './misc/NavigatableText.ts';
 import { YTNode } from '../helpers.ts';
 
-class GridPlaylist extends YTNode {
+export class GridPlaylist extends YTNode {
   static type = 'GridPlaylist';
 
   id: string;
@@ -44,5 +44,3 @@ class GridPlaylist extends YTNode {
     this.video_count_short = new Text(data.videoCountShortText);
   }
 }
-
-export default GridPlaylist;

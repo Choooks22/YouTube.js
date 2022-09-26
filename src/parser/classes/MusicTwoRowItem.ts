@@ -1,16 +1,16 @@
 // TODO: refactor this
 
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import TextRun from './misc/TextRun.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import MusicItemThumbnailOverlay from './MusicItemThumbnailOverlay.ts';
-import Menu from './menus/Menu.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { TextRun } from './misc/TextRun.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { MusicItemThumbnailOverlay } from './MusicItemThumbnailOverlay.ts';
+import { Menu } from './menus/Menu.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class MusicTwoRowItem extends YTNode {
+export class MusicTwoRowItem extends YTNode {
   static type = 'MusicTwoRowItem';
 
   title: Text;
@@ -144,5 +144,3 @@ class MusicTwoRowItem extends YTNode {
     this.menu = Parser.parseItem<Menu>(data.menu, Menu);
   }
 }
-
-export default MusicTwoRowItem;

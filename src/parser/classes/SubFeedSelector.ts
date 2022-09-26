@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class SubFeedSelector extends YTNode {
+export class SubFeedSelector extends YTNode {
   static type = 'SubFeedSelector';
 
   title: Text;
@@ -14,5 +14,3 @@ class SubFeedSelector extends YTNode {
     this.options = Parser.parse(data.options);
   }
 }
-
-export default SubFeedSelector;

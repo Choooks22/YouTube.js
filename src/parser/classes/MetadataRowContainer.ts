@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class MetadataRowContainer extends YTNode {
+export class MetadataRowContainer extends YTNode {
   static type = 'MetadataRowContainer';
   rows;
   collapsed_item_count: number; // TODO: validate this assumption
@@ -12,5 +12,3 @@ class MetadataRowContainer extends YTNode {
     this.collapsed_item_count = data.collapsedItemCount;
   }
 }
-
-export default MetadataRowContainer;

@@ -1,7 +1,7 @@
 import { throwIfMissing } from '../utils/Utils.ts';
-import Actions from './Actions.ts';
+import { Actions } from './Actions.ts';
 
-class InteractionManager {
+export class InteractionManager {
   #actions;
 
   constructor(actions: Actions) {
@@ -121,5 +121,3 @@ class InteractionManager {
     return action;
   }
 }
-
-export default InteractionManager;

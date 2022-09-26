@@ -1,7 +1,7 @@
-import Text from './Text.ts';
-import NavigationEndpoint from '../NavigationEndpoint.ts';
+import { Text } from './Text.ts';
+import { NavigationEndpoint } from '../NavigationEndpoint.ts';
 
-class NavigatableText extends Text {
+export class NavigatableText extends Text {
   static type = 'NavigatableText';
 
   endpoint: NavigationEndpoint | null;
@@ -22,5 +22,3 @@ class NavigatableText extends Text {
     return this;
   }
 }
-
-export default NavigatableText;

@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class BrowserMediaSession extends YTNode {
+export class BrowserMediaSession extends YTNode {
   static type = 'BrowserMediaSession';
 
   album;
@@ -14,5 +14,3 @@ class BrowserMediaSession extends YTNode {
     this.thumbnails = Thumbnail.fromResponse(data.thumbnailDetails);
   }
 }
-
-export default BrowserMediaSession;

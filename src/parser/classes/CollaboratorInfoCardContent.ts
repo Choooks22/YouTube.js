@@ -1,10 +1,10 @@
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class CollaboratorInfoCardContent extends YTNode {
+export class CollaboratorInfoCardContent extends YTNode {
   static type = 'CollaboratorInfoCardContent';
 
   channel_avatar: Thumbnail[];
@@ -22,5 +22,3 @@ class CollaboratorInfoCardContent extends YTNode {
     this.endpoint = new NavigationEndpoint(data.endpoint);
   }
 }
-
-export default CollaboratorInfoCardContent;

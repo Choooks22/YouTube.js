@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class MusicSideAlignedItem extends YTNode {
+export class MusicSideAlignedItem extends YTNode {
   static type = 'MusicSideAlignedItem';
 
   start_items?;
@@ -15,5 +15,3 @@ class MusicSideAlignedItem extends YTNode {
     }
   }
 }
-
-export default MusicSideAlignedItem;

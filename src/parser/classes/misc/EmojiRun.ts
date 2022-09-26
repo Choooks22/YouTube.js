@@ -1,6 +1,6 @@
-import Thumbnail from './Thumbnail.ts';
+import { Thumbnail } from './Thumbnail.ts';
 
-class EmojiRun {
+export class EmojiRun {
   text: string;
   emoji: {
     emoji_id: string;
@@ -22,5 +22,3 @@ class EmojiRun {
     };
   }
 }
-
-export default EmojiRun;

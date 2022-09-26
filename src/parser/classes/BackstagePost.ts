@@ -1,11 +1,11 @@
-import Parser from '../index.ts';
-import Author from './misc/Author.ts';
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
+import { Author } from './misc/Author.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class BackstagePost extends YTNode {
+export class BackstagePost extends YTNode {
   static type = 'BackstagePost';
 
   id: string;
@@ -49,5 +49,3 @@ class BackstagePost extends YTNode {
     this.attachment = Parser.parse(data.backstageAttachment) || null;
   }
 }
-
-export default BackstagePost;

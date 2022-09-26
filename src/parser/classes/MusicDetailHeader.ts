@@ -1,11 +1,11 @@
-import Text from './misc/Text.ts';
-import TextRun from './misc/TextRun.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Parser from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { TextRun } from './misc/TextRun.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class MusicDetailHeader extends YTNode {
+export class MusicDetailHeader extends YTNode {
   static type = 'MusicDetailHeader';
 
   title: Text;
@@ -55,5 +55,3 @@ class MusicDetailHeader extends YTNode {
     this.menu = Parser.parse(data.menu);
   }
 }
-
-export default MusicDetailHeader;

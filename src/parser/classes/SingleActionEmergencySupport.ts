@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class SingleActionEmergencySupport extends YTNode {
+export class SingleActionEmergencySupport extends YTNode {
   static type = 'SingleActionEmergencySupport';
 
   action_text: Text;
@@ -20,5 +20,3 @@ class SingleActionEmergencySupport extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default SingleActionEmergencySupport;

@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 
-class ThumbnailOverlayResumePlayback extends YTNode {
+export class ThumbnailOverlayResumePlayback extends YTNode {
   static type = 'ThumbnailOverlayResumePlayback';
 
   percent_duration_watched: string; // TODO: is this a number?
@@ -10,5 +10,3 @@ class ThumbnailOverlayResumePlayback extends YTNode {
     this.percent_duration_watched = data.percentDurationWatched;
   }
 }
-
-export default ThumbnailOverlayResumePlayback;

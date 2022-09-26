@@ -1,6 +1,6 @@
 import { YTNode } from '../../helpers.ts';
 
-class AuthorCommentBadge extends YTNode {
+export class AuthorCommentBadge extends YTNode {
   static type = 'AuthorCommentBadge';
 
   #data;
@@ -27,5 +27,3 @@ class AuthorCommentBadge extends YTNode {
     return this.#data;
   }
 }
-
-export default AuthorCommentBadge;

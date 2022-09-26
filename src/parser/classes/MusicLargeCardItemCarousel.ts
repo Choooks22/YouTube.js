@@ -1,4 +1,4 @@
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
 class ActionButton {
@@ -44,7 +44,7 @@ class Panel {
   }
 }
 
-class MusicLargeCardItemCarousel extends YTNode {
+export class MusicLargeCardItemCarousel extends YTNode {
   static type = 'MusicLargeCardItemCarousel';
 
   panels: Panel[];
@@ -57,5 +57,3 @@ class MusicLargeCardItemCarousel extends YTNode {
     this.panels = data.shelf.panels.map((el: any) => new Panel(el));
   }
 }
-
-export default MusicLargeCardItemCarousel;

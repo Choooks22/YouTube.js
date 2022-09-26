@@ -1,7 +1,7 @@
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class DownloadButton extends YTNode {
+export class DownloadButton extends YTNode {
   static type = 'DownloadButton';
 
   style: string;
@@ -17,5 +17,3 @@ class DownloadButton extends YTNode {
     this.target_id = data.targetId;
   }
 }
-
-export default DownloadButton;

@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class MultiPageMenu extends YTNode {
+export class MultiPageMenu extends YTNode {
   static type = 'MultiPageMenu';
 
   header;
@@ -15,5 +15,3 @@ class MultiPageMenu extends YTNode {
     this.style = data.style;
   }
 }
-
-export default MultiPageMenu;

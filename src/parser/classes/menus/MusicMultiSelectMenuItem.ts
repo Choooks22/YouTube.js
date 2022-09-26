@@ -1,8 +1,8 @@
 import { YTNode } from '../../helpers.ts';
-import Text from '../misc/Text.ts';
-import NavigationEndpoint from '../NavigationEndpoint.ts';
+import { Text } from '../misc/Text.ts';
+import { NavigationEndpoint } from '../NavigationEndpoint.ts';
 
-class MusicMultiSelectMenuItem extends YTNode {
+export class MusicMultiSelectMenuItem extends YTNode {
   static type = 'MusicMultiSelectMenuItem';
 
   title: string;
@@ -38,5 +38,3 @@ class MusicMultiSelectMenuItem extends YTNode {
     this.selected = !!this.endpoint;
   }
 }
-
-export default MusicMultiSelectMenuItem;

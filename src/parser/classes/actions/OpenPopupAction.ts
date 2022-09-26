@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class OpenPopupAction extends YTNode {
+export class OpenPopupAction extends YTNode {
   static type = 'OpenPopupAction';
 
   popup;
@@ -13,5 +13,3 @@ class OpenPopupAction extends YTNode {
     this.popup_type = data.popupType;
   }
 }
-
-export default OpenPopupAction;

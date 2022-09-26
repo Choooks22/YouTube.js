@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class ToggleMenuServiceItem extends YTNode {
+export class ToggleMenuServiceItem extends YTNode {
   static type = 'ToggleMenuServiceItem';
 
   text: Text;
@@ -20,5 +20,3 @@ class ToggleMenuServiceItem extends YTNode {
     this.endpoint = new NavigationEndpoint(data.toggledServiceEndpoint);
   }
 }
-
-export default ToggleMenuServiceItem;

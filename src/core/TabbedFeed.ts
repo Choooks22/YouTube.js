@@ -1,9 +1,9 @@
-import Tab from '../parser/classes/Tab.ts';
+import { Tab } from '../parser/classes/Tab.ts';
 import { InnertubeError } from '../utils/Utils.ts';
-import Actions from './Actions.ts';
-import Feed from './Feed.ts';
+import { Actions } from './Actions.ts';
+import { Feed } from './Feed.ts';
 
-class TabbedFeed extends Feed {
+export class TabbedFeed extends Feed {
   #tabs;
   #actions;
 
@@ -44,5 +44,3 @@ class TabbedFeed extends Feed {
       ?.title.toString();
   }
 }
-
-export default TabbedFeed;

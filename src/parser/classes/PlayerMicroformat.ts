@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class PlayerMicroformat extends YTNode {
+export class PlayerMicroformat extends YTNode {
   static type = 'PlayerMicroformat';
 
   title: Text;
@@ -67,5 +67,3 @@ class PlayerMicroformat extends YTNode {
     this.available_countries = data.availableCountries;
   }
 }
-
-export default PlayerMicroformat;

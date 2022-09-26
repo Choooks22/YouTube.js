@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class SimpleTextSection extends YTNode {
+export class SimpleTextSection extends YTNode {
   static type = 'SimpleTextSection';
 
   lines: Text[];
@@ -14,5 +14,3 @@ class SimpleTextSection extends YTNode {
     this.style = data.layoutStyle;
   }
 }
-
-export default SimpleTextSection;

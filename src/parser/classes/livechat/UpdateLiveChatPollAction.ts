@@ -1,7 +1,7 @@
-import Parser from '../../index.ts';
+import { Parser } from '../../index.ts';
 import { YTNode } from '../../helpers.ts';
 
-class UpdateLiveChatPollAction extends YTNode {
+export class UpdateLiveChatPollAction extends YTNode {
   static type = 'UpdateLiveChatPollAction';
 
   poll_to_update;
@@ -11,5 +11,3 @@ class UpdateLiveChatPollAction extends YTNode {
     this.poll_to_update = Parser.parse(data.pollToUpdate);
   }
 }
-
-export default UpdateLiveChatPollAction;

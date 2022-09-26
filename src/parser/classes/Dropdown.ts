@@ -1,8 +1,8 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { ObservedArray, YTNode } from '../helpers.ts';
-import DropdownItem from './DropdownItem.ts';
+import { DropdownItem } from './DropdownItem.ts';
 
-class Dropdown extends YTNode {
+export class Dropdown extends YTNode {
   static type = 'Dropdown';
 
   label: string;
@@ -15,5 +15,3 @@ class Dropdown extends YTNode {
     this.entries = Parser.parseArray(data.entries, DropdownItem);
   }
 }
-
-export default Dropdown;

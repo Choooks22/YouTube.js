@@ -1,8 +1,8 @@
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class ChannelThumbnailWithLink extends YTNode {
+export class ChannelThumbnailWithLink extends YTNode {
   static type = 'ChannelThumbnailWithLink';
 
   thumbnails: Thumbnail[];
@@ -16,5 +16,3 @@ class ChannelThumbnailWithLink extends YTNode {
     this.label = data.accessibility.accessibilityData.label;
   }
 }
-
-export default ChannelThumbnailWithLink;

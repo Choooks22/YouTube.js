@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class CallToActionButton extends YTNode {
+export class CallToActionButton extends YTNode {
   static type = 'CallToActionButton';
 
   label: Text;
@@ -15,5 +15,3 @@ class CallToActionButton extends YTNode {
     this.style = data.style;
   }
 }
-
-export default CallToActionButton;

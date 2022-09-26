@@ -1,11 +1,11 @@
-import Parser from '../../../index.ts';
+import { Parser } from '../../../index.ts';
 import { YTNode } from '../../../helpers.ts';
 
-import Text from '../../misc/Text.ts';
-import Thumbnail from '../../misc/Thumbnail.ts';
-import NavigationEndpoint from '../../NavigationEndpoint.ts';
+import { Text } from '../../misc/Text.ts';
+import { Thumbnail } from '../../misc/Thumbnail.ts';
+import { NavigationEndpoint } from '../../NavigationEndpoint.ts';
 
-class LiveChatProductItem extends YTNode {
+export class LiveChatProductItem extends YTNode {
   static type = 'LiveChatProductItem';
 
   title: string;
@@ -42,5 +42,3 @@ class LiveChatProductItem extends YTNode {
     this.creator_custom_message = new Text(data.creatorCustomMessage);
   }
 }
-
-export default LiveChatProductItem;

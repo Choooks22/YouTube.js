@@ -1,13 +1,13 @@
-import Text from '../../misc/Text.ts';
-import Thumbnail from '../../misc/Thumbnail.ts';
-import NavigationEndpoint from '../../NavigationEndpoint.ts';
-import MetadataBadge from '../../MetadataBadge.ts';
-import LiveChatAuthorBadge from '../../LiveChatAuthorBadge.ts';
-import Parser from '../../../index.ts';
+import { Text } from '../../misc/Text.ts';
+import { Thumbnail } from '../../misc/Thumbnail.ts';
+import { NavigationEndpoint } from '../../NavigationEndpoint.ts';
+import { MetadataBadge } from '../../MetadataBadge.ts';
+import { LiveChatAuthorBadge } from '../../LiveChatAuthorBadge.ts';
+import { Parser } from '../../../index.ts';
 
 import { YTNode } from '../../../helpers.ts';
 
-class LiveChatTextMessage extends YTNode {
+export class LiveChatTextMessage extends YTNode {
   static type = 'LiveChatTextMessage';
 
   message: Text;
@@ -62,5 +62,3 @@ class LiveChatTextMessage extends YTNode {
     this.id = data.id;
   }
 }
-
-export default LiveChatTextMessage;

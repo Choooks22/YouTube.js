@@ -1,6 +1,6 @@
 import { YTNode } from '../helpers.ts';
 
-class MetadataBadge extends YTNode {
+export class MetadataBadge extends YTNode {
   static type = 'MetadataBadge';
 
   icon_type?: string;
@@ -21,5 +21,3 @@ class MetadataBadge extends YTNode {
     this.tooltip = data?.tooltip || data?.iconTooltip || null;
   }
 }
-
-export default MetadataBadge;

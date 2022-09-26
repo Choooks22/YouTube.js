@@ -1,4 +1,4 @@
-class ChildElement {
+export class ChildElement {
   static type = 'ChildElement';
 
   text: string | null;
@@ -16,5 +16,3 @@ class ChildElement {
     }
   }
 }
-
-export default ChildElement;

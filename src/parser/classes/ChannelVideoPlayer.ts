@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class ChannelVideoPlayer extends YTNode {
+export class ChannelVideoPlayer extends YTNode {
   static type = 'ChannelVideoPlayer';
 
   id: string;
@@ -19,5 +19,3 @@ class ChannelVideoPlayer extends YTNode {
     this.published = new Text(data.publishedTimeText);
   }
 }
-
-export default ChannelVideoPlayer;

@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class AccountItemSectionHeader extends YTNode {
+export class AccountItemSectionHeader extends YTNode {
   static type = 'AccountItemSectionHeader';
 
   title: Text;
@@ -11,5 +11,3 @@ class AccountItemSectionHeader extends YTNode {
     this.title = new Text(data.title);
   }
 }
-
-export default AccountItemSectionHeader;

@@ -1,6 +1,6 @@
 import { YTNode } from '../../helpers.ts';
 
-class AnalyticsRoot extends YTNode {
+export class AnalyticsRoot extends YTNode {
   static type = 'AnalyticsRoot';
 
   title: string;
@@ -42,5 +42,3 @@ class AnalyticsRoot extends YTNode {
     this.use_main_app_specs = data.analyticsTableCarouselData.useMainAppSpecs;
   }
 }
-
-export default AnalyticsRoot;

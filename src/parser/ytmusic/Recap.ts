@@ -1,21 +1,21 @@
-import Parser, { ParsedResponse } from '../index.ts';
-import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
+import { ParsedResponse, Parser } from '../index.ts';
+import { Actions, AxioslikeResponse } from '../../core/Actions.ts';
 
-import Playlist from './Playlist.ts';
-import MusicHeader from '../classes/MusicHeader.ts';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
-import MusicElementHeader from '../classes/MusicElementHeader.ts';
-import HighlightsCarousel from '../classes/HighlightsCarousel.ts';
-import SingleColumnBrowseResults from '../classes/SingleColumnBrowseResults.ts';
+import { Playlist } from './Playlist.ts';
+import { MusicHeader } from '../classes/MusicHeader.ts';
+import { MusicCarouselShelf } from '../classes/MusicCarouselShelf.ts';
+import { MusicElementHeader } from '../classes/MusicElementHeader.ts';
+import { HighlightsCarousel } from '../classes/HighlightsCarousel.ts';
+import { SingleColumnBrowseResults } from '../classes/SingleColumnBrowseResults.ts';
 
-import Tab from '../classes/Tab.ts';
-import ItemSection from '../classes/ItemSection.ts';
-import SectionList from '../classes/SectionList.ts';
-import Message from '../classes/Message.ts';
+import { Tab } from '../classes/Tab.ts';
+import { ItemSection } from '../classes/ItemSection.ts';
+import { SectionList } from '../classes/SectionList.ts';
+import { Message } from '../classes/Message.ts';
 
 import { InnertubeError } from '../../utils/Utils.ts';
 
-class Recap {
+export class Recap {
   #page;
   #actions;
 
@@ -73,5 +73,3 @@ class Recap {
     return this.#page;
   }
 }
-
-export default Recap;

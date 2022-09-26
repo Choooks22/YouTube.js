@@ -1,10 +1,10 @@
-import Text from './misc/Text.ts';
-import Parser from '../index.ts';
-import MusicThumbnail from './MusicThumbnail.ts';
+import { Text } from './misc/Text.ts';
+import { Parser } from '../index.ts';
+import { MusicThumbnail } from './MusicThumbnail.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class MusicImmersiveHeader extends YTNode {
+export class MusicImmersiveHeader extends YTNode {
   static type = 'MusicImmersiveHeader';
 
   title: Text;
@@ -27,5 +27,3 @@ class MusicImmersiveHeader extends YTNode {
      */
   }
 }
-
-export default MusicImmersiveHeader;

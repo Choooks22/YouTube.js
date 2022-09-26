@@ -1,7 +1,7 @@
-import Thumbnail from './misc/Thumbnail.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class MusicThumbnail extends YTNode {
+export class MusicThumbnail extends YTNode {
   static type = 'MusicThumbnail';
 
   contents;
@@ -11,5 +11,3 @@ class MusicThumbnail extends YTNode {
     this.contents = Thumbnail.fromResponse(data.thumbnail);
   }
 }
-
-export default MusicThumbnail;

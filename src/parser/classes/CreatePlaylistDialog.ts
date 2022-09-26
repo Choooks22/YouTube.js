@@ -1,11 +1,11 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { ObservedArray, YTNode } from '../helpers.ts';
-import Button from './Button.ts';
-import Dropdown from './Dropdown.ts';
-import DropdownItem from './DropdownItem.ts';
-import Text from './misc/Text.ts';
+import { Button } from './Button.ts';
+import { Dropdown } from './Dropdown.ts';
+import { DropdownItem } from './DropdownItem.ts';
+import { Text } from './misc/Text.ts';
 
-class CreatePlaylistDialog extends YTNode {
+export class CreatePlaylistDialog extends YTNode {
   static type = 'CreatePlaylistDialog';
 
   title: string;
@@ -24,5 +24,3 @@ class CreatePlaylistDialog extends YTNode {
     this.cancel_button = Parser.parseItem(data.cancelButton);
   }
 }
-
-export default CreatePlaylistDialog;

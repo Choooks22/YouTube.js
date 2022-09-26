@@ -1,9 +1,9 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class LiveChatParticipant extends YTNode {
+export class LiveChatParticipant extends YTNode {
   static type = 'LiveChatParticipant';
 
   name: Text;
@@ -17,5 +17,3 @@ class LiveChatParticipant extends YTNode {
     this.badges = Parser.parse(data.authorBadges);
   }
 }
-
-export default LiveChatParticipant;

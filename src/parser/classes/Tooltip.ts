@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class Tooltip extends YTNode {
+export class Tooltip extends YTNode {
   static type = 'Tooltip';
 
   promo_config: {
@@ -36,5 +36,3 @@ class Tooltip extends YTNode {
     this.dwell_time_ms = parseInt(data.dwellTimeMs);
   }
 }
-
-export default Tooltip;

@@ -1,13 +1,13 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import Author from './misc/Author.ts';
-import Menu from './menus/Menu.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { Author } from './misc/Author.ts';
+import { Menu } from './menus/Menu.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { timeToSeconds } from '../../utils/Utils.ts';
 import { YTNode } from '../helpers.ts';
 
-class Video extends YTNode {
+export class Video extends YTNode {
   static type = 'Video';
 
   id: string;
@@ -119,5 +119,3 @@ class Video extends YTNode {
     return this.thumbnails[0];
   }
 }
-
-export default Video;

@@ -17,7 +17,7 @@ if (!Reflect.has(globalThis, 'CustomEvent')) {
   Reflect.set(globalThis, 'CustomEvent', CustomEvent);
 }
 
-export default class EventEmitterLike extends EventTarget {
+export class EventEmitterLike extends EventTarget {
   #legacy_listeners = new Map<(...args: any[]) => void, EventListener>();
 
   constructor() {

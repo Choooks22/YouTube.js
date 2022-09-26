@@ -1,9 +1,9 @@
-import Author from './misc/Author.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Text from './misc/Text.ts';
+import { Author } from './misc/Author.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class WatchCardRichHeader extends YTNode {
+export class WatchCardRichHeader extends YTNode {
   static type = 'WatchCardRichHeader';
 
   title: Text;
@@ -26,5 +26,3 @@ class WatchCardRichHeader extends YTNode {
     this.style = data.style;
   }
 }
-
-export default WatchCardRichHeader;

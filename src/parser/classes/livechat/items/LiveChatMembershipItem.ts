@@ -1,10 +1,10 @@
-import Parser from '../../../index.ts';
-import Text from '../../misc/Text.ts';
-import Thumbnail from '../../misc/Thumbnail.ts';
-import NavigationEndpoint from '../../NavigationEndpoint.ts';
+import { Parser } from '../../../index.ts';
+import { Text } from '../../misc/Text.ts';
+import { Thumbnail } from '../../misc/Thumbnail.ts';
+import { NavigationEndpoint } from '../../NavigationEndpoint.ts';
 import { YTNode } from '../../../helpers.ts';
 
-class LiveChatMembershipItem extends YTNode {
+export class LiveChatMembershipItem extends YTNode {
   static type = 'LiveChatMembershipItem';
 
   id: string;
@@ -36,5 +36,3 @@ class LiveChatMembershipItem extends YTNode {
     this.menu_endpoint = new NavigationEndpoint(data.contextMenuEndpoint);
   }
 }
-
-export default LiveChatMembershipItem;

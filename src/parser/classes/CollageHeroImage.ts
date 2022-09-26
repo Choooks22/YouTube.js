@@ -1,8 +1,8 @@
-import NavigationEndpoint from './NavigationEndpoint.ts';
-import Thumbnail from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class CollageHeroImage extends YTNode {
+export class CollageHeroImage extends YTNode {
   static type = 'CollageHeroImage';
 
   left: Thumbnail[];
@@ -18,5 +18,3 @@ class CollageHeroImage extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
   }
 }
-
-export default CollageHeroImage;

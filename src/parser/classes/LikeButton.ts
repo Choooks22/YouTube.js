@@ -1,7 +1,7 @@
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class LikeButton extends YTNode {
+export class LikeButton extends YTNode {
   static type = 'LikeButton';
 
   target: {
@@ -29,5 +29,3 @@ class LikeButton extends YTNode {
     }
   }
 }
-
-export default LikeButton;

@@ -1,13 +1,13 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import TextRun from './misc/TextRun.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { TextRun } from './misc/TextRun.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { timeToSeconds } from '../../utils/Utils.ts';
 
 import { YTNode } from '../helpers.ts';
 
-class PlaylistPanelVideo extends YTNode {
+export class PlaylistPanelVideo extends YTNode {
   static type = 'PlaylistPanelVideo';
 
   title: Text;
@@ -85,5 +85,3 @@ class PlaylistPanelVideo extends YTNode {
     this.set_video_id = data.playlistSetVideoId;
   }
 }
-
-export default PlaylistPanelVideo;

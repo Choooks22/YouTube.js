@@ -1,8 +1,8 @@
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class MerchandiseItem extends YTNode {
+export class MerchandiseItem extends YTNode {
   static type = 'MerchandiseItem';
 
   title: string;
@@ -32,5 +32,3 @@ class MerchandiseItem extends YTNode {
     this.endpoint = new NavigationEndpoint(data.buttonCommand);
   }
 }
-
-export default MerchandiseItem;

@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class PlaylistSidebarSecondaryInfo extends YTNode {
+export class PlaylistSidebarSecondaryInfo extends YTNode {
   static type = 'PlaylistSidebarSecondaryInfo';
 
   owner;
@@ -13,5 +13,3 @@ class PlaylistSidebarSecondaryInfo extends YTNode {
     this.button = Parser.parse(data.button) || null;
   }
 }
-
-export default PlaylistSidebarSecondaryInfo;

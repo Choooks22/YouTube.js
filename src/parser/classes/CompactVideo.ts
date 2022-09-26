@@ -1,12 +1,12 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import Author from './misc/Author.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { Author } from './misc/Author.ts';
 import { timeToSeconds } from '../../utils/Utils.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class CompactVideo extends YTNode {
+export class CompactVideo extends YTNode {
   static type = 'CompactVideo';
 
   id: string;
@@ -57,5 +57,3 @@ class CompactVideo extends YTNode {
     return this.thumbnails[0];
   }
 }
-
-export default CompactVideo;

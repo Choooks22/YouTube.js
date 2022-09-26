@@ -1,8 +1,8 @@
-import Parser from '../../../index.ts';
-import Text from '../../misc/Text.ts';
+import { Parser } from '../../../index.ts';
+import { Text } from '../../misc/Text.ts';
 import { YTNode } from '../../../helpers.ts';
 
-class LiveChatBannerHeader extends YTNode {
+export class LiveChatBannerHeader extends YTNode {
   static type = 'LiveChatBannerHeader';
 
   text: string;
@@ -16,5 +16,3 @@ class LiveChatBannerHeader extends YTNode {
     this.context_menu_button = Parser.parse(data.contextMenuButton);
   }
 }
-
-export default LiveChatBannerHeader;

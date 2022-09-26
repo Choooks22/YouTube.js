@@ -1,29 +1,29 @@
-import Session from './Session.ts';
+import { Session } from './Session.ts';
 
-import TrackInfo from '../parser/ytmusic/TrackInfo.ts';
-import Search from '../parser/ytmusic/Search.ts';
-import HomeFeed from '../parser/ytmusic/HomeFeed.ts';
-import Explore from '../parser/ytmusic/Explore.ts';
-import Library from '../parser/ytmusic/Library.ts';
-import Artist from '../parser/ytmusic/Artist.ts';
-import Album from '../parser/ytmusic/Album.ts';
-import Playlist from '../parser/ytmusic/Playlist.ts';
-import Recap from '../parser/ytmusic/Recap.ts';
+import { TrackInfo } from '../parser/ytmusic/TrackInfo.ts';
+import { Search } from '../parser/ytmusic/Search.ts';
+import { HomeFeed } from '../parser/ytmusic/HomeFeed.ts';
+import { Explore } from '../parser/ytmusic/Explore.ts';
+import { Library } from '../parser/ytmusic/Library.ts';
+import { Artist } from '../parser/ytmusic/Artist.ts';
+import { Album } from '../parser/ytmusic/Album.ts';
+import { Playlist } from '../parser/ytmusic/Playlist.ts';
+import { Recap } from '../parser/ytmusic/Recap.ts';
 
-import Tab from '../parser/classes/Tab.ts';
-import Tabbed from '../parser/classes/Tabbed.ts';
-import SingleColumnMusicWatchNextResults from '../parser/classes/SingleColumnMusicWatchNextResults.ts';
-import WatchNextTabbedResults from '../parser/classes/WatchNextTabbedResults.ts';
-import SectionList from '../parser/classes/SectionList.ts';
+import { Tab } from '../parser/classes/Tab.ts';
+import { Tabbed } from '../parser/classes/Tabbed.ts';
+import { SingleColumnMusicWatchNextResults } from '../parser/classes/SingleColumnMusicWatchNextResults.ts';
+import { WatchNextTabbedResults } from '../parser/classes/WatchNextTabbedResults.ts';
+import { SectionList } from '../parser/classes/SectionList.ts';
 
-import Message from '../parser/classes/Message.ts';
-import MusicQueue from '../parser/classes/MusicQueue.ts';
-import PlaylistPanel from '../parser/classes/PlaylistPanel.ts';
-import MusicDescriptionShelf from '../parser/classes/MusicDescriptionShelf.ts';
-import MusicCarouselShelf from '../parser/classes/MusicCarouselShelf.ts';
-import SearchSuggestionsSection from '../parser/classes/SearchSuggestionsSection.ts';
-import AutomixPreviewVideo from '../parser/classes/AutomixPreviewVideo.ts';
-import MusicTwoRowItem from '../parser/classes/MusicTwoRowItem.ts';
+import { Message } from '../parser/classes/Message.ts';
+import { MusicQueue } from '../parser/classes/MusicQueue.ts';
+import { PlaylistPanel } from '../parser/classes/PlaylistPanel.ts';
+import { MusicDescriptionShelf } from '../parser/classes/MusicDescriptionShelf.ts';
+import { MusicCarouselShelf } from '../parser/classes/MusicCarouselShelf.ts';
+import { SearchSuggestionsSection } from '../parser/classes/SearchSuggestionsSection.ts';
+import { AutomixPreviewVideo } from '../parser/classes/AutomixPreviewVideo.ts';
+import { MusicTwoRowItem } from '../parser/classes/MusicTwoRowItem.ts';
 
 import { observe, ObservedArray, YTNode } from '../parser/helpers.ts';
 import {
@@ -32,7 +32,7 @@ import {
   throwIfMissing,
 } from '../utils/Utils.ts';
 
-class Music {
+export class Music {
   #session;
   #actions;
 
@@ -392,5 +392,3 @@ class Music {
     return search_suggestions_section?.contents.array();
   }
 }
-
-export default Music;

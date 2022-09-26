@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class ThumbnailOverlayInlineUnplayable extends YTNode {
+export class ThumbnailOverlayInlineUnplayable extends YTNode {
   static type = 'ThumbnailOverlayInlineUnplayable';
 
   text: string;
@@ -13,5 +13,3 @@ class ThumbnailOverlayInlineUnplayable extends YTNode {
     this.icon_type = data.icon.iconType;
   }
 }
-
-export default ThumbnailOverlayInlineUnplayable;

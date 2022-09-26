@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class SimpleCardTeaser extends YTNode {
+export class SimpleCardTeaser extends YTNode {
   static type = 'SimpleCardTeaser';
 
   message: Text;
@@ -13,5 +13,3 @@ class SimpleCardTeaser extends YTNode {
     this.prominent = data.prominent;
   }
 }
-
-export default SimpleCardTeaser;

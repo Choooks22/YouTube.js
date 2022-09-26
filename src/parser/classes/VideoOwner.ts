@@ -1,8 +1,8 @@
-import Text from './misc/Text.ts';
-import Author from './misc/Author.ts';
+import { Text } from './misc/Text.ts';
+import { Author } from './misc/Author.ts';
 import { YTNode } from '../helpers.ts';
 
-class VideoOwner extends YTNode {
+export class VideoOwner extends YTNode {
   static type = 'VideoOwner';
 
   subscription_button;
@@ -25,5 +25,3 @@ class VideoOwner extends YTNode {
     );
   }
 }
-
-export default VideoOwner;

@@ -1,12 +1,12 @@
-import Parser, { ParsedResponse } from '../index.ts';
-import Actions, { AxioslikeResponse } from '../../core/Actions.ts';
+import { ParsedResponse, Parser } from '../index.ts';
+import { Actions, AxioslikeResponse } from '../../core/Actions.ts';
 
-import MusicDetailHeader from '../classes/MusicDetailHeader.ts';
-import MicroformatData from '../classes/MicroformatData.ts';
-import MusicCarouselShelf from '../classes/MusicCarouselShelf.ts';
-import MusicShelf from '../classes/MusicShelf.ts';
+import { MusicDetailHeader } from '../classes/MusicDetailHeader.ts';
+import { MicroformatData } from '../classes/MicroformatData.ts';
+import { MusicCarouselShelf } from '../classes/MusicCarouselShelf.ts';
+import { MusicShelf } from '../classes/MusicShelf.ts';
 
-class Album {
+export class Album {
   #page;
   #actions;
 
@@ -35,5 +35,3 @@ class Album {
     return this.#page;
   }
 }
-
-export default Album;

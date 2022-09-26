@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class Endscreen extends YTNode {
+export class Endscreen extends YTNode {
   static type = 'Endscreen';
 
   elements;
@@ -13,5 +13,3 @@ class Endscreen extends YTNode {
     this.start_ms = data.startMs;
   }
 }
-
-export default Endscreen;

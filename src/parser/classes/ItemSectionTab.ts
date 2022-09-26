@@ -1,9 +1,9 @@
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 
 import { YTNode } from '../helpers.ts';
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 
-class ItemSectionTab extends YTNode {
+export class ItemSectionTab extends YTNode {
   static type = 'Tab';
 
   title: Text;
@@ -17,5 +17,3 @@ class ItemSectionTab extends YTNode {
     this.endpoint = new NavigationEndpoint(data.endpoint);
   }
 }
-
-export default ItemSectionTab;

@@ -1,7 +1,7 @@
-import Parser from '../index.ts';
+import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 
-class BrowseFeedActions extends YTNode {
+export class BrowseFeedActions extends YTNode {
   static type = 'BrowseFeedActions';
 
   contents;
@@ -11,5 +11,3 @@ class BrowseFeedActions extends YTNode {
     this.contents = Parser.parseArray(data.contents);
   }
 }
-
-export default BrowseFeedActions;

@@ -1,9 +1,9 @@
-import Parser from '../../index.ts';
-import Text from '../misc/Text.ts';
-import Thumbnail from '../misc/Thumbnail.ts';
+import { Parser } from '../../index.ts';
+import { Text } from '../misc/Text.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { YTNode } from '../../helpers.ts';
 
-class CommentsHeader extends YTNode {
+export class CommentsHeader extends YTNode {
   static type = 'CommentsHeader';
 
   title: Text;
@@ -37,5 +37,3 @@ class CommentsHeader extends YTNode {
     })) || null;
   }
 }
-
-export default CommentsHeader;

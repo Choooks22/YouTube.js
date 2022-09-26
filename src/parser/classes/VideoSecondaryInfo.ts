@@ -1,12 +1,12 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import Button from './Button.ts';
-import VideoOwner from './VideoOwner.ts';
-import SubscribeButton from './SubscribeButton.ts';
-import MetadataRowContainer from './MetadataRowContainer.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { Button } from './Button.ts';
+import { VideoOwner } from './VideoOwner.ts';
+import { SubscribeButton } from './SubscribeButton.ts';
+import { MetadataRowContainer } from './MetadataRowContainer.ts';
 import { YTNode } from '../helpers.ts';
 
-class VideoSecondaryInfo extends YTNode {
+export class VideoSecondaryInfo extends YTNode {
   static type = 'VideoSecondaryInfo';
 
   owner: VideoOwner | null; // TODO: VideoOwner?
@@ -36,5 +36,3 @@ class VideoSecondaryInfo extends YTNode {
     this.description_collapsed_lines = data.descriptionCollapsedLines;
   }
 }
-
-export default VideoSecondaryInfo;

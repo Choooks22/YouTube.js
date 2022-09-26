@@ -1,7 +1,7 @@
-import Text from './misc/Text.ts';
+import { Text } from './misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
-class GridHeader extends YTNode {
+export class GridHeader extends YTNode {
   static type = 'GridHeader';
 
   title: Text;
@@ -11,5 +11,3 @@ class GridHeader extends YTNode {
     this.title = new Text(data.title);
   }
 }
-
-export default GridHeader;

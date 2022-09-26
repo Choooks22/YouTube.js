@@ -1,7 +1,7 @@
-import Thumbnail from './misc/Thumbnail.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
-class SingleHeroImage extends YTNode {
+export class SingleHeroImage extends YTNode {
   static type = 'SingleHeroImage';
 
   thumbnails: Thumbnail[];
@@ -13,5 +13,3 @@ class SingleHeroImage extends YTNode {
     this.style = data.style;
   }
 }
-
-export default SingleHeroImage;

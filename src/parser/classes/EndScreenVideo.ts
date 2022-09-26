@@ -1,11 +1,11 @@
-import Parser from '../index.ts';
-import Text from './misc/Text.ts';
-import Author from './misc/Author.ts';
-import Thumbnail from './misc/Thumbnail.ts';
-import NavigationEndpoint from './NavigationEndpoint.ts';
+import { Parser } from '../index.ts';
+import { Text } from './misc/Text.ts';
+import { Author } from './misc/Author.ts';
+import { Thumbnail } from './misc/Thumbnail.ts';
+import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-class EndScreenVideo extends YTNode {
+export class EndScreenVideo extends YTNode {
   static type = 'EndScreenVideo';
 
   id: string;
@@ -38,5 +38,3 @@ class EndScreenVideo extends YTNode {
     };
   }
 }
-
-export default EndScreenVideo;
