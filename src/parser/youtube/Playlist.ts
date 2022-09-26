@@ -1,7 +1,7 @@
 import { Actions } from '../../core/Actions.ts';
 import { Feed } from '../../core/Feed.ts';
 
-import { Thumbnail } from '../classes/misc/Thumbnail.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { VideoOwner } from '../classes/VideoOwner.ts';
 
 import { PlaylistSidebar } from '../classes/PlaylistSidebar.ts';

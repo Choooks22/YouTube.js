@@ -1,5 +1,5 @@
 import { MetadataBadge } from './MetadataBadge.ts';
-import { Thumbnail } from './misc/Thumbnail.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 
 export class LiveChatAuthorBadge extends MetadataBadge {
   static type = 'LiveChatAuthorBadge';

@@ -1,5 +1,5 @@
 import { Parser } from '../index.ts';
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { CompactLink } from './CompactLink.ts';
 import { ObservedArray, YTNode } from '../helpers.ts';
 

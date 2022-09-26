@@ -1,9 +1,9 @@
 import { Parser } from '../index.ts';
-import { Author } from './misc/Author.ts';
-import { Thumbnail } from './misc/Thumbnail.ts';
+import { Author } from '../misc/Author.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { timeToSeconds } from '../../utils/Utils.ts';
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
 export class Movie extends YTNode {

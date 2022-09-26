@@ -1,7 +1,7 @@
-import { Author } from './misc/Author.ts';
+import { Author } from '../misc/Author.ts';
 import { Parser } from '../index.ts';
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
 export class GridChannel extends YTNode {

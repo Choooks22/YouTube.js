@@ -1,13 +1,13 @@
 import { Parser } from '../index.ts';
 
-import { Text } from './misc/Text.ts';
-import { Thumbnail } from './misc/Thumbnail.ts';
+import { Text } from '../misc/Text.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { AccountItemSectionHeader } from './AccountItemSectionHeader.ts';
 
 import { YTNode } from '../helpers.ts';
 
-export class AccountItem {
+class AccountItem {
   static type = 'AccountItem';
 
   account_name: Text;

@@ -1,8 +1,8 @@
 import { Parser } from '../../../index.ts';
 import { YTNode } from '../../../helpers.ts';
 
-import { Text } from '../../misc/Text.ts';
-import { Thumbnail } from '../../misc/Thumbnail.ts';
+import { Text } from '../../../misc/Text.ts';
+import { Thumbnail } from '../../../misc/Thumbnail.ts';
 import { NavigationEndpoint } from '../../NavigationEndpoint.ts';
 
 export class LiveChatProductItem extends YTNode {

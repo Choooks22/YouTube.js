@@ -1,4 +1,4 @@
-import { Thumbnail } from './misc/Thumbnail.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { YTNode } from '../helpers.ts';
 
 export class BackstageImage extends YTNode {

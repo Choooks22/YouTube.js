@@ -1,5 +1,5 @@
-import { Format } from './classes/misc/Format.ts';
-import { VideoDetails } from './classes/misc/VideoDetails.ts';
+import { Format } from './misc/Format.ts';
+import { VideoDetails } from './misc/VideoDetails.ts';
 import { GetParserByName } from './map.ts';
 import { Endscreen } from './classes/Endscreen.ts';
 import { CardCollection } from './classes/CardCollection.ts';
@@ -431,7 +431,7 @@ export class Parser {
         }
 
         const result = new TargetClass(data[keys[0]]);
-        this.#addToMemo(classname, result);
+        this.#addToMemo(classname, result as YTNode);
 
         return result as T;
       } catch (err) {
@@ -512,7 +512,7 @@ export class Parser {
         ),
       );
     } else {
-      const missingOrInvalidMutations = [];
+      const missingOrInvalidMutations: string[] = [];
       for (const menuItem of musicMultiSelectMenuItems) {
         const mutation = mutations.find((mutation) =>
           mutation.payload?.musicFormBooleanChoice?.id ===

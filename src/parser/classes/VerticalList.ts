@@ -1,5 +1,5 @@
 import { Parser } from '../index.ts';
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
 export class VerticalList extends YTNode {

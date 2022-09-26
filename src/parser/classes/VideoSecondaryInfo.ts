@@ -1,5 +1,5 @@
 import { Parser } from '../index.ts';
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { Button } from './Button.ts';
 import { VideoOwner } from './VideoOwner.ts';
 import { SubscribeButton } from './SubscribeButton.ts';

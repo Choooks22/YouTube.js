@@ -1,5 +1,5 @@
-import { Text } from './misc/Text.ts';
-import { PlaylistAuthor } from './misc/PlaylistAuthor.ts';
+import { Text } from '../misc/Text.ts';
+import { PlaylistAuthor } from '../misc/PlaylistAuthor.ts';
 import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
 

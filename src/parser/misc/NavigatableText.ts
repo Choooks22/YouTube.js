@@ -1,5 +1,5 @@
 import { Text } from './Text.ts';
-import { NavigationEndpoint } from '../NavigationEndpoint.ts';
+import { NavigationEndpoint } from '../classes/NavigationEndpoint.ts';
 
 export class NavigatableText extends Text {
   static type = 'NavigatableText';

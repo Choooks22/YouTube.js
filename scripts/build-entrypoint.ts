@@ -52,3 +52,4 @@ await createEntrypoint('../src/core');
 await createEntrypoint('../src/parser/classes', { depth: 2 });
 await createEntrypoint('../src/parser/youtube');
 await createEntrypoint('../src/parser/ytmusic');
+await createEntrypoint('../src/parser/misc');

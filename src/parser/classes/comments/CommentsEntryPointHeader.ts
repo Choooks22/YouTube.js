@@ -1,5 +1,5 @@
-import { Text } from '../misc/Text.ts';
-import { Thumbnail } from '../misc/Thumbnail.ts';
+import { Text } from '../../misc/Text.ts';
+import { Thumbnail } from '../../misc/Thumbnail.ts';
 import { YTNode } from '../../helpers.ts';
 
 export class CommentsEntryPointHeader extends YTNode {

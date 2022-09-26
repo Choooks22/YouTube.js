@@ -1,7 +1,7 @@
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { YTNode } from '../helpers.ts';
 
-export class Panel {
+class Panel {
   static type = 'Panel';
 
   thumbnail: {

@@ -1,7 +1,7 @@
 import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
-import { Text } from './misc/Text.ts';
-import { Thumbnail } from './misc/Thumbnail.ts';
+import { Text } from '../misc/Text.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { Menu } from './menus/Menu.ts';
 
 export class MusicVisualHeader extends YTNode {

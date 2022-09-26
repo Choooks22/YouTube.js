@@ -1,5 +1,5 @@
-import { Text } from './misc/Text.ts';
-import { Author } from './misc/Author.ts';
+import { Text } from '../misc/Text.ts';
+import { Author } from '../misc/Author.ts';
 import { YTNode } from '../helpers.ts';
 
 export class VideoOwner extends YTNode {

@@ -1,6 +1,6 @@
 import { Parser } from '../index.ts';
-import { Author } from './misc/Author.ts';
-import { Text } from './misc/Text.ts';
+import { Author } from '../misc/Author.ts';
+import { Text } from '../misc/Text.ts';
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
 
 import { YTNode } from '../helpers.ts';

@@ -1,4 +1,4 @@
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { ObservedArray, YTNode } from '../helpers.ts';
 import { ItemSectionTab } from './ItemSectionTab.ts';
 import { Parser } from '../index.ts';

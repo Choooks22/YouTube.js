@@ -1,7 +1,7 @@
 import { MusicMultiSelectMenuItem } from './MusicMultiSelectMenuItem.ts';
 import { MusicMenuItemDivider } from './MusicMenuItemDivider.ts';
 import { YTNode } from '../../helpers.ts';
-import { Text } from '../misc/Text.ts';
+import { Text } from '../../misc/Text.ts';
 import { Parser } from '../../index.ts';
 
 export class MusicMultiSelectMenu extends YTNode {

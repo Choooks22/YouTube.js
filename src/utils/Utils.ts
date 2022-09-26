@@ -344,7 +344,7 @@ export async function sha1Hash(str: string) {
 
   function hex(arrayBuffer: ArrayBuffer) {
     const buff = new Uint8Array(arrayBuffer);
-    const hexOctets = [];
+    const hexOctets: string[] = [];
     for (let i = 0; i < buff.length; ++i) {
       hexOctets.push(byteToHex[buff[i]]);
     }
@@ -372,7 +372,7 @@ export async function generateSidAuth(sid: string): Promise<string> {
  * Generates a random string with the given length.
  */
 export function generateRandomString(length: number): string {
-  const result = [];
+  const result: string[] = [];
 
   const alphabet =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';

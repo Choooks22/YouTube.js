@@ -1,9 +1,9 @@
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { Parser } from '../index.ts';
-import { Thumbnail } from './misc/Thumbnail.ts';
-import { PlaylistAuthor } from './misc/PlaylistAuthor.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
+import { PlaylistAuthor } from '../misc/PlaylistAuthor.ts';
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
-import { NavigatableText } from './misc/NavigatableText.ts';
+import { NavigatableText } from '../misc/NavigatableText.ts';
 import { YTNode } from '../helpers.ts';
 
 export class GridPlaylist extends YTNode {

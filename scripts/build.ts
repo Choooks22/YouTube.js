@@ -33,6 +33,10 @@ await build({
       name: './ytmusic',
       path: './src/parser/ytmusic/mod.ts',
     },
+    {
+      name: './items',
+      path: './src/parser/misc/mod.ts',
+    },
   ],
   outDir,
   compilerOptions: {

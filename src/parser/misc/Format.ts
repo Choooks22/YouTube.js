@@ -1,4 +1,4 @@
-import { Player } from '../../../core/Player.ts';
+import { Player } from '../../core/Player.ts';
 
 export class Format {
   itag: string;

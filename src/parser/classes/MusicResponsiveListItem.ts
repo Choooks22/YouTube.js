@@ -2,9 +2,9 @@
 // Seems like a mess to use
 
 import { Parser } from '../index.ts';
-import { Text } from './misc/Text.ts';
-import { TextRun } from './misc/TextRun.ts';
-import { Thumbnail } from './misc/Thumbnail.ts';
+import { Text } from '../misc/Text.ts';
+import { TextRun } from '../misc/TextRun.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { MusicItemThumbnailOverlay } from './MusicItemThumbnailOverlay.ts';
 import { MusicResponsiveListItemFlexColumn } from './MusicResponsiveListItemFlexColumn.ts';
@@ -233,7 +233,7 @@ export class MusicResponsiveListItem extends YTNode {
     this.name = this.#flex_columns[0].key('title').instanceof(Text).toString();
     this.subtitle = this.#flex_columns[1].key('title').instanceof(Text);
     this.subscribers =
-      this.subtitle.runs?.find((run) =>
+      this.subtitle!.runs?.find((run) =>
         (/^(\d*\.)?\d+[M|K]? subscribers?$/i).test(run.text)
       )?.text || '';
   }

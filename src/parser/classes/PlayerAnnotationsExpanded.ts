@@ -1,5 +1,5 @@
 import { Parser } from '../index.ts';
-import { Thumbnail } from './misc/Thumbnail.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { SuperParsedResult, YTNode } from '../helpers.ts';
 

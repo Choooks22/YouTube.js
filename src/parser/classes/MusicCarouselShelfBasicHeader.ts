@@ -1,4 +1,4 @@
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 import { MusicThumbnail } from './MusicThumbnail.ts';
 import { Parser } from '../index.ts';

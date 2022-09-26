@@ -1,4 +1,4 @@
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
 export class SettingsCheckbox extends YTNode {

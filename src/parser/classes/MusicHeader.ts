@@ -1,6 +1,6 @@
 import { Parser } from '../index.ts';
 import { YTNode } from '../helpers.ts';
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 
 export class MusicHeader extends YTNode {
   static type = 'MusicHeader';

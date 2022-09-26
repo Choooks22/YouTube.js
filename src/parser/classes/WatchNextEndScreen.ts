@@ -1,5 +1,5 @@
 import { Parser } from '../index.ts';
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { EndScreenVideo } from './EndScreenVideo.ts';
 import { EndScreenPlaylist } from './EndScreenPlaylist.ts';
 import { YTNode } from '../helpers.ts';

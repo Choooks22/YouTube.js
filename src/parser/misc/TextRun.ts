@@ -1,4 +1,4 @@
-import { NavigationEndpoint } from '../NavigationEndpoint.ts';
+import { NavigationEndpoint } from '../classes/NavigationEndpoint.ts';
 
 export class TextRun {
   text: string;

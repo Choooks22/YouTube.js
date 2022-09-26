@@ -1,5 +1,5 @@
 import { Parser } from '../index.ts';
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { PlaylistPanelVideo } from './PlaylistPanelVideo.ts';
 
 import { YTNode } from '../helpers.ts';

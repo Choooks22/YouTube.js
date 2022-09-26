@@ -1,9 +1,9 @@
-import { Parser } from '../../index.ts';
+import { Parser } from '../index.ts';
 import { NavigatableText } from './NavigatableText.ts';
-import { NavigationEndpoint } from '../NavigationEndpoint.ts';
+import { NavigationEndpoint } from '../classes/NavigationEndpoint.ts';
 import { TextRun } from './TextRun.ts';
 import { Thumbnail } from './Thumbnail.ts';
-import * as Constants from '../../../utils/Constants.ts';
+import * as Constants from '../../utils/Constants.ts';
 
 export class Author {
   #nav_text;

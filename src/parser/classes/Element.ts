@@ -1,5 +1,5 @@
 import { Parser } from '../index.ts';
-import { ChildElement } from './misc/ChildElement.ts';
+import { ChildElement } from '../misc/ChildElement.ts';
 
 import { YTNode } from '../helpers.ts';
 

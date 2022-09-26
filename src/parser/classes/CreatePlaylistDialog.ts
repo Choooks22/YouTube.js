@@ -3,7 +3,7 @@ import { ObservedArray, YTNode } from '../helpers.ts';
 import { Button } from './Button.ts';
 import { Dropdown } from './Dropdown.ts';
 import { DropdownItem } from './DropdownItem.ts';
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 
 export class CreatePlaylistDialog extends YTNode {
   static type = 'CreatePlaylistDialog';

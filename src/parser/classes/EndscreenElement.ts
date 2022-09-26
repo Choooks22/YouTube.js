@@ -1,7 +1,7 @@
 import { Parser } from '../index.ts';
-import { Thumbnail } from './misc/Thumbnail.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { YTNode } from '../helpers.ts';
 
 export class EndscreenElement extends YTNode {

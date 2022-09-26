@@ -1,8 +1,8 @@
 import { Parser } from '../index.ts';
-import { Text } from './misc/Text.ts';
-import { Thumbnail } from './misc/Thumbnail.ts';
+import { Text } from '../misc/Text.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
-import { Author } from './misc/Author.ts';
+import { Author } from '../misc/Author.ts';
 import { YTNode } from '../helpers.ts';
 
 export class GridVideo extends YTNode {

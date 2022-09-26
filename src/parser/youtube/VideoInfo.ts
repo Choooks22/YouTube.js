@@ -6,7 +6,7 @@ import { Player } from '../../core/Player.ts';
 import { TwoColumnWatchNextResults } from '../classes/TwoColumnWatchNextResults.ts';
 import { VideoPrimaryInfo } from '../classes/VideoPrimaryInfo.ts';
 import { VideoSecondaryInfo } from '../classes/VideoSecondaryInfo.ts';
-import { Format } from '../classes/misc/Format.ts';
+import { Format } from '../misc/Format.ts';
 
 import { MerchandiseShelf } from '../classes/MerchandiseShelf.ts';
 import { RelatedChipCloud } from '../classes/RelatedChipCloud.ts';

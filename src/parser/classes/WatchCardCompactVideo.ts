@@ -1,4 +1,4 @@
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { timeToSeconds } from '../../utils/Utils.ts';
 import { YTNode } from '../helpers.ts';
 

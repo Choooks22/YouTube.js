@@ -2,7 +2,7 @@ import { Parser } from '../index.ts';
 
 import { YTNode } from '../helpers.ts';
 import { MusicMultiSelectMenu } from './menus/MusicMultiSelectMenu.ts';
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 
 export class MusicSortFilterButton extends YTNode {
   static type = 'MusicSortFilterButton';

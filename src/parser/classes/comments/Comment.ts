@@ -1,7 +1,7 @@
 import { Parser } from '../../index.ts';
-import { Text } from '../misc/Text.ts';
-import { Thumbnail } from '../misc/Thumbnail.ts';
-import { Author } from '../misc/Author.ts';
+import { Text } from '../../misc/Text.ts';
+import { Thumbnail } from '../../misc/Thumbnail.ts';
+import { Author } from '../../misc/Author.ts';
 import { ToggleButton } from '../ToggleButton.ts';
 import { CommentReplyDialog } from './CommentReplyDialog.ts';
 import { CommentActionButtons } from './CommentActionButtons.ts';

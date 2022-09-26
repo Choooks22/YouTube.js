@@ -1,6 +1,6 @@
 import { Parser } from '../../index.ts';
-import { Thumbnail } from '../misc/Thumbnail.ts';
-import { Text } from '../misc/Text.ts';
+import { Thumbnail } from '../../misc/Thumbnail.ts';
+import { Text } from '../../misc/Text.ts';
 import { YTNode } from '../../helpers.ts';
 
 export class CommentSimplebox extends YTNode {

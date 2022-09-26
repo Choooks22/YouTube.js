@@ -1,5 +1,5 @@
-import { Text } from '../../misc/Text.ts';
-import { Thumbnail } from '../../misc/Thumbnail.ts';
+import { Text } from '../../../misc/Text.ts';
+import { Thumbnail } from '../../../misc/Thumbnail.ts';
 import { NavigationEndpoint } from '../../NavigationEndpoint.ts';
 import { MetadataBadge } from '../../MetadataBadge.ts';
 import { LiveChatAuthorBadge } from '../../LiveChatAuthorBadge.ts';

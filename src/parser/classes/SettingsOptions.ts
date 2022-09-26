@@ -1,6 +1,6 @@
 import { Parser } from '../index.ts';
 
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { Dropdown } from './Dropdown.ts';
 import { SettingsSwitch } from './SettingsSwitch.ts';
 import { SettingsCheckbox } from './SettingsCheckbox.ts';

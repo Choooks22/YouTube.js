@@ -1,9 +1,9 @@
 // TODO: refactor this
 
 import { Parser } from '../index.ts';
-import { Text } from './misc/Text.ts';
-import { TextRun } from './misc/TextRun.ts';
-import { Thumbnail } from './misc/Thumbnail.ts';
+import { Text } from '../misc/Text.ts';
+import { TextRun } from '../misc/TextRun.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
 import { MusicItemThumbnailOverlay } from './MusicItemThumbnailOverlay.ts';
 import { Menu } from './menus/Menu.ts';

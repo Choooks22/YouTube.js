@@ -1,5 +1,5 @@
 import { YTNode } from '../helpers.ts';
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
 
 export class DropdownItem extends YTNode {

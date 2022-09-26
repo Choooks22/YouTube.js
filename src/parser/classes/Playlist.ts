@@ -1,8 +1,8 @@
-import { Text } from './misc/Text.ts';
+import { Text } from '../misc/Text.ts';
 import { Parser } from '../index.ts';
-import { Thumbnail } from './misc/Thumbnail.ts';
+import { Thumbnail } from '../misc/Thumbnail.ts';
 import { NavigationEndpoint } from './NavigationEndpoint.ts';
-import { PlaylistAuthor } from './misc/PlaylistAuthor.ts';
+import { PlaylistAuthor } from '../misc/PlaylistAuthor.ts';
 import { YTNode } from '../helpers.ts';
 
 export class Playlist extends YTNode {
