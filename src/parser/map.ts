@@ -1,6 +1,6 @@
-export const YTNodes = map;
 import * as map from './classes/mod.ts';
 import type { YTNodeConstructor } from './helpers.ts';
+export const YTNodes = map;
 
 /**
  * @param name - Name of the node to be parsed
