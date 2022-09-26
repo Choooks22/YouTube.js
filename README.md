@@ -27,11 +27,11 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/LuanRT/YouTube.js/issues">
+  <a href="https://github.com/Choooks22/YouTube.js/issues">
     Report Bug
   </a>
   ·
-  <a href="https://github.com/LuanRT/YouTube.js/issues">
+  <a href="https://github.com/Choooks22/YouTube.js/issues">
     Request Feature
   </a>
 </p>
@@ -39,10 +39,10 @@
 <!-- BADGES -->
 <div align="center">
 
-[![Tests](https://github.com/LuanRT/YouTube.js/actions/workflows/node.js.yml/badge.svg)][actions]
-[![Latest version](https://img.shields.io/npm/v/youtubei.js?color=%2335C757)][versions]
-[![Codefactor](https://www.codefactor.io/repository/github/luanrt/youtube.js/badge)][codefactor]
-[![Downloads](https://img.shields.io/npm/dt/youtubei.js)][npm]
+[![Tests](https://github.com/Choooks22/YouTube.js/actions/workflows/node.js.yml/badge.svg)][actions]
+[![Latest version](https://img.shields.io/npm/v/@chooks22/youtubei.js?color=%2335C757)][versions]
+[![Codefactor](https://www.codefactor.io/repository/github/choooks22/youtube.js/badge)][codefactor]
+[![Downloads](https://img.shields.io/npm/dt/@chooks22/youtubei.js)][npm]
 [![Say thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)][say-thanks]
 <br>
 [![Donate](https://img.shields.io/badge/donate-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)][github-sponsors]
@@ -147,16 +147,11 @@ It requires a runtime with the following features:
 
 ```bash
 # NPM
-npm install youtubei.js@latest
+npm install @chooks22/youtubei.js@latest
 
 # Yarn
-yarn add youtubei.js@latest
-
-# Git (edge version)
-npm install github:LuanRT/YouTube.js
+yarn add @chooks22/youtubei.js@latest
 ```
-
-**TODO:** Deno install instructions (esm.sh possibly?)
 
 <!-- USAGE -->
 
@@ -165,8 +160,17 @@ npm install github:LuanRT/YouTube.js
 Create an InnerTube instance:
 
 ```ts
-// const { Innertube } = require('youtubei.js');
-import { Innertube } from 'youtubei.js.ts';
+// const { Innertube } = require('@chooks22/youtubei.js');
+import { Innertube } from '@chooks22/youtubei.js';
+const youtube = await Innertube.create();
+```
+
+## Deno Usage
+
+Create an InnerTube instance:
+
+```ts
+import { Innertube } from 'https://github.com/Choooks22/YouTube.js/raw/better-youtube.js/mod.ts'
 const youtube = await Innertube.create();
 ```
 
@@ -183,7 +187,7 @@ for a simple example using [Vite](https://vitejs.dev/).
 
 ```ts
 // Pre-bundled version for the web
-import { Innertube } from 'youtubei.js/bundle/browser.ts';
+import { Innertube } from '@chooks22/youtubei.js/browser.js';
 await Innertube.create({
   fetch: async (input: RequestInfo | URL, init?: RequestInit) => {
     // Modify the request
@@ -204,8 +208,8 @@ The example below uses
 [`dash.js`](https://github.com/Dash-Industry-Forum/dash.js) to play the video.
 
 ```ts
-import { Innertube } from 'youtubei.js.ts';
-import dashjs from 'dashjs.ts';
+import { Innertube } from '@chooks22/youtubei.js';
+import dashjs from 'dashjs';
 
 const youtube = await Innertube.create({/* setup - see above */});
 
@@ -264,7 +268,7 @@ Our cache uses the `node:fs` module in Node-like environments, `Deno.writeFile`
 in Deno, and `indexedDB` in browsers.
 
 ```ts
-import { Innertube, UniversalCache } from 'youtubei.js.ts';
+import { Innertube, UniversalCache } from '@chooks22/youtubei.js';
 // By default, cache stores files in the OS temp directory (or indexedDB in browsers).
 const yt = await Innertube.create({
   cache: new UniversalCache(),
@@ -575,7 +579,7 @@ Retrieves notifications.
 
 Retrieves unseen notifications count.
 
-**Returns**: `Promise.<number>`
+**Returns**: `Promise.<number>`****
 
 <a name="getplaylist"></a>
 
@@ -707,18 +711,18 @@ powerful parser!
 ```ts
 // See ./examples/parser
 
-import { Parser } from 'youtubei.js.ts';
+import { Parser } from '@chooks22/youtubei.js';
+import {
+  SectionList,
+  SingleColumnBrowseResults,
+  MusicVisualHeader,
+  MusicImmersiveHeader,
+  MusicCarouselShelf,
+  MusicDescriptionShelf,
+  MusicShelf,
+} from '@chooks22/youtubei.js/classes'
 
-import SectionList from 'youtubei.js/dist/src/parser/classes/SectionList.ts';
-import SingleColumnBrowseResults from 'youtubei.js/dist/src/parser/classes/SingleColumnBrowseResults.ts';
-
-import MusicVisualHeader from 'youtubei.js/dist/src/parser/classes/MusicVisualHeader.ts';
-import MusicImmersiveHeader from 'youtubei.js/dist/src/parser/classes/MusicImmersiveHeader.ts';
-import MusicCarouselShelf from 'youtubei.js/dist/src/parser/classes/MusicCarouselShelf.ts';
-import MusicDescriptionShelf from 'youtubei.js/dist/src/parser/classes/MusicDescriptionShelf.ts';
-import MusicShelf from 'youtubei.js/dist/src/parser/classes/MusicShelf.ts';
-
-import { readFileSync } from 'fs.ts';
+import { readFileSync } from 'fs';
 
 // Artist page response from YouTube Music
 const data = readFileSync('./artist.json').toString();
