@@ -7,7 +7,10 @@
     ]
   },
   "tasks": {
-    "build": "deno run -A --unstable compile.ts"
+    "build": "deno run -A --unstable scripts/build.ts",
+    "build:all": "deno task build:ua && deno task build:map && deno task build",
+    "build:map": "deno run -A scripts/build-entrypoint.ts",
+    "build:ua": "deno run -A scripts/get-agents.ts"
   },
   "fmt": {
     "options": {
