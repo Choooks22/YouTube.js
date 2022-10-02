@@ -22,6 +22,10 @@ await build({
       path: './src/core/mod.ts',
     },
     {
+      name: './helpers',
+      path: './src/parser/helpers.ts',
+    },
+    {
       name: './classes',
       path: './src/parser/classes/mod.ts',
     },
